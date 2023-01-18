@@ -30,12 +30,14 @@ function CartLayout() {
         <div className={cx("list-item")}>
           {products?.map((item) => (
             <div className={cx("item")} key={item.id}>
-              <img src={process.env.REACT_APP_UPLOAD_URL + item.img} alt="" />
+              <div className={cx("item-content")}>
+                <img src={process.env.REACT_APP_UPLOAD_URL + item.img} alt="" />
 
-              <div className={cx("details")}>
-                <h1>{item.title}</h1>
-                <div className={cx("price")}>
-                  {item.quantity} x {item.sale_price}
+                <div className={cx("details")}>
+                  <h1>{item.title}</h1>
+                  <div className={cx("price")}>
+                    {item.quantity} x {item.sale_price}
+                  </div>
                 </div>
               </div>
 
@@ -48,16 +50,16 @@ function CartLayout() {
           ))}
         </div>
 
+        <span className={cx("reset")} onClick={() => dispatch(resetCart())}>
+          Xóa tất cả
+        </span>
+
         <div className={cx("total")}>
           <span>Tổng Tiền:</span>
           <span>{totalPrice()}</span>
         </div>
 
-        <span className={cx("reset")} onClick={() => dispatch(resetCart())}>
-          Xóa tất cả
-        </span>
-
-        <div>
+        <div className={cx("cart-btn")}>
           <Link to="/cart">
             <button>Xem Giỏ Hàng</button>
           </Link>

@@ -74,11 +74,9 @@ function Header() {
                         </button>
                       </Link>
 
-                      {/* <Link to="/" className={cx("logout")}> */}
                       <button className={cx("logout")} onClick={handleLogout}>
                         <span>Đăng xuất</span>
                       </button>
-                      {/* </Link> */}
                     </div>
                   </PopperWrapper>
                 )}

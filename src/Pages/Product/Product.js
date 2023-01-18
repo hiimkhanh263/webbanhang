@@ -25,7 +25,7 @@ function Product() {
   const [liked, setLiked] = useState(10);
   const [isLiked, setIsLiked] = useState(false);
 
-  const likedHandler = () => {
+  const handleLike = () => {
     setLiked(isLiked ? liked - 1 : liked + 1);
     setIsLiked(!isLiked);
   };
@@ -146,7 +146,7 @@ function Product() {
                   <FontAwesomeIcon
                     icon={faHeart}
                     className={cx("heart")}
-                    onClick={likedHandler}
+                    onClick={handleLike}
                   />
                   {liked} lượt thích
                 </span>

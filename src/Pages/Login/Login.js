@@ -33,7 +33,7 @@ function Login() {
   return (
     <div className={cx("wrapper")}>
       <div className={cx("login")}>
-        <h1 className={cx("header")}>Dang Nhap</h1>
+        <h1 className={cx("header")}>Đăng Nhập</h1>
         <form onSubmit={handleLogin}>
           <div className={cx("form")}>
             <div className={cx("form-group")}>

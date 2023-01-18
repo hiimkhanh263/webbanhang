@@ -4,12 +4,13 @@
 
 .register {
   display: flex;
+  flex-direction: column;
   width: 500px;
   height: auto;
   margin: 0 auto;
   background-color: #fff;
   justify-content: center;
-  padding: 18px 0;
+  padding: 12px 20px;
   border-radius: 6px;
 
   .header {
@@ -22,10 +23,16 @@
   .form-group {
     display: flex;
     justify-content: center;
+    align-items: center;
+
+    label {
+      width: 80px;
+    }
 
     input {
+      flex: 1;
       width: 400px;
-      margin: 20px 0;
+      margin: 12px 0;
       background-color: #f7f7f7;
       padding: 12px 20px;
       border-radius: 6px;

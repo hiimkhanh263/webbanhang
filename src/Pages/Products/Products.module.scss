@@ -1,0 +1,51 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  margin-top: 80px;
+}
+
+.products {
+  padding: 20px 50px;
+  display: flex;
+
+  .left {
+    flex: 1;
+    font-size: 14px;
+
+    .filter-item {
+      margin-bottom: 30px;
+
+      h2 {
+        font-weight: 400;
+        margin-bottom: 20px;
+      }
+
+      .input-item {
+        margin-bottom: 10px;
+
+        label {
+          margin-left: 10px;
+        }
+
+        span:first-child {
+          margin-right: 8px;
+        }
+
+        span:last-child {
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+
+  .right {
+    flex: 4;
+
+    .banner {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      margin-bottom: 50px;
+    }
+  }
+}

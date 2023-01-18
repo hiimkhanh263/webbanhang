@@ -1,0 +1,16 @@
+.wrapper {
+  width: 1150px;
+  margin: 40px 0;
+
+  .top {
+    margin-bottom: 20px;
+  }
+
+  .bottom {
+    width: 1150px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}

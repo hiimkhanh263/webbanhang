@@ -1,0 +1,50 @@
+.wrapper {
+  width: 100%;
+  background-color: #c92027;
+  color: #fff;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: -50px;
+
+  .contact {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    input {
+      width: 380px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 92px 0 0 92px;
+      background-color: #f1f1f2;
+    }
+
+    button {
+      padding: 10px 20px;
+      color: #000;
+      border-radius: 0 92px 92px 0;
+      border: none;
+      border-left: 1px solid #ccc;
+      font-weight: 600;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+      }
+    }
+  }
+
+  .icons {
+    display: flex;
+    font-size: 16px;
+
+    .icon {
+      margin: 4px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

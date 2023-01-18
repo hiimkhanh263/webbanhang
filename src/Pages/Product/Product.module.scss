@@ -1,0 +1,156 @@
+.wrapper {
+  margin-top: 90px;
+}
+
+.product {
+  padding: 20px 160px;
+  display: flex;
+
+  .left {
+    display: flex;
+    flex: 1;
+
+    .images {
+      flex: 1;
+
+      img {
+        width: 100%;
+        height: 80px;
+        object-fit: cover;
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+    }
+
+    .main-img {
+      flex: 5;
+
+      img {
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+        margin-left: 12px;
+      }
+    }
+  }
+
+  .right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+
+    .price {
+      font-weight: 600;
+
+      .current-price {
+        font-size: 14px;
+        text-decoration: line-through;
+      }
+
+      .sale-price {
+        margin-left: 6px;
+        font-size: 20px;
+        color: red;
+      }
+    }
+
+    .desc {
+      font-size: 16px;
+      font-weight: 300;
+      align-items: justify;
+      margin: 12px 0;
+    }
+
+    .quantity {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+
+      button {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border: 1px solid rgb(189, 189, 189);
+        background-color: transparent;
+      }
+
+      span {
+        width: 50px;
+        text-align: center;
+        border: 1px solid rgb(189, 189, 189);
+        line-height: 38px;
+      }
+    }
+
+    .buy-now,
+    .add {
+      width: 300px;
+      padding: 12px;
+      background-color: rgb(221, 75, 57);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: none;
+      font-weight: 500;
+      margin-bottom: 12px;
+      border-radius: 12px;
+    }
+
+    .add-icon {
+      padding: 0 6px;
+    }
+
+    .installment {
+      width: 300px;
+      display: flex;
+      gap: 8px;
+
+      button {
+        flex: 1;
+        padding: 12px 0;
+        font-size: 14px;
+        color: #fff;
+        cursor: pointer;
+        border: none;
+        background: linear-gradient(180deg, #3a78d0, #277cea);
+        border-radius: 12px;
+      }
+    }
+
+    .sumary {
+      margin-top: 12px;
+
+      span {
+        .heart {
+          margin-right: 4px;
+        }
+      }
+      .sold {
+        margin: 0 80px;
+      }
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      color: gray;
+      font-size: 14px;
+      margin-top: 30px;
+
+      hr {
+        width: 200px;
+        border-top: 1px solid rgb(160, 160, 160);
+      }
+    }
+
+    hr {
+      border-top: 1px solid rgb(160, 160, 160);
+    }
+  }
+}

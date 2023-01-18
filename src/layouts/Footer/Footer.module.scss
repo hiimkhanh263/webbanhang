@@ -1,0 +1,64 @@
+.wrapper {
+  margin: 100px 200px 20px 200px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+
+  .item {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+
+    h1 {
+      font-size: 18px;
+      font-weight: 500;
+      color: #555;
+    }
+
+    span {
+      color: gray;
+      margin-top: 8px;
+
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+
+    img {
+      margin: 8px 8px 8px 0;
+      border-radius: 6px;
+    }
+  }
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 30px;
+
+  .left {
+    display: flex;
+    align-items: center;
+
+    .logo {
+      width: 100px;
+    }
+
+    .copyright {
+      margin-left: 20px;
+      font-size: 12px;
+      color: gray;
+    }
+  }
+
+  .right {
+    img {
+      margin: 0 4px;
+      border-radius: 6px;
+    }
+  }
+}

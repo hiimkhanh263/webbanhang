@@ -1,0 +1,59 @@
+.wrapper {
+  margin-top: 90px;
+}
+
+.login {
+  display: flex;
+  width: 500px;
+  height: auto;
+  margin: 0 auto;
+  background-color: #fff;
+  justify-content: center;
+  padding: 18px 0;
+  border-radius: 6px;
+
+  .header {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+    margin: 8px 0 16px;
+  }
+
+  .form-group {
+    display: flex;
+    justify-content: center;
+
+    input {
+      width: 400px;
+      margin: 20px 0;
+      background-color: #f7f7f7;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+  }
+
+  .submit-btn {
+    background-color: #c92027;
+    color: #fff;
+    padding: 8px 0;
+    border-radius: 6px;
+    font-size: 16px;
+    margin: 20px 0 12px;
+    width: 100%;
+  }
+
+  .have-acc {
+    font-size: 14px;
+    color: rgb(121, 121, 121);
+
+    .trans-register {
+      color: blue;
+
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+}

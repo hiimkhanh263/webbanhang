@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import images from "~/assets/logoFooter";
 import ListProducts from "~/components/ListProducts/ListProducts";
 import useFetch from "~/hooks/useFetch";
+import { formatPrice } from "~/services/formatPrice/formatPrice";
 import styles from "./Products.module.scss";
 
 const cx = classNames.bind(styles);
@@ -11,7 +12,7 @@ const cx = classNames.bind(styles);
 function Products() {
   const cateId = parseInt(useParams().id);
   const [maxPrice, setMaxPrice] = useState(50000000);
-  const [sort, setSort] = useState("asc");
+  const [sort, setSort] = useState("desc");
   const [selectedSubCats, setSelectedSubCats] = useState([]);
 
   const { data } = useFetch(
@@ -58,9 +59,10 @@ function Products() {
                 type="range"
                 min={0}
                 max={50000000}
+                step={1000000}
                 onChange={(e) => setMaxPrice(e.target.value)}
               />
-              <span>{maxPrice}</span>
+              <span>{formatPrice(maxPrice)}</span>
             </div>
           </div>
 

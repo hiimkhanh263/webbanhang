@@ -5,9 +5,11 @@
 
   .banner {
     img {
-      width: 96%;
+      width: 1150px;
+      height: 200px;
       display: block;
       margin: 0 auto;
+      object-fit: cover;
     }
   }
 }

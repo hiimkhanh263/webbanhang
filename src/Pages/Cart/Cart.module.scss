@@ -1,4 +1,115 @@
 .wrapper {
   width: 900px;
+  height: auto;
   margin: 90px auto;
+}
+
+.cart {
+  background-color: #fff;
+  padding: 16px 26px 62px;
+
+  .cart-title {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid rgb(228, 228, 228);
+    padding-bottom: 12px;
+  }
+
+  .heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // border-bottom: 1px solid rgb(228, 228, 228);
+    padding-bottom: 4px;
+
+    .heading-name {
+      flex: 9;
+    }
+
+    .heading-quantity {
+      display: flex;
+      flex: 2;
+      justify-content: center;
+    }
+
+    .heading-price {
+      display: flex;
+      flex: 2;
+      justify-content: center;
+    }
+
+    .heading-btn {
+      display: flex;
+      justify-content: center;
+      flex: 2;
+    }
+  }
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    font-size: 14px;
+
+    .item-info {
+      display: flex;
+      align-items: center;
+      flex: 10;
+
+      .info-title {
+        font-size: 16px;
+      }
+    }
+
+    .details {
+      width: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex: 3;
+    }
+
+    .delete {
+      flex: 2;
+      color: red;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .delete-btn {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .total {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    border-top: 1px solid rgb(228, 228, 228);
+    border-bottom: 1px solid rgb(228, 228, 228);
+    font-weight: 700;
+  }
+
+  .cart-content {
+    position: relative;
+  }
+
+  .payment-btn {
+    width: 140px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 6px;
+    background-color: #307ade;
+    color: #fff;
+    font-weight: 500;
+    margin: 12px 6px 0;
+    position: absolute;
+    right: 0;
+  }
 }

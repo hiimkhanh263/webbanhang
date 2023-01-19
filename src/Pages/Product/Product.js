@@ -38,6 +38,16 @@ function Product() {
         ) : (
           <>
             <div className={cx("left")}>
+              <div className={cx("main-img")}>
+                <img
+                  src={
+                    process.env.REACT_APP_UPLOAD_URL +
+                    data?.attributes[selectedImg]?.data?.attributes?.url
+                  }
+                  alt=""
+                />
+              </div>
+
               <div className={cx("images")}>
                 <img
                   src={
@@ -54,16 +64,6 @@ function Product() {
                   }
                   alt=""
                   onClick={(e) => setSelectedImg("img2")}
-                />
-              </div>
-
-              <div className={cx("main-img")}>
-                <img
-                  src={
-                    process.env.REACT_APP_UPLOAD_URL +
-                    data?.attributes[selectedImg]?.data?.attributes?.url
-                  }
-                  alt=""
                 />
               </div>
             </div>
@@ -148,7 +148,7 @@ function Product() {
                     className={cx("heart")}
                     onClick={handleLike}
                   />
-                  {liked} lượt thích
+                  <span>{liked} lượt thích</span>
                 </span>
 
                 <span className={cx("sold")}>10 đã bán</span>

@@ -14,9 +14,9 @@ const FeaturedProduct = ({ type }) => {
 
   return (
     <div className={cx("wrapper")}>
-      <div className={cx("top")}>
+      {/* <div className={cx("top")}>
         <h1>Sản Phẩm {type}</h1>
-      </div>
+      </div> */}
 
       <div className={cx("bottom")}>
         {error

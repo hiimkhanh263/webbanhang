@@ -8,6 +8,7 @@ import Cart from "./Pages/Cart/Cart";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login";
 import Payment from "./Pages/Payment/Payment";
+import PaymentSuccess from "./Pages/PaymentSuccess/PaymentSuccess";
 import Product from "./Pages/Product/Product";
 import Products from "./Pages/Products/Products";
 import Register from "./Pages/Register";
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: "/payment",
         element: <Payment />,
+      },
+      {
+        path: "/paymentsuccess",
+        element: <PaymentSuccess />,
       },
     ],
   },

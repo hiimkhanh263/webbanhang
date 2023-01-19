@@ -10,7 +10,9 @@ const useFetch = (url) => {
     const fetchData = async () => {
       try {
         setLoading(true);
+
         const res = await httpRequest.get(url);
+
         setData(res.data.data);
       } catch (err) {
         setError(true);

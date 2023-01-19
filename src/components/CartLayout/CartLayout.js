@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeItem, resetCart } from "~/redux/cartReducer";
 
 import { Link } from "react-router-dom";
+import { formatPrice } from "~/services/formatPrice/formatPrice";
 
 const cx = classNames.bind(styles);
 
@@ -36,7 +37,7 @@ function CartLayout() {
                 <div className={cx("details")}>
                   <h1>{item.title}</h1>
                   <div className={cx("price")}>
-                    {item.quantity} x {item.sale_price}
+                    {item.quantity} x {formatPrice(item.sale_price)}
                   </div>
                 </div>
               </div>
@@ -56,7 +57,7 @@ function CartLayout() {
 
         <div className={cx("total")}>
           <span>Tổng Tiền:</span>
-          <span>{totalPrice()}</span>
+          <span>{formatPrice(totalPrice())}</span>
         </div>
 
         <div className={cx("cart-btn")}>

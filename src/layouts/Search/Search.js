@@ -1,22 +1,22 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 
-import HeadlessTippy from "@tippyjs/react/headless";
 import {
   faCircleXmark,
   faMagnifyingGlass,
   faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
+import HeadlessTippy from "@tippyjs/react/headless";
 
 import classNames from "classnames/bind";
 import styles from "./Search.module.scss";
 
 import { Wrapper as PopperWrapper } from "~/components/Popper";
-import ProductItem from "~/layouts/Search/ProductItem/ProductItem";
 import useDebounce from "~/hooks/useDebounce";
 import useFetch from "~/hooks/useFetch";
+import ProductItem from "~/layouts/Search/ProductItem/ProductItem";
 import * as searchService from "~/services/searchService/searchService";
 
 const cx = classNames.bind(styles);

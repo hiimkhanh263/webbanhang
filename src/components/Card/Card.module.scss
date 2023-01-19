@@ -50,16 +50,19 @@
       border-bottom-right-radius: 12px;
     }
   }
+
+  .card-info {
+    padding: 0 8px;
+  }
+
   .title {
     font-size: 14px;
     font-weight: 800;
-    padding: 0 8px;
     height: 50px;
   }
 
   .price {
     display: flex;
-    padding: 0 8px;
     align-items: center;
 
     .current-price {
@@ -80,22 +83,21 @@
 
   .promotion {
     background-color: #efefef;
-    margin: 0 10px 12px;
     font-size: 12px;
     text-align: justify;
-    padding: 6px;
     border-radius: 12px;
     border: 1px solid #e1e1e1;
+    padding: 4px 8px;
 
-    p {
+    P {
       margin-bottom: 0;
     }
   }
 
   .bottom {
     display: flex;
-    margin: 0 10px;
     justify-content: space-between;
+    margin-top: 8px;
 
     p {
       font-size: 12px;

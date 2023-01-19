@@ -17,20 +17,34 @@
       width: 380px;
       padding: 10px 20px;
       border: none;
-      border-radius: 92px 0 0 92px;
+      border-radius: 12px 0 0 12px;
       background-color: #f1f1f2;
     }
 
     button {
       padding: 10px 20px;
       color: #000;
-      border-radius: 0 92px 92px 0;
+      border-radius: 0 12px 12px 0;
       border: none;
-      border-left: 1px solid #ccc;
       font-weight: 600;
 
       &:hover {
         background-color: rgba(255, 255, 255, 0.9);
+      }
+    }
+
+    .mail {
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 8px;
+        right: 52px;
+        height: 30px;
+        width: 1px;
+        background-color: rgba(22, 24, 35, 0.12);
+        margin-right: 8px;
       }
     }
   }

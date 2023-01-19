@@ -17,11 +17,11 @@ function Contact() {
   return (
     <div className={cx("wrapper")}>
       <div className={cx("contact")}>
-        <span>Liên Hệ VỚi Chúng Tôi</span>
+        <span>Liên Hệ Với Chúng Tôi</span>
 
         <div className={cx("mail")}>
           <input type="text" placeholder="Nhập Email của bạn..." />
-          <button>GỬI</button>
+          <button>Gửi</button>
         </div>
 
         <div className={cx("icons")}>

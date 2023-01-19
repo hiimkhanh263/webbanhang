@@ -2,7 +2,6 @@ import React from "react";
 
 import classNames from "classnames/bind";
 import styles from "./Sidebar.module.scss";
-// import config from "~/config";
 import Menu, { MenuItem } from "./Menu";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

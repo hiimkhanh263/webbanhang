@@ -9,8 +9,10 @@ const images = {
   nhattin: require("~/assets/logoFooter/nhattin.jpg"),
   vnpost: require("~/assets/logoFooter/vnpost.jpg"),
   bannerProducts: require("~/assets/logoFooter/banner-products.jpg"),
-  logoCart: require("~/assets/logoFooter/logo-cart.jpg"),
   logoSearchDefault: require("~/assets/logoFooter/logo-search-default.jpg"),
+  bannerHomeFirst: require("~/assets/logoFooter/banner-home1.png"),
+  bannerHomeSecond: require("~/assets/logoFooter/banner-home2.png"),
+  bannerHomeThird: require("~/assets/logoFooter/banner-home3.png"),
 };
 
 export default images;

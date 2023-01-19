@@ -33,29 +33,33 @@ function Card({ item }) {
           />
         </div>
 
-        <div className={cx("title")}>{item?.attributes.title}</div>
+        <div className={cx("card-info")}>
+          <div className={cx("title")}>{item?.attributes.title}</div>
 
-        <div className={cx("price")}>
-          <p className={cx("current-price")}>
-            {/* {formatPrice(item.price || item?.attributes.price + 2000000)} */}
-            {formatPrice(item?.attributes.price)}
-          </p>
+          <div className={cx("price")}>
+            <p className={cx("current-price")}>
+              {/* {formatPrice(item.price || item?.attributes.price + 2000000)} */}
+              {formatPrice(item?.attributes.price)}
+            </p>
 
-          <p className={cx("sale-price")}>
-            {formatPrice(item?.attributes.sale_price)}
-          </p>
+            <p className={cx("sale-price")}>
+              {formatPrice(item?.attributes.sale_price)}
+            </p>
+          </div>
         </div>
       </Link>
 
-      <div className={cx("promotion")}>
-        <p>Tặng kèm dây củ cáp sạc chính hãng</p>
-      </div>
+      <div className={cx("card-info")}>
+        <div className={cx("promotion")}>
+          <p>Tặng kèm dây củ cáp sạc chính hãng</p>
+        </div>
 
-      <div className={cx("bottom")}>
-        <p>3.2k đã bán</p>
-        <span>
-          <FontAwesomeIcon icon={faHeart} />
-        </span>
+        <div className={cx("bottom")}>
+          <p>3.2k đã bán</p>
+          <span>
+            <FontAwesomeIcon icon={faHeart} />
+          </span>
+        </div>
       </div>
     </div>
   );

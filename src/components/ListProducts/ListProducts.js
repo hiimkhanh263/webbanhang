@@ -21,6 +21,13 @@ function ListProducts({ cateId, maxPrice, sort, subCats }) {
           ? "loading"
           : data?.map((item) => <Card item={item} key={item.id} />)}
       </div>
+
+      {/* phân trang */}
+      <div className={cx("pagination")}>
+        <span>10</span>
+        <button>1</button>
+        <button>2</button>
+      </div>
     </>
   );
 }

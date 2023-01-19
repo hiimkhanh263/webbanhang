@@ -5,9 +5,10 @@ import styles from "./Cart.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { removeItem, resetCart } from "~/redux/cartReducer";
+import { removeItem } from "~/redux/cartReducer";
 
 import { Link } from "react-router-dom";
+import { formatPrice } from "~/services/formatPrice/formatPrice";
 
 const cx = classNames.bind(styles);
 
@@ -25,40 +26,50 @@ function Cart() {
   return (
     <div className={cx("wrapper")}>
       <div className={cx("cart")}>
-        <h1>Thanh Toán</h1>
+        <h1 className={cx("cart-title")}>Thanh Toán</h1>
 
-        {products?.map((item) => (
-          <div className={cx("item")} key={item.id}>
-            <img src={process.env.REACT_APP_UPLOAD_URL + item.img} alt="" />
-
-            <div className={cx("details")}>
-              <h1>{item.title}</h1>
-              <p>{item.desc?.substring(0, 100)}</p>
-              <div className={cx("price")}>
-                {item.quantity} x {item.sale_price}
-              </div>
-            </div>
-
-            <FontAwesomeIcon
-              icon={faTrash}
-              className={cx("delete")}
-              onClick={() => dispatch(removeItem(item.id))}
-            />
-          </div>
-        ))}
-
-        <div className={cx("total")}>
-          <span>Tổng Tiền:</span>
-          <span>{totalPrice()}</span>
+        <div className={cx("heading")}>
+          <span className={cx("heading-name")}>Tên sản phẩm</span>
+          <span className={cx("heading-quantity")}>Số lượng</span>
+          <span className={cx("heading-price")}>Đơn giá</span>
+          <span className={cx("heading-btn")}>Thao tác</span>
         </div>
 
-        <Link to="/payment">
-          <button>Thanh Toán</button>
-        </Link>
+        <div className={cx("cart-content")}>
+          {products?.map((item) => (
+            <div className={cx("item")} key={item.id}>
+              <div className={cx("item-info")}>
+                <img src={process.env.REACT_APP_UPLOAD_URL + item.img} alt="" />
+                <h1 className={cx("info-title")}>{item.title}</h1>
+              </div>
 
-        <span className={cx("reset")} onClick={() => dispatch(resetCart())}>
-          Xóa tất cả
-        </span>
+              <div className={cx("details")}>
+                <div className={cx("quantity")}>{item.quantity}</div>
+                <div className={cx("price")}>
+                  <span>{formatPrice(item.sale_price)}</span>
+                  {/* <span>{formatPrice(item.quantity * item.sale_price)}</span> */}
+                </div>
+              </div>
+
+              <div className={cx("delete")}>
+                <FontAwesomeIcon
+                  icon={faTrash}
+                  className={cx("delete-btn")}
+                  onClick={() => dispatch(removeItem(item.id))}
+                />
+              </div>
+            </div>
+          ))}
+
+          <div className={cx("total")}>
+            <span>Tổng tiền: </span>
+            <span>{formatPrice(totalPrice())}</span>
+          </div>
+
+          <Link to="/payment">
+            <button className={cx("payment-btn")}>Thanh Toán</button>
+          </Link>
+        </div>
       </div>
     </div>
   );

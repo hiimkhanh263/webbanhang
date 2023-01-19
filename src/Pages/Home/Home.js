@@ -14,21 +14,21 @@ function Home() {
 
       {/* banner */}
       <div className={cx("banner")}>
-        <img src={images.bannerProducts} alt="" />
+        <img src={images.bannerHomeSecond} alt="" />
       </div>
 
       <FeaturedProduct type="trending" />
 
       {/* banner */}
       <div className={cx("banner")}>
-        <img src={images.bannerProducts} alt="" />
+        <img src={images.bannerHomeFirst} alt="" />
       </div>
 
       <FeaturedProduct type="featured" />
 
       {/* banner */}
       <div className={cx("banner")}>
-        <img src={images.bannerProducts} alt="" />
+        <img src={images.bannerHomeThird} alt="" />
       </div>
 
       <FeaturedProduct type="normal" />

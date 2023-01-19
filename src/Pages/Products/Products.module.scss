@@ -5,12 +5,13 @@
 }
 
 .products {
-  padding: 20px 50px;
+  padding: 20px 110px;
   display: flex;
 
   .left {
     flex: 1;
     font-size: 14px;
+    margin-right: 18px;
 
     .filter-item {
       margin-bottom: 30px;

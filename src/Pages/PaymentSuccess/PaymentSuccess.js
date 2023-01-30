@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 
 import classNames from "classnames/bind";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { formatPrice } from "~/services/formatPrice/formatPrice";
 import styles from "./PaymentSuccess.module.scss";
+import { resetCart } from "~/redux/cartReducer";
 
 const cx = classNames.bind(styles);
 
@@ -24,11 +25,21 @@ function PaymentSuccess() {
 
   const [time, setTime] = useState(10);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     setTimeout(() => {
       navivate("/");
+      dispatch(resetCart());
     }, [10000]);
   }, []);
+
+  // ---reset cart after 1s---
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     dispatch(resetCart());
+  //   }, [1000]);
+  // }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {

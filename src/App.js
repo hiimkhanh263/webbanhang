@@ -12,6 +12,7 @@ import PaymentSuccess from "./Pages/PaymentSuccess/PaymentSuccess";
 import Product from "./Pages/Product/Product";
 import Products from "./Pages/Products/Products";
 import Register from "./Pages/Register";
+import AccountEdit from "./Pages/AccountEdit/AccountEdit";
 
 const Layout = () => {
   return (
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: "/paymentsuccess",
         element: <PaymentSuccess />,
+      },
+      {
+        path: "/account-edit",
+        element: <AccountEdit />,
       },
     ],
   },

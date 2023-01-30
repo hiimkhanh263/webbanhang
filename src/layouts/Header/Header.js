@@ -25,7 +25,8 @@ function Header() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("loggedin");
+    // localStorage.removeItem("loggedin");
+    localStorage.clear("loggedin");
     navigate("/login");
   };
 
@@ -45,6 +46,7 @@ function Header() {
   return (
     <header className={cx("wrapper")}>
       {/* <div>Chọn ngôn ngữ: VIêt - Anh</div> */}
+
       <div className={cx("inner")}>
         <Link to="/" className={cx("logo")}>
           <img

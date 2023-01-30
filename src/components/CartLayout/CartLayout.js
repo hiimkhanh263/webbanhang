@@ -7,7 +7,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { removeItem, resetCart } from "~/redux/cartReducer";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { formatPrice } from "~/services/formatPrice/formatPrice";
 
 const cx = classNames.bind(styles);
@@ -17,11 +17,19 @@ function CartLayout() {
 
   const dispatch = useDispatch();
 
+  // const navigate = useNavigate();
+
   const totalPrice = () => {
     let total = 0;
     products.forEach((item) => (total += item.quantity * item.sale_price));
     return total;
   };
+
+  // const handleSetTotalPrice = (e) => {
+  //   e.preventDefault();
+  //   localStorage.setItem("totalPriceCart", JSON.stringify(totalPrice));
+  //   navigate("/payment");
+  // };
 
   return (
     <div className={cx("wrapper")}>

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import classNames from "classnames/bind";
 import styles from "./Login.module.scss";
+// import jwt_decode from "jwt-decode";
 import { Link, useNavigate } from "react-router-dom";
 
 const cx = classNames.bind(styles);
@@ -10,9 +11,40 @@ function Login() {
   const navigate = useNavigate();
 
   const [input, setInput] = useState({
-    email: "email",
+    email: "",
     password: "",
   });
+
+  // const [googleUser, setGoogleUser] = useState({});
+
+  // const handleCallbackResponse = (response) => {
+  //   console.log("encode JWT id token: ", response.credential);
+
+  //   var userObject = jwt_decode(response.credential);
+  //   console.log(userObject);
+  //   setGoogleUser(userObject);
+  //   document.getElementById("signInDiv").hidden = true;
+  // };
+
+  // const handleSignOut = (event) => {
+  //   setGoogleUser({});
+  //   document.getElementById("signInDiv").hidden = false;
+  // };
+
+  // useEffect(() => {
+  //   // eslint-disable-next-line no-undef
+  //   google.accounts.id.initialize({
+  //     client_id:
+  //       "618316081007-sqm3gfh5n7o2pluc7teje0mht66dgi77.apps.googleusercontent.com",
+  //     callback: handleCallbackResponse,
+  //   });
+
+  //   // eslint-disable-next-line no-undef
+  //   google.accounts.id.renderButton(document.getElementById("signInDiv"), {
+  //     theme: "outline",
+  //     size: "large",
+  //   });
+  // }, []);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -63,6 +95,10 @@ function Login() {
                 }
               />
             </div>
+
+            {/* <div id="signInDiv"></div> */}
+            {/* {googleUser && navigate("/")} */}
+            {/* <button onClick={(e) => handleSignOut(e)}>log out</button> */}
 
             <button type="submit" className={cx("submit-btn")}>
               Đăng nhập

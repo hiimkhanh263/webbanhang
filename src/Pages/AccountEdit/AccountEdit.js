@@ -1,20 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 
 import classNames from "classnames/bind";
-import styles from "./Account.module.scss";
+import styles from "./AccountEdit.module.scss";
 import { useNavigate } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
-function Account() {
+function AccountEdit() {
   const user = JSON.parse(localStorage.getItem("user"));
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const [infoAccount, setInfoAccount] = useState({
+    ...user,
+  });
 
-    navigate("/account-edit");
+  const handleEdit = (e) => {
+    e.preventDefault();
+    localStorage.setItem("user", JSON.stringify(infoAccount));
+    navigate("/account");
   };
 
   return (
@@ -22,7 +26,7 @@ function Account() {
       <h1 className={cx("title")}>Thông Tin Tài Khoản</h1>
 
       <div className={cx("account")}>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleEdit}>
           <div className={cx("form")}>
             <div className={cx("form-group")}>
               <label>Họ và tên:</label>
@@ -30,8 +34,13 @@ function Account() {
                 className={cx("user-password")}
                 type="text"
                 name="name"
-                value={user.name}
-                onChange={() => true}
+                value={infoAccount.name}
+                onChange={(e) =>
+                  setInfoAccount({
+                    ...infoAccount,
+                    [e.target.name]: e.target.value,
+                  })
+                }
               />
             </div>
 
@@ -41,8 +50,13 @@ function Account() {
                 className={cx("user-password")}
                 type="text"
                 name="email"
-                value={user.email}
-                onChange={() => true}
+                value={infoAccount.email}
+                onChange={(e) =>
+                  setInfoAccount({
+                    ...infoAccount,
+                    [e.target.name]: e.target.value,
+                  })
+                }
               />
             </div>
 
@@ -52,8 +66,13 @@ function Account() {
                 className={cx("user-password")}
                 type="password"
                 name="password"
-                value={user.password}
-                onChange={() => true}
+                value={infoAccount.password}
+                onChange={(e) =>
+                  setInfoAccount({
+                    ...infoAccount,
+                    [e.target.name]: e.target.value,
+                  })
+                }
               />
             </div>
 
@@ -64,8 +83,13 @@ function Account() {
                 type="tel"
                 placeholder="Nhập số điện thoại"
                 name="phone"
-                value={user.phone}
-                onChange={() => true}
+                value={infoAccount.phone}
+                onChange={(e) =>
+                  setInfoAccount({
+                    ...infoAccount,
+                    [e.target.name]: e.target.value,
+                  })
+                }
               />
             </div>
 
@@ -76,13 +100,18 @@ function Account() {
                 type="text"
                 placeholder="Nhập địa chỉ"
                 name="address"
-                value={user.address}
-                onChange={() => true}
+                value={infoAccount.address}
+                onChange={(e) =>
+                  setInfoAccount({
+                    ...infoAccount,
+                    [e.target.name]: e.target.value,
+                  })
+                }
               />
             </div>
 
             <button type="submit" className={cx("submit-btn")}>
-              Chỉnh Sửa
+              Cập Nhật
             </button>
           </div>
         </form>
@@ -91,4 +120,4 @@ function Account() {
   );
 }
 
-export default Account;
+export default AccountEdit;

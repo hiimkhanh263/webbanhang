@@ -9,9 +9,10 @@ const cx = classNames.bind(styles);
 function Payment() {
   const navigate = useNavigate();
 
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const [infoPayment, setInfoPayment] = useState({
-    phone: "",
-    address: "",
+    ...user,
     note: "",
   });
 
@@ -20,8 +21,6 @@ function Payment() {
     localStorage.setItem("userPayment", JSON.stringify(infoPayment));
     navigate("/paymentsuccess");
   };
-
-  const user = JSON.parse(localStorage.getItem("user"));
 
   return (
     <div className={cx("wrapper")}>

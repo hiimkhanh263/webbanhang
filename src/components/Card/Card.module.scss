@@ -98,13 +98,20 @@
     display: flex;
     justify-content: space-between;
     margin-top: 8px;
+    font-size: 12px;
 
     p {
       font-size: 12px;
     }
 
     span {
+      display: flex;
       cursor: pointer;
+
+      .bottom-icon {
+        margin-top: 3px;
+        padding: 0 2px;
+      }
     }
   }
 }

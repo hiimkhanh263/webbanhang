@@ -10,16 +10,11 @@ import { resetCart } from "~/redux/cartReducer";
 const cx = classNames.bind(styles);
 
 function PaymentSuccess() {
-  const products = useSelector((state) => state.cart.products);
-
-  const totalPrice = () => {
-    let total = 0;
-    products.forEach((item) => (total += item.quantity * item.sale_price));
-    return total;
-  };
-
   const user = JSON.parse(localStorage.getItem("user"));
   const userPayment = JSON.parse(localStorage.getItem("userPayment"));
+  const totalPrice = localStorage.getItem("totalPriceDiscount");
+
+  console.log(totalPrice);
 
   const navivate = useNavigate();
 
@@ -69,7 +64,7 @@ function PaymentSuccess() {
           </div>
           <div className={cx("info-user")}>
             <p>Tổng tiền thanh toán</p>
-            <span>: {formatPrice(totalPrice())}</span>
+            <span>: {formatPrice(totalPrice)}</span>
           </div>
         </div>
 

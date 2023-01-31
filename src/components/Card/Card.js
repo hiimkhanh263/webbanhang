@@ -38,7 +38,6 @@ function Card({ item }) {
 
           <div className={cx("price")}>
             <p className={cx("current-price")}>
-              {/* {formatPrice(item.price || item?.attributes.price + 2000000)} */}
               {formatPrice(item?.attributes.price)}
             </p>
 
@@ -55,9 +54,10 @@ function Card({ item }) {
         </div>
 
         <div className={cx("bottom")}>
-          <p>3.2k đã bán</p>
+          <p>{item?.attributes.sold} đã bán</p>
           <span>
-            <FontAwesomeIcon icon={faHeart} />
+            <p>{item?.attributes.like} </p>
+            <FontAwesomeIcon className={cx("bottom-icon")} icon={faHeart} />
           </span>
         </div>
       </div>

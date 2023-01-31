@@ -35,6 +35,20 @@
     }
   }
 
+  .total {
+    display: flex;
+    margin: 20px 0 10px;
+    font-weight: 700;
+
+    p {
+      width: 110px;
+    }
+
+    span {
+      flex: 1;
+    }
+  }
+
   .submit-btn {
     width: 140px;
     padding: 8px;

@@ -1,0 +1,23 @@
+.wrapper {
+  width: 250px;
+  margin: 16px 0;
+  font-size: 14px;
+
+  .memory {
+    display: flex;
+    align-items: center;
+
+    p {
+      margin: 0;
+      flex: 1;
+    }
+
+    .memory-detail {
+      width: 54px;
+      margin-left: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      border-radius: 2px;
+    }
+  }
+}

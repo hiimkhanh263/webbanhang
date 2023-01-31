@@ -58,7 +58,7 @@ function Login() {
       localStorage.setItem("loggedin", true);
       navigate("/");
     } else {
-      <p>sai email hoac password</p>;
+      <p>Sai email hoặc password</p>;
     }
   };
 

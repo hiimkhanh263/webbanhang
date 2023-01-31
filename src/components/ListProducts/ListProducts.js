@@ -4,6 +4,7 @@ import classNames from "classnames/bind";
 import styles from "./ListProducts.module.scss";
 import Card from "../Card/Card";
 import useFetch from "~/hooks/useFetch";
+import LoadingSkeleton from "../LoadingSkeleton/LoadingSkeleton";
 
 const cx = classNames.bind(styles);
 
@@ -17,9 +18,11 @@ function ListProducts({ cateId, maxPrice, sort, subCats }) {
   return (
     <>
       <div className={cx("wrapper")}>
-        {loading
-          ? "loading"
-          : data?.map((item) => <Card item={item} key={item.id} />)}
+        {loading ? (
+          <LoadingSkeleton />
+        ) : (
+          data?.map((item) => <Card item={item} key={item.id} />)
+        )}
       </div>
 
       {/* phân trang */}

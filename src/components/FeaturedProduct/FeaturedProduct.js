@@ -4,6 +4,7 @@ import classNames from "classnames/bind";
 import styles from "./FeaturedProduct.module.scss";
 import Card from "../Card/Card";
 import useFetch from "~/hooks/useFetch";
+import LoadingSkeleton from "../LoadingSkeleton/LoadingSkeleton";
 
 const cx = classNames.bind(styles);
 
@@ -19,13 +20,13 @@ const FeaturedProduct = ({ type }) => {
       </div> */}
 
       <div className={cx("bottom")}>
-        {error
-          ? "Đã có lỗi xảy ra vui lòng thử lại!"
-          : loading
-          ? "loading"
-          : data
-              ?.map((item) => <Card item={item} key={item.id} />)
-              .splice(0, 6)}
+        {error ? (
+          "Đã có lỗi xảy ra vui lòng thử lại!"
+        ) : loading ? (
+          <LoadingSkeleton />
+        ) : (
+          data?.map((item) => <Card item={item} key={item.id} />).splice(0, 6)
+        )}
       </div>
     </div>
   );

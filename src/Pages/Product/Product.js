@@ -9,13 +9,21 @@ import { Link, useParams } from "react-router-dom";
 import { formatPrice } from "~/services/formatPrice/formatPrice";
 import { useDispatch } from "react-redux";
 import { addToCart } from "~/redux/cartReducer";
+import ProductOptionsColor from "~/components/ProductOptions/Color";
+import ProductOptionsMemory from "~/components/ProductOptions/Memory";
 
 const cx = classNames.bind(styles);
 
 function Product() {
   const id = useParams().id;
 
-  const { data, loading } = useFetch(`/products/${id}?populate=*`);
+  const { data, loading } = useFetch(
+    `/products/${id}?populate=categories&populate=colors`
+  );
+
+  // const { data, loading } = useFetch(`/products/${id}?populate=*`);
+
+  console.log(data);
   const dispatch = useDispatch();
 
   const [selectedImg, setSelectedImg] = useState("img");
@@ -34,7 +42,7 @@ function Product() {
     <div className={cx("wrapper")}>
       <div className={cx("product")}>
         {loading ? (
-          "loading"
+          ""
         ) : (
           <>
             <div className={cx("left")}>
@@ -82,6 +90,10 @@ function Product() {
               </div>
 
               <p className={cx("desc")}>{data?.attributes?.desc}</p>
+
+              <ProductOptionsColor />
+
+              <ProductOptionsMemory />
 
               <div className={cx("quantity")}>
                 <button
@@ -146,12 +158,15 @@ function Product() {
                   <FontAwesomeIcon
                     icon={faHeart}
                     className={cx("heart")}
+                    // className={isLiked ? "heart" : "heart active"}
                     onClick={handleLike}
                   />
                   <span>{liked} lượt thích</span>
                 </span>
 
-                <span className={cx("sold")}>10 đã bán</span>
+                <span className={cx("sold")}>
+                  {data?.attributes?.sold} đã bán
+                </span>
 
                 <span className={cx("rating")}>10 lượt đánh giá</span>
               </div>

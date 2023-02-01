@@ -14,8 +14,6 @@ function PaymentSuccess() {
   const userPayment = JSON.parse(localStorage.getItem("userPayment"));
   const totalPrice = localStorage.getItem("totalPriceDiscount");
 
-  console.log(totalPrice);
-
   const navivate = useNavigate();
 
   const [time, setTime] = useState(10);

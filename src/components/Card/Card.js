@@ -26,7 +26,7 @@ function Card({ item }) {
           <img
             src={
               process.env.REACT_APP_UPLOAD_URL +
-              item.attributes.img2.data.attributes.url
+              item.attributes.img.data.attributes.url
             }
             alt="san-pham"
             className={cx("second-img")}

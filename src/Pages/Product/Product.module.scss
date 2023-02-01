@@ -64,6 +64,50 @@
       margin: 12px 0;
     }
 
+    .color {
+      display: flex;
+      align-items: center;
+      width: 230px;
+      font-size: 14px;
+
+      p {
+        margin: 0;
+        width: 70px;
+      }
+
+      // .active {
+      // }
+
+      .color-detail {
+        width: 20px;
+        height: 20px;
+        margin: 0 6px;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+      }
+    }
+
+    .memory {
+      display: flex;
+      align-items: center;
+      width: 250px;
+      margin: 16px 0;
+      font-size: 14px;
+
+      p {
+        margin: 0;
+        width: 70px;
+      }
+
+      .memory-detail {
+        width: 54px;
+        margin-left: 6px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        border-radius: 2px;
+      }
+    }
+
     .quantity {
       display: flex;
       align-items: center;

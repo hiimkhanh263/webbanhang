@@ -6,12 +6,12 @@ import Header from "./layouts/Header/Header";
 import Account from "./Pages/Account/Account";
 import Cart from "./Pages/Cart/Cart";
 import Home from "./Pages/Home/Home";
-import Login from "./Pages/Login";
+import Login from "./Pages/Login/Login";
 import Payment from "./Pages/Payment/Payment";
 import PaymentSuccess from "./Pages/PaymentSuccess/PaymentSuccess";
 import Product from "./Pages/Product/Product";
 import Products from "./Pages/Products/Products";
-import Register from "./Pages/Register";
+import Register from "./Pages/Register/Register";
 import AccountEdit from "./Pages/AccountEdit/AccountEdit";
 
 const Layout = () => {

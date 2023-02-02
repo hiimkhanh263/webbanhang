@@ -1,32 +1,32 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import classNames from "classnames/bind";
-import styles from "./Payment.module.scss";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { formatPrice } from "~/services/formatPrice/formatPrice";
+import classNames from 'classnames/bind';
+import styles from './Payment.module.scss';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { formatPrice } from '~/services/formatPrice/formatPrice';
 
 const cx = classNames.bind(styles);
 
 function Payment() {
   const navigate = useNavigate();
 
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const [discountCode, setDiscountCode] = useState(false);
 
   const [infoPayment, setInfoPayment] = useState({
     ...user,
-    note: "",
-    coupon: "",
-    total: "",
+    note: '',
+    coupon: '',
+    total: ''
   });
 
-  const products = useSelector((state) => state.cart.products);
+  const products = useSelector(state => state.cart.products);
 
   const totalPrice = () => {
     let total = 0;
-    products.forEach((item) => (total += item.quantity * item.sale_price));
+    products.forEach(item => (total += item.quantity * item.currentPrice));
     return total;
   };
 
@@ -34,17 +34,17 @@ function Payment() {
     return totalPrice() - totalPrice() * 0.1;
   };
 
-  const handlePayment = (e) => {
+  const handlePayment = e => {
     e.preventDefault();
-    localStorage.setItem("userPayment", JSON.stringify(infoPayment));
+    localStorage.setItem('userPayment', JSON.stringify(infoPayment));
 
-    localStorage.setItem("totalPriceDiscount", totalPriceDiscount());
+    localStorage.setItem('totalPriceDiscount', totalPriceDiscount());
 
-    navigate("/paymentsuccess");
+    navigate('/paymentsuccess');
   };
 
-  const handleBlurOutside = (e) => {
-    if (infoPayment.coupon === "123456789") {
+  const handleBlurOutside = e => {
+    if (infoPayment.coupon === '123456789') {
       e.preventDefault();
       e.stopPropagation();
 
@@ -55,92 +55,92 @@ function Payment() {
   };
 
   return (
-    <div className={cx("wrapper")}>
-      <h1 className={cx("title")}>Thanh Toán</h1>
+    <div className={cx('wrapper')}>
+      <h1 className={cx('title')}>Thanh Toán</h1>
 
-      <div className={cx("payment")}>
+      <div className={cx('payment')}>
         <form onSubmit={handlePayment}>
-          <div className={cx("form")}>
-            <div className={cx("form-group")}>
+          <div className={cx('form')}>
+            <div className={cx('form-group')}>
               <label>Họ và tên:</label>
               <span className="user-name">{user.name}</span>
             </div>
 
-            <div className={cx("form-group")}>
+            <div className={cx('form-group')}>
               <label>Email:</label>
               <span className="user-email">{user.email}</span>
             </div>
 
-            <div className={cx("form-group")}>
+            <div className={cx('form-group')}>
               <label>Số điện thoại:</label>
               <input
-                className={cx("user-phone")}
+                className={cx('user-phone')}
                 type="tel"
                 placeholder="Nhập số điện thoại"
                 name="phone"
                 value={infoPayment.phone}
-                onChange={(e) =>
+                onChange={e =>
                   setInfoPayment({
                     ...infoPayment,
-                    [e.target.name]: e.target.value,
+                    [e.target.name]: e.target.value
                   })
                 }
               />
             </div>
 
-            <div className={cx("form-group")}>
+            <div className={cx('form-group')}>
               <label>Địa chỉ:</label>
               <input
-                className={cx("user-address")}
+                className={cx('user-address')}
                 type="text"
                 placeholder="Nhập địa chỉ"
                 name="address"
                 value={infoPayment.address}
-                onChange={(e) =>
+                onChange={e =>
                   setInfoPayment({
                     ...infoPayment,
-                    [e.target.name]: e.target.value,
+                    [e.target.name]: e.target.value
                   })
                 }
               />
             </div>
 
-            <div className={cx("form-group")}>
+            <div className={cx('form-group')}>
               <label>Lời nhắn:</label>
               <input
-                className={cx("user-note")}
+                className={cx('user-note')}
                 type="text"
                 placeholder="Nhập lưu ý cho đơn hàng"
                 name="note"
                 value={infoPayment.note}
-                onChange={(e) =>
+                onChange={e =>
                   setInfoPayment({
                     ...infoPayment,
-                    [e.target.name]: e.target.value,
+                    [e.target.name]: e.target.value
                   })
                 }
               />
             </div>
 
-            <div className={cx("form-group")}>
+            <div className={cx('form-group')}>
               <label>Mã giảm giá:</label>
               <input
-                className={cx("user-note")}
+                className={cx('user-note')}
                 type="text"
                 placeholder="Nhập mã giảm giá cho đơn hàng"
                 name="coupon"
                 value={infoPayment.coupon}
-                onChange={(e) =>
+                onChange={e =>
                   setInfoPayment({
                     ...infoPayment,
-                    [e.target.name]: e.target.value,
+                    [e.target.name]: e.target.value
                   })
                 }
                 onBlur={handleBlurOutside}
               />
             </div>
 
-            <div className={cx("total")}>
+            <div className={cx('total')}>
               <p>Tổng Tiền:</p>
               {!discountCode ? (
                 <span>{formatPrice(totalPrice())}</span>
@@ -149,7 +149,7 @@ function Payment() {
               )}
             </div>
 
-            <button type="submit" className={cx("submit-btn")}>
+            <button type="submit" className={cx('submit-btn')}>
               Thoanh toán
             </button>
           </div>

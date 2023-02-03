@@ -33,7 +33,7 @@
   }
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     top: var(--search-top-spacer);
     right: 52px;
@@ -72,8 +72,8 @@
 .search-btn {
   width: 52px;
   height: 100%;
-  border-top-right-radius: 92px;
-  border-bottom-right-radius: 92px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
   font-size: 2rem;
   color: rgba(22, 24, 35, 0.34);
   margin: 0 !important;
@@ -82,4 +82,12 @@
     background-color: rgba(22, 24, 35, 0.03);
     cursor: pointer;
   }
+}
+
+.search-btn-dis {
+  width: 52px;
+  height: 100%;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  font-size: 2rem;
 }

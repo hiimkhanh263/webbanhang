@@ -10,68 +10,80 @@ import { resetCart } from '~/redux/cartReducer';
 const cx = classNames.bind(styles);
 
 function PaymentSuccess() {
-    const user = JSON.parse(localStorage.getItem('user'));
-    const userPayment = JSON.parse(localStorage.getItem('userPayment'));
-    const totalPrice = localStorage.getItem('totalPriceDiscount');
+  const user = JSON.parse(localStorage.getItem('user'));
+  const userPayment = JSON.parse(localStorage.getItem('userPayment'));
+  const totalPriceDiscount = JSON.parse(
+    localStorage.getItem('totalPriceDiscount'),
+  );
 
-    const navivate = useNavigate();
+  const navivate = useNavigate();
 
-    const [time, setTime] = useState(10);
+  const [time, setTime] = useState(5);
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        setTimeout(() => {
-            navivate('/');
-            dispatch(resetCart());
-        }, [10000]);
-    }, []);
+  const products = useSelector((state) => state.cart.products);
 
-    // ---reset cart after 1s---
-    // useEffect(() => {
-    //   setTimeout(() => {
-    //     dispatch(resetCart());
-    //   }, [1000]);
-    // }, []);
+  const totalPrice = () => {
+    let total = 0;
+    products.forEach((item) => (total += item.quantity * item.currentPrice));
+    return total;
+  };
 
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setTime((prevState) => prevState - 1);
-        }, [1000]);
+  useEffect(() => {
+    setTimeout(() => {
+      navivate('/');
+      dispatch(resetCart());
+      //   localStorage.removeItem('totalPriceDiscount');
+    }, [5000]);
+  }, []);
 
-        return () => clearInterval(timer);
-    }, [time]);
+  // ---reset cart after 1s---
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     dispatch(resetCart());
+  //   }, [1000]);
+  // }, []);
 
-    return (
-        <div className={cx('wrapper')}>
-            <div>
-                <h1 className={cx('title')}>Thanh toán thành công</h1>
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTime((prevState) => prevState - 1);
+    }, [1000]);
 
-                <div className={cx('info')}>
-                    <div className={cx('info-user')}>
-                        <p>Họ và tên </p>
-                        <span>: {user.name}</span>
-                    </div>
-                    <div className={cx('info-user')}>
-                        <p>Số điện thoại</p>
-                        <span>: {userPayment.phone}</span>
-                    </div>
-                    <div className={cx('info-user')}>
-                        <p>Địa chỉ</p>
-                        <span>: {userPayment.address}</span>
-                    </div>
-                    <div className={cx('info-user')}>
-                        <p>Tổng tiền thanh toán</p>
-                        <span>: {formatPrice(totalPrice)}</span>
-                    </div>
-                </div>
+    return () => clearInterval(timer);
+  }, [time]);
 
-                <div className={cx('navigation')}>
-                    <span>Bạn sẽ quay lại Trang chủ trong {time}s</span>
-                </div>
-            </div>
+  return (
+    <div className={cx('wrapper')}>
+      <div>
+        <h1 className={cx('title')}>Thanh toán thành công</h1>
+
+        <div className={cx('info')}>
+          <div className={cx('info-user')}>
+            <p>Họ và tên </p>
+            <span>: {user.name}</span>
+          </div>
+          <div className={cx('info-user')}>
+            <p>Số điện thoại</p>
+            <span>: {userPayment.phone}</span>
+          </div>
+          <div className={cx('info-user')}>
+            <p>Địa chỉ</p>
+            <span>: {userPayment.address}</span>
+          </div>
+          <div className={cx('info-user')}>
+            <p>Tổng tiền thanh toán</p>
+            <span>: {formatPrice(totalPriceDiscount)}</span>
+            {/* <span>: {formatPrice(totalPrice())}</span> */}
+          </div>
         </div>
-    );
+
+        <div className={cx('navigation')}>
+          <span>Bạn sẽ quay lại Trang chủ trong {time}s</span>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default PaymentSuccess;

@@ -13,72 +13,77 @@ import Product from './Pages/Product/Product';
 import Products from './Pages/Products/Products';
 import Register from './Pages/Register/Register';
 import AccountEdit from './Pages/AccountEdit/AccountEdit';
+import CatalogSearch from './Pages/CatalogSearch/CatalogSearch';
 
 const Layout = () => {
-    return (
-        <div>
-            <Header />
-            <Outlet />
-            <Footer />
-        </div>
-    );
+  return (
+    <div>
+      <Header />
+      <Outlet />
+      <Footer />
+    </div>
+  );
 };
 
 const router = createBrowserRouter([
-    {
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      {
         path: '/',
-        element: <Layout />,
-        children: [
-            {
-                path: '/',
-                element: <Home />,
-            },
-            {
-                path: '/products/:id',
-                element: <Products />,
-            },
-            {
-                path: '/product/:id',
-                element: <Product />,
-            },
-            {
-                path: '/account',
-                element: <Account />,
-            },
-            {
-                path: '/login',
-                element: <Login />,
-            },
-            {
-                path: '/register',
-                element: <Register />,
-            },
-            {
-                path: '/cart',
-                element: <Cart />,
-            },
-            {
-                path: '/payment',
-                element: <Payment />,
-            },
-            {
-                path: '/paymentsuccess',
-                element: <PaymentSuccess />,
-            },
-            {
-                path: '/account-edit',
-                element: <AccountEdit />,
-            },
-        ],
-    },
+        element: <Home />,
+      },
+      {
+        path: '/products/:id',
+        element: <Products />,
+      },
+      {
+        path: '/product/:id',
+        element: <Product />,
+      },
+      {
+        path: '/account',
+        element: <Account />,
+      },
+      {
+        path: '/login',
+        element: <Login />,
+      },
+      {
+        path: '/register',
+        element: <Register />,
+      },
+      {
+        path: '/cart',
+        element: <Cart />,
+      },
+      {
+        path: '/payment',
+        element: <Payment />,
+      },
+      {
+        path: '/paymentsuccess',
+        element: <PaymentSuccess />,
+      },
+      {
+        path: '/account-edit',
+        element: <AccountEdit />,
+      },
+      {
+        path: '/catalog-search',
+        element: <CatalogSearch />,
+      },
+    ],
+  },
 ]);
 
 function App() {
-    return (
-        <div>
-            <RouterProvider router={router} />
-        </div>
-    );
+  return (
+    <div>
+      <RouterProvider router={router} />
+    </div>
+  );
 }
 
 export default App;

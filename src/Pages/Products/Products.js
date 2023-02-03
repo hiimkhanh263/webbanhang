@@ -15,14 +15,17 @@ function Products() {
     const [sort, setSort] = useState('desc');
     const [selectedSubCats, setSelectedSubCats] = useState([]);
 
-    // const { data } = useFetch(`/sub-categories?[filters][categories][id][$eq]=${cateId}`);
     const { data } = useFetch(`/sub-categories`);
 
     const handleChange = (e) => {
         const value = e.target.value;
         const isChecked = e.target.checked;
 
-        setSelectedSubCats(isChecked ? [...selectedSubCats, value] : selectedSubCats.filter((item) => item !== value));
+        setSelectedSubCats(
+            isChecked
+                ? [...selectedSubCats, value]
+                : selectedSubCats.filter((item) => item !== value),
+        );
     };
 
     return (
@@ -34,8 +37,15 @@ function Products() {
 
                         {data?.map((item) => (
                             <div className={cx('input-item')} key={item.id}>
-                                <input type="checkbox" id={item.id} value={item.id} onChange={handleChange} />
-                                <label htmlFor={item.id}>{item.attributes.title}</label>
+                                <input
+                                    type="checkbox"
+                                    id={item.id}
+                                    value={item.id}
+                                    onChange={handleChange}
+                                />
+                                <label htmlFor={item.id}>
+                                    {item.attributes.title}
+                                </label>
                             </div>
                         ))}
                     </div>
@@ -60,20 +70,41 @@ function Products() {
                         <h2>Sắp xếp theo giá</h2>
 
                         <div className={cx('input-item')}>
-                            <input type="radio" id="asc" value="asc" name="price" onChange={(e) => setSort('asc')} />
+                            <input
+                                type="radio"
+                                id="asc"
+                                value="asc"
+                                name="price"
+                                onChange={(e) => setSort('asc')}
+                            />
                             <label htmlFor="asc">Thấp đến cao</label>
                         </div>
 
                         <div className={cx('input-item')}>
-                            <input type="radio" id="desc" value="desc" name="price" onChange={(e) => setSort('desc')} />
+                            <input
+                                type="radio"
+                                id="desc"
+                                value="desc"
+                                name="price"
+                                onChange={(e) => setSort('desc')}
+                            />
                             <label htmlFor="desc">Cao đến thấp</label>
                         </div>
                     </div>
                 </div>
 
                 <div className={cx('right')}>
-                    <img src={images.bannerProducts} alt="sieu-khuyen-mai" className={cx('banner')} />
-                    <ListProducts cateId={cateId} maxPrice={maxPrice} sort={sort} subCats={selectedSubCats} />
+                    <img
+                        src={images.bannerProducts}
+                        alt="sieu-khuyen-mai"
+                        className={cx('banner')}
+                    />
+                    <ListProducts
+                        cateId={cateId}
+                        maxPrice={maxPrice}
+                        sort={sort}
+                        subCats={selectedSubCats}
+                    />
                 </div>
             </div>
         </div>

@@ -141,6 +141,15 @@
       width: 300px;
     }
 
+    .buy-now-dis {
+      width: 300px;
+      padding: 12px;
+      color: black;
+      background-color: #ccc;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+
     .buy-now,
     .add {
       width: 300px;
@@ -188,6 +197,16 @@
         align-items: center;
         width: 114px;
       }
+
+      .heart {
+        color: #ccc;
+      }
+
+      .heart-active {
+        color: red;
+        fill: red;
+      }
+
       .sold {
         margin: 0 80px;
       }

@@ -43,6 +43,9 @@ function CartLayout() {
       <div className={cx('cart')}>
         <h1>Sản Phẩm Bạn Đã Chọn</h1>
 
+        {/* khi thêm sản phẩm khác phiên bản: chỉ hiển thị 1 phiên bản,
+        giá tiền không khớp, bị ăn 1 giá */}
+
         <div className={cx('list-item')}>
           {products?.map((item) => (
             <div className={cx('item')} key={item.id}>

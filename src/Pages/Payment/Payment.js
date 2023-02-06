@@ -1,19 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import classNames from 'classnames/bind';
 import styles from './Payment.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { formatPrice } from '~/utils/formatPrice/formatPrice';
+import useFetch from '~/hooks/useFetch';
+import Form from 'react-bootstrap/Form';
 
 const cx = classNames.bind(styles);
 
 function Payment() {
   const navigate = useNavigate();
 
+  const { data } = useFetch(`/discount-codes?populate=*`);
+
   const user = JSON.parse(localStorage.getItem('user'));
 
+  const [discountId, setDiscountId] = useState('');
+
   const [discountCode, setDiscountCode] = useState(false);
+
+  const [discountPrice, setDiscountPrice] = useState(null);
 
   const [infoPayment, setInfoPayment] = useState({
     ...user,
@@ -30,26 +38,24 @@ function Payment() {
     return total;
   };
 
-  const totalPriceDiscount = () => {
-    return totalPrice() - totalPrice() * 0.1;
+  const handleDiscountChange = (e) => {
+    const getDiscountId = e.target.value;
+
+    setDiscountId(getDiscountId);
   };
 
-  const handleBlurOutside = (e) => {
-    if (infoPayment.coupon === '123456789') {
-      e.preventDefault();
-      e.stopPropagation();
-
-      setDiscountCode(true);
-    } else {
-      setDiscountCode(false);
-    }
-  };
+  useEffect(() => {
+    data?.forEach((discountid) => {
+      if (discountId == discountid.id) {
+        setDiscountPrice(discountid?.attributes?.percent);
+        setDiscountCode(true);
+      }
+    });
+  }, [discountId]);
 
   const handlePayment = (e) => {
     e.preventDefault();
     localStorage.setItem('userPayment', JSON.stringify(infoPayment));
-
-    localStorage.setItem('totalPriceDiscount', totalPriceDiscount());
 
     navigate('/paymentsuccess');
   };
@@ -124,20 +130,19 @@ function Payment() {
 
             <div className={cx('form-group')}>
               <label>Mã giảm giá:</label>
-              <input
-                className={cx('user-note')}
-                type="text"
-                placeholder="Nhập mã giảm giá cho đơn hàng"
-                name="coupon"
-                value={infoPayment.coupon}
-                onChange={(e) =>
-                  setInfoPayment({
-                    ...infoPayment,
-                    [e.target.name]: e.target.value,
-                  })
-                }
-                onBlur={handleBlurOutside}
-              />
+
+              <Form.Select
+                className={cx('form-discount')}
+                aria-label="Default select example"
+                onChange={(e) => handleDiscountChange(e)}
+              >
+                <option>Lựa chọn mã giảm giá</option>
+                {data?.map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {item?.attributes?.title}
+                  </option>
+                ))}
+              </Form.Select>
             </div>
 
             <div className={cx('total')}>
@@ -145,7 +150,16 @@ function Payment() {
               {!discountCode ? (
                 <span>{formatPrice(totalPrice())}</span>
               ) : (
-                <span>{formatPrice(totalPriceDiscount())}</span>
+                <span>
+                  <span>
+                    {formatPrice(
+                      totalPrice() - (discountPrice / 100) * totalPrice(),
+                    )}
+                  </span>
+                  <span className={cx('discount-percent')}>
+                    -{discountPrice}%
+                  </span>
+                </span>
               )}
             </div>
 

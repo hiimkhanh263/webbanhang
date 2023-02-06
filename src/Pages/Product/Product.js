@@ -10,6 +10,8 @@ import useFetch from '~/hooks/useFetch';
 import { addToCart } from '~/redux/cartReducer';
 import { formatPrice } from '~/utils/formatPrice/formatPrice';
 import styles from './Product.module.scss';
+import SuggestProducts from './SuggestProducts/SuggestProducts';
+import axios from 'axios';
 
 const cx = classNames.bind(styles);
 
@@ -17,8 +19,6 @@ function Product() {
   const id = useParams().id;
 
   const { data, loading } = useFetch(`/products/${id}?populate=*`);
-
-  // console.log(data);
 
   const dispatch = useDispatch();
 
@@ -60,6 +60,7 @@ function Product() {
         setInventory(variant?.attributes?.inventory);
         setCurrentPrice(variant?.attributes?.price);
         setIsSelect(true);
+        setQuantity(1);
       }
     });
   }, [data?.attributes?.variants?.data, selectColor, selectMemory]);
@@ -68,6 +69,7 @@ function Product() {
     if (!isNaN(data?.attributes?.like)) {
       setLiked(data?.attributes?.like);
     }
+    axios.put('http://localhost:1337/api/products/7', { data: { sold: 10 } });
   }, [data?.attributes?.like]);
 
   return (
@@ -164,10 +166,17 @@ function Product() {
                   -
                 </button>
                 <span>{quantity}</span>
-                <button onClick={() => setQuantity((prev) => prev + 1)}>
+
+                <button
+                  onClick={() =>
+                    setQuantity((prev) =>
+                      prev == inventory ? inventory : prev + 1,
+                    )
+                  }
+                >
                   +
                 </button>
-                {/* <button onClick={() => setQuantity(prev => (prev == inventory ? inventory : prev + 1))}>+</button> */}
+
                 {isSelect && <p>Còn {inventory} sản phẩm</p>}
               </div>
 
@@ -304,9 +313,12 @@ function Product() {
                 <span>báo</span>
               </div> */}
             </div>
+
+            {/* suggest products */}
           </>
         )}
       </div>
+      {/* <SuggestProducts /> */}
     </div>
   );
 }

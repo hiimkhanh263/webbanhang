@@ -1,17 +1,17 @@
-import React from "react";
+import React from 'react';
 
-import classNames from "classnames/bind";
-import styles from "./Footer.module.scss";
+import classNames from 'classnames/bind';
+import styles from './Footer.module.scss';
 
-import images from "~/assets/logoFooter";
+import images from '~/assets/logoFooter';
 
 const cx = classNames.bind(styles);
 
 function Footer() {
   return (
-    <div className={cx("wrapper")}>
-      <div className={cx("top")}>
-        <div className={cx("item")}>
+    <div className={cx('wrapper')}>
+      <div className={cx('top')}>
+        <div className={cx('item')}>
           <h1>Danh Mục</h1>
           <span>Điện Thoại</span>
           <span>Tablet</span>
@@ -21,7 +21,7 @@ function Footer() {
           <span>Màn hình</span>
           <span>Đồ chơi công nghệ</span>
         </div>
-        <div className={cx("item")}>
+        <div className={cx('item')}>
           <h1>Hỗ Trợ - Dịch Vụ</h1>
           <span>Mua hàng tra góp</span>
           <span>Hướng dẫn đặt hàng và thanh toán</span>
@@ -33,7 +33,7 @@ function Footer() {
           <span>Điều khoản mua bán hàng hóa</span>
           <span>Câu hỏi thường gặp</span>
         </div>
-        <div className={cx("item")}>
+        <div className={cx('item')}>
           <h1>Thông Tin Liên Hệ</h1>
           <span>Bán hàng Online</span>
           <span>Chăm sóc khách hàng</span>
@@ -41,7 +41,7 @@ function Footer() {
           <span>Hỗ trợ bảo hành & sửa chữa</span>
           <span>Liên hệ khối văn phòng</span>
         </div>
-        <div className={cx("item")}>
+        <div className={cx('item')}>
           <h1>Thanh Toán</h1>
           <div>
             <img src={images.atm} alt="atm" />
@@ -58,19 +58,15 @@ function Footer() {
         </div>
       </div>
 
-      <div className={cx("bottom")}>
-        <div className={cx("left")}>
-          <img
-            className={cx("logo")}
-            src="https://file.hstatic.net/200000532555/file/logo-tkl-01_50c40d291088493182dd995d3da9e130.png"
-            alt="logo"
-          />
-          <span className={cx("copyright")}>&copy; Copyright 2023</span>
+      <div className={cx('bottom')}>
+        <div className={cx('left')}>
+          <img className={cx('logo')} alt="logo" src={images.logoTkl} />
+          <span className={cx('copyright')}>&copy; Copyright 2023</span>
         </div>
 
         <img src={images.bct} alt="bct" />
 
-        <div className={cx("right")}>
+        <div className={cx('right')}>
           <img src={images.nhattin} alt="nhattin-logistic" />
           <img src={images.vnpost} alt="vnpost" />
         </div>

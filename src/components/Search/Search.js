@@ -17,7 +17,7 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import useDebounce from '~/hooks/useDebounce';
 import useFetch from '~/hooks/useFetch';
 import ProductItem from './ProductItem/ProductItem';
-import * as searchService from '~/services/searchService/searchService';
+import * as searchService from '~/services/searchService';
 import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
@@ -26,7 +26,7 @@ function Search() {
   //   const { data } = useFetch(`/products/`);
   const { data } = useFetch(`/products?populate=*`);
 
-  console.log(data);
+  // console.log(data);
 
   const [searchValue, setSearchValue] = useState('');
   const [searchResult, setSearchResult] = useState([]);
@@ -74,21 +74,21 @@ function Search() {
     }
   };
 
-  const handleEnterShowAll = (e) => {
-    if (e.keyCode === 13) {
-      e.preventDefault();
-      e.stopPropagation();
+  // const handleEnterShowAll = (e) => {
+  //   if (e.keyCode === 13) {
+  //     e.preventDefault();
+  //     e.stopPropagation();
 
-      navigate('/catalog-search');
-    }
-  };
+  //     navigate('/catalog-search');
+  //   }
+  // };
 
-  const handleClickShowAll = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+  // const handleClickShowAll = (e) => {
+  //   e.preventDefault();
+  //   e.stopPropagation();
 
-    navigate('/catalog-search');
-  };
+  //   navigate('/catalog-search');
+  // };
 
   return (
     <div>
@@ -100,16 +100,20 @@ function Search() {
         render={(attrs) => (
           <div className={cx('search-result')} tabIndex="-1" {...attrs}>
             <PopperWrapper>
-              {data
-                ?.filter((result) =>
-                  result?.attributes?.title.toLowerCase().includes(searchValue),
-                )
-                ?.map((result) => (
-                  <ProductItem key={result.id} result={result} />
-                ))
-                .splice(0, 5)}
+              {
+                data
+                  ?.filter((result) =>
+                    result?.attributes?.title
+                      .toLowerCase()
+                      .includes(searchValue),
+                  )
+                  ?.map((result) => (
+                    <ProductItem key={result.id} result={result} />
+                  ))
+                // .splice(0, 5)
+              }
 
-              <h5 onClick={handleClickShowAll}>Xem tất cả sản phẩm</h5>
+              {/* <h5 onClick={handleClickShowAll}>Xem tất cả sản phẩm</h5> */}
             </PopperWrapper>
           </div>
         )}
@@ -122,7 +126,7 @@ function Search() {
             spellCheck={false}
             onChange={handleChange}
             onFocus={() => setShowResult(true)}
-            onKeyDown={handleEnterShowAll}
+            // onKeyDown={handleEnterShowAll}
           />
 
           {!!searchValue && !loadinged && (
@@ -139,7 +143,7 @@ function Search() {
             <button
               className={cx('search-btn')}
               onMouseDown={(e) => e.preventDefault()}
-              onClick={handleClickShowAll}
+              // onClick={handleClickShowAll}
             >
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>
@@ -147,7 +151,7 @@ function Search() {
             <button
               disabled
               className={cx('search-btn-dis')}
-              //   onMouseDown={(e) => e.preventDefault()}
+              onMouseDown={(e) => e.preventDefault()}
             >
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>

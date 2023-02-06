@@ -68,13 +68,8 @@ function PaymentSuccess() {
             <span>: {userPayment.phone}</span>
           </div>
           <div className={cx('info-user')}>
-            <p>Địa chỉ</p>
+            <p>Địa chỉ nhận hàng</p>
             <span>: {userPayment.address}</span>
-          </div>
-          <div className={cx('info-user')}>
-            <p>Tổng tiền thanh toán</p>
-            <span>: {formatPrice(totalPriceDiscount)}</span>
-            {/* <span>: {formatPrice(totalPrice())}</span> */}
           </div>
         </div>
 

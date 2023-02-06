@@ -12,6 +12,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import CartLayout from '~/components/CartLayout/CartLayout';
+import images from '~/assets/logoFooter';
 
 const cx = classNames.bind(styles);
 
@@ -29,7 +30,7 @@ function Header() {
     // localStorage.clear('loggedin');
     localStorage.clear();
     navigate('/');
-    // window.location.reload();
+    window.location.href = window.location.href;
   };
 
   let cartRef = useRef();
@@ -51,10 +52,7 @@ function Header() {
 
       <div className={cx('inner')}>
         <Link to="/" className={cx('logo')}>
-          <img
-            src="https://file.hstatic.net/200000532555/file/logo-tkl-01_50c40d291088493182dd995d3da9e130.png"
-            alt="logo"
-          />
+          <img src={images.logoTkl} alt="logo" />
         </Link>
 
         <Search />

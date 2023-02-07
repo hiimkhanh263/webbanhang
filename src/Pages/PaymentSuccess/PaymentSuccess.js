@@ -12,9 +12,6 @@ const cx = classNames.bind(styles);
 function PaymentSuccess() {
   const user = JSON.parse(localStorage.getItem('user'));
   const userPayment = JSON.parse(localStorage.getItem('userPayment'));
-  const totalPriceDiscount = JSON.parse(
-    localStorage.getItem('totalPriceDiscount'),
-  );
 
   const navivate = useNavigate();
 
@@ -61,7 +58,7 @@ function PaymentSuccess() {
         <div className={cx('info')}>
           <div className={cx('info-user')}>
             <p>Họ và tên </p>
-            <span>: {user.name}</span>
+            <span>: {userPayment.name}</span>
           </div>
           <div className={cx('info-user')}>
             <p>Số điện thoại</p>

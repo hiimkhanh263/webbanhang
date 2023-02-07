@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import classNames from 'classnames/bind';
 import styles from './Cart.module.scss';
@@ -13,29 +13,45 @@ import { formatPrice } from '~/utils/formatPrice/formatPrice';
 const cx = classNames.bind(styles);
 
 function Cart() {
-  const user = JSON.parse(localStorage.getItem('user'));
-
   const products = useSelector((state) => state.cart.products);
 
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
+  // const [quantityChange, setQuantityChange] = useState();
+
+  // const [totalPrice, setTotalPrice] = useState();
+
   const totalPrice = () => {
     let total = 0;
-    products.forEach((item) => (total += item.quantity * item.currentPrice));
+    products.forEach((item) => {
+      total += item.quantity * item.currentPrice;
+    });
     return total;
   };
+
+  // useEffect(() => {
+  //   let total = 0;
+
+  //   products.forEach((item) => {
+  //     setQuantityChange(item.quantity);
+  //     setTotalPrice((total += quantityChange * item.currentPrice));
+  //   });
+  // }, []);
 
   const handleClick = (e) => {
     e.preventDefault();
 
-    if (user) {
-      navigate('/payment');
-    } else {
-      navigate('/login');
-      //   alert('Bạn cần đăng nhập để thanh toán');
-    }
+    navigate('/payment');
+
+    // if (user) {
+    //   navigate('/payment');
+    // }
+    // else {
+    //   navigate('/login');
+    //   alert('Bạn cần đăng nhập để thanh toán');
+    // }
   };
 
   return (
@@ -64,10 +80,30 @@ function Cart() {
               </div>
 
               <div className={cx('details')}>
-                <div className={cx('quantity')}>{item.quantity}</div>
+                <div className={cx('quantity')}>
+                  <span>{item.quantity}</span>
+
+                  {/* <button
+                    onClick={
+                      () =>
+                        setQuantityChange((prev) => (prev === 1 ? 1 : prev - 1))
+                      // {item.quantity}
+                    }
+                  >
+                    -
+                  </button> */}
+
+                  {/* <span>{quantityChange}</span> */}
+
+                  {/* <button onClick={() => setQuantityChange((prev) => prev + 1)}>
+                    +
+                  </button> */}
+                </div>
+
                 <div className={cx('price')}>
                   <span>{formatPrice(item.currentPrice)}</span>
-                  {/* <span>{formatPrice(item.quantity * item.sale_price)}</span> */}
+
+                  {/* <span>{formatPrice(quantityChange * item.currentPrice)}</span> */}
                 </div>
               </div>
 

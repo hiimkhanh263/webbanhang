@@ -25,8 +25,10 @@ function Payment() {
 
   const [infoPayment, setInfoPayment] = useState({
     ...user,
+    name: '',
+    email: '',
+    phone: '',
     note: '',
-    coupon: '',
     total: '',
   });
 
@@ -67,15 +69,55 @@ function Payment() {
       <div className={cx('payment')}>
         <form onSubmit={handlePayment}>
           <div className={cx('form')}>
-            <div className={cx('form-group')}>
-              <label>Họ và tên:</label>
-              <span className="user-name">{user.name}</span>
-            </div>
+            {user ? (
+              <div>
+                <div className={cx('form-group')}>
+                  <label>Họ và tên:</label>
+                  <span className="user-name">{user.name}</span>
+                </div>
 
-            <div className={cx('form-group')}>
-              <label>Email:</label>
-              <span className="user-email">{user.email}</span>
-            </div>
+                <div className={cx('form-group')}>
+                  <label>Email:</label>
+                  <span className="user-email">{user.email}</span>
+                </div>
+              </div>
+            ) : (
+              <div>
+                <div className={cx('form-group')}>
+                  <label>Họ và tên:</label>
+                  <input
+                    className={cx('user-name')}
+                    type="text"
+                    placeholder="Nhập họ và tên"
+                    name="name"
+                    value={infoPayment.name}
+                    onChange={(e) =>
+                      setInfoPayment({
+                        ...infoPayment,
+                        [e.target.name]: e.target.value,
+                      })
+                    }
+                  />
+                </div>
+
+                <div className={cx('form-group')}>
+                  <label>Email:</label>
+                  <input
+                    className={cx('user-email')}
+                    type="text"
+                    placeholder="Nhập email"
+                    name="email"
+                    value={infoPayment.email}
+                    onChange={(e) =>
+                      setInfoPayment({
+                        ...infoPayment,
+                        [e.target.name]: e.target.value,
+                      })
+                    }
+                  />
+                </div>
+              </div>
+            )}
 
             <div className={cx('form-group')}>
               <label>Số điện thoại:</label>

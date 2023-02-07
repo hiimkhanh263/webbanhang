@@ -30,12 +30,14 @@ function CartLayout() {
   const handleClick = (e) => {
     e.preventDefault();
 
-    if (user) {
-      navigate('/payment');
-    } else {
-      navigate('/login');
-      //   alert('Bạn cần đăng nhập để thanh toán');
-    }
+    navigate('/payment');
+
+    // if (user) {
+    //   navigate('/payment');
+    // } else {
+    //   navigate('/login');
+    //   alert('Bạn cần đăng nhập để thanh toán');
+    // }
   };
 
   return (

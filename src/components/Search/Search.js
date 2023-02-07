@@ -23,10 +23,7 @@ import { useNavigate } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function Search() {
-  //   const { data } = useFetch(`/products/`);
   const { data } = useFetch(`/products?populate=*`);
-
-  // console.log(data);
 
   const [searchValue, setSearchValue] = useState('');
   const [searchResult, setSearchResult] = useState([]);
@@ -74,21 +71,19 @@ function Search() {
     }
   };
 
-  // const handleEnterShowAll = (e) => {
-  //   if (e.keyCode === 13) {
-  //     e.preventDefault();
-  //     e.stopPropagation();
+  const [selectedItem, setSelectedItem] = useState(-1);
 
-  //     navigate('/catalog-search');
-  //   }
-  // };
-
-  // const handleClickShowAll = (e) => {
-  //   e.preventDefault();
-  //   e.stopPropagation();
-
-  //   navigate('/catalog-search');
-  // };
+  const handleKeyDown = (e) => {
+    if (e.key === 'ArrowUp' && selectedItem > 0) {
+      setSelectedItem((prev) => prev - 1);
+    } else if (
+      e.key === 'ArrowDown' &&
+      selectedItem < searchResult.length - 1
+    ) {
+      setSelectedItem((prev) => prev + 1);
+    } else if (e.key === 'Enter') {
+    }
+  };
 
   return (
     <div>
@@ -100,20 +95,21 @@ function Search() {
         render={(attrs) => (
           <div className={cx('search-result')} tabIndex="-1" {...attrs}>
             <PopperWrapper>
-              {
-                data
-                  ?.filter((result) =>
-                    result?.attributes?.title
-                      .toLowerCase()
-                      .includes(searchValue),
-                  )
-                  ?.map((result) => (
-                    <ProductItem key={result.id} result={result} />
-                  ))
-                // .splice(0, 5)
-              }
+              {data
+                ?.filter((result) =>
+                  result?.attributes?.title.toLowerCase().includes(searchValue),
+                )
+                ?.map((result, index) => (
+                  <ProductItem
+                    key={result.id}
+                    result={result}
+                    index={index}
+                    selectedItem={selectedItem}
+                  />
+                ))
+                .splice(0, 5)}
 
-              {/* <h5 onClick={handleClickShowAll}>Xem tất cả sản phẩm</h5> */}
+              <h5>Xem tất cả sản phẩm</h5>
             </PopperWrapper>
           </div>
         )}
@@ -126,7 +122,7 @@ function Search() {
             spellCheck={false}
             onChange={handleChange}
             onFocus={() => setShowResult(true)}
-            // onKeyDown={handleEnterShowAll}
+            onKeyDown={handleKeyDown}
           />
 
           {!!searchValue && !loadinged && (
@@ -143,7 +139,6 @@ function Search() {
             <button
               className={cx('search-btn')}
               onMouseDown={(e) => e.preventDefault()}
-              // onClick={handleClickShowAll}
             >
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>

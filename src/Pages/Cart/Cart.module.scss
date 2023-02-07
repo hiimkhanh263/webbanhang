@@ -68,6 +68,22 @@
       align-items: center;
       justify-content: space-between;
       flex: 3;
+
+      .quantity {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: -36px;
+
+        span {
+          padding: 0 8px;
+        }
+
+        button {
+          padding: 3px 10px;
+          background-color: transparent;
+        }
+      }
     }
 
     .delete {

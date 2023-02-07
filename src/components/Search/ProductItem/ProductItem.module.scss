@@ -11,6 +11,15 @@
   }
 }
 
+.wrapper-active {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  border-bottom: 1px solid rgb(245, 245, 245);
+  background-color: rgb(245, 245, 245);
+}
+
 .info {
   .name {
     font-weight: 400;

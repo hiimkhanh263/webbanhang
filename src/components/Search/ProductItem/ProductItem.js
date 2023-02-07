@@ -7,9 +7,12 @@ import { formatPrice } from '~/utils/formatPrice/formatPrice';
 
 const cx = classNames.bind(styles);
 
-function ProductItem({ result }) {
+function ProductItem({ result, selectedItem, index }) {
   return (
-    <Link to={`/product/${result?.id}`} className={cx('wrapper')}>
+    <Link
+      to={`/product/${result?.id}`}
+      className={cx(selectedItem === index ? 'wrapper-active' : 'wrapper')}
+    >
       <div className={cx('info')}>
         <h4 className={cx('name')}>{result?.attributes?.title}</h4>
         <div>

@@ -27,10 +27,9 @@ function Header() {
 
   const handleLogout = () => {
     // localStorage.removeItem("loggedin");
-    // localStorage.clear('loggedin');
     localStorage.clear();
-    navigate('/');
-    window.location.href = window.location.href;
+    navigate('/login');
+    // window.location.href = window.location.href;
   };
 
   let cartRef = useRef();

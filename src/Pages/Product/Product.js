@@ -20,6 +20,8 @@ function Product() {
 
   const { data, loading } = useFetch(`/products/${id}?populate=*`);
 
+  // console.log(data);
+
   const dispatch = useDispatch();
 
   const [selectedImg, setSelectedImg] = useState('img');
@@ -35,8 +37,6 @@ function Product() {
   const [currentPrice, setCurrentPrice] = useState(null);
 
   const [isSelect, setIsSelect] = useState(false);
-
-  const [optionPicked, setOptionPicked] = useState([]);
 
   const handleClickChooseColor = (title) => {
     setSelectColor(title);
@@ -133,7 +133,11 @@ function Product() {
                 {data?.attributes?.colors?.data?.map((color) => (
                   <button
                     key={color.id}
-                    className={cx('color-detail')}
+                    className={cx(
+                      selectColor === color.attributes.title
+                        ? 'color-detail-active'
+                        : 'color-detail',
+                    )}
                     style={{
                       backgroundColor: color.attributes.title,
                     }}
@@ -148,7 +152,11 @@ function Product() {
                 {data?.attributes?.memories?.data?.map((memory) => (
                   <button
                     key={memory.id}
-                    className={cx('memory-detail')}
+                    className={cx(
+                      selectMemory === memory.attributes.title
+                        ? 'memory-detail-active'
+                        : 'memory-detail',
+                    )}
                     onClick={() =>
                       handleClickChooseMemory(memory.attributes.title)
                     }
@@ -204,20 +212,22 @@ function Product() {
                   </button>
                 </Link>
               ) : (
-                <Tippy
-                  interactive
-                  delay={[100, 100]}
-                  placement="right"
-                  hideOnClick={true}
-                  offset={[0, 10]}
-                  render={(attrs) => <p>Vui lòng chọn loại sản phẩm</p>}
-                >
-                  <Link to="/cart" className={cx('buy-now-link')}>
-                    <button disabled className={cx('buy-now-dis')}>
-                      Mua Ngay
-                    </button>
-                  </Link>
-                </Tippy>
+                <div>
+                  <Tippy
+                    interactive
+                    delay={[100, 100]}
+                    placement="right"
+                    hideOnClick={true}
+                    offset={[0, 10]}
+                    render={(attrs) => <p>Vui lòng chọn loại sản phẩm</p>}
+                  >
+                    <Link to="/cart" className={cx('buy-now-link')}>
+                      <button disabled className={cx('buy-now-dis')}>
+                        Mua Ngay
+                      </button>
+                    </Link>
+                  </Tippy>
+                </div>
               )}
 
               {isSelect ? (
@@ -248,24 +258,26 @@ function Product() {
                   </button>
                 </Link>
               ) : (
-                <Tippy
-                  interactive
-                  delay={[100, 100]}
-                  placement="right"
-                  hideOnClick={true}
-                  offset={[0, 10]}
-                  render={(attrs) => <p>Vui lòng chọn loại sản phẩm</p>}
-                >
-                  <Link to="" className={cx('buy-now-link')}>
-                    <button disabled className={cx('buy-now-dis')}>
-                      <FontAwesomeIcon
-                        className={cx('add-icon')}
-                        icon={faCartPlus}
-                      />
-                      Thêm Vào Giỏ Hàng
-                    </button>
-                  </Link>
-                </Tippy>
+                <div>
+                  <Tippy
+                    interactive
+                    delay={[100, 100]}
+                    placement="right"
+                    hideOnClick={true}
+                    offset={[0, 10]}
+                    render={(attrs) => <p>Vui lòng chọn loại sản phẩm</p>}
+                  >
+                    <Link to="" className={cx('buy-now-link')}>
+                      <button disabled className={cx('buy-now-dis')}>
+                        <FontAwesomeIcon
+                          className={cx('add-icon')}
+                          icon={faCartPlus}
+                        />
+                        Thêm Vào Giỏ Hàng
+                      </button>
+                    </Link>
+                  </Tippy>
+                </div>
               )}
 
               <div className={cx('installment')}>

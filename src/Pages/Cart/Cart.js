@@ -15,34 +15,23 @@ const cx = classNames.bind(styles);
 function Cart() {
   const products = useSelector((state) => state.cart.products);
 
+  // console.log(products);
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
-  // const [quantityChange, setQuantityChange] = useState();
+  const [data, setData] = useState();
 
-  // const [totalPrice, setTotalPrice] = useState();
+  const [quantityChange, setQuantityChange] = useState();
 
-  const totalPrice = () => {
-    let total = 0;
-    products.forEach((item) => {
-      total += item.quantity * item.currentPrice;
-    });
-    return total;
-  };
-
-  // useEffect(() => {
-  //   let total = 0;
-
-  //   products.forEach((item) => {
-  //     setQuantityChange(item.quantity);
-  //     setTotalPrice((total += quantityChange * item.currentPrice));
-  //   });
-  // }, []);
+  const totalPrice = data?.currentPrice * quantityChange;
 
   const handleClick = (e) => {
     e.preventDefault();
 
+    localStorage.setItem('totalPrice', JSON.stringify(totalPrice));
+    localStorage.setItem('quantityChange', JSON.stringify(quantityChange));
     navigate('/payment');
 
     // if (user) {
@@ -54,10 +43,17 @@ function Cart() {
     // }
   };
 
+  useEffect(() => {
+    products.forEach((item) => {
+      setQuantityChange(item.quantity);
+      setData(item);
+    });
+  }, []);
+
   return (
     <div className={cx('wrapper')}>
       <div className={cx('cart')}>
-        <h1 className={cx('cart-title')}>Thanh Toán</h1>
+        <h1 className={cx('cart-title')}>Giỏ Hàng Của Bạn</h1>
 
         <div className={cx('heading')}>
           <span className={cx('heading-name')}>Sản phẩm</span>
@@ -67,59 +63,51 @@ function Cart() {
         </div>
 
         <div className={cx('cart-content')}>
-          {products?.map((item) => (
-            <div className={cx('item')} key={item.id}>
-              <div className={cx('item-info')}>
-                <img src={process.env.REACT_APP_UPLOAD_URL + item.img} alt="" />
-                <div>
-                  <h1 className={cx('info-title')}>{item.title}</h1>
-                  <p>
-                    ({item.selectColor}, {item.selectMemory}GB)
-                  </p>
-                </div>
-              </div>
-
-              <div className={cx('details')}>
-                <div className={cx('quantity')}>
-                  <span>{item.quantity}</span>
-
-                  {/* <button
-                    onClick={
-                      () =>
-                        setQuantityChange((prev) => (prev === 1 ? 1 : prev - 1))
-                      // {item.quantity}
-                    }
-                  >
-                    -
-                  </button> */}
-
-                  {/* <span>{quantityChange}</span> */}
-
-                  {/* <button onClick={() => setQuantityChange((prev) => prev + 1)}>
-                    +
-                  </button> */}
-                </div>
-
-                <div className={cx('price')}>
-                  <span>{formatPrice(item.currentPrice)}</span>
-
-                  {/* <span>{formatPrice(quantityChange * item.currentPrice)}</span> */}
-                </div>
-              </div>
-
-              <div className={cx('delete')}>
-                <FontAwesomeIcon
-                  icon={faTrash}
-                  className={cx('delete-btn')}
-                  onClick={() => dispatch(removeItem(item.id))}
-                />
+          <div className={cx('item')} key={data?.id}>
+            <div className={cx('item-info')}>
+              <img src={process.env.REACT_APP_UPLOAD_URL + data?.img} alt="" />
+              <div>
+                <h1 className={cx('info-title')}>{data?.title}</h1>
+                <p>
+                  ({data?.selectColor}, {data?.selectMemory}GB)
+                </p>
               </div>
             </div>
-          ))}
+
+            <div className={cx('details')}>
+              <div className={cx('quantity')}>
+                <button
+                  onClick={() =>
+                    setQuantityChange((prev) => (prev === 1 ? 1 : prev - 1))
+                  }
+                >
+                  -
+                </button>
+
+                <span>{quantityChange}</span>
+
+                <button onClick={() => setQuantityChange((prev) => prev + 1)}>
+                  +
+                </button>
+              </div>
+
+              <div className={cx('price')}>
+                <span>{formatPrice(data?.currentPrice)}</span>
+              </div>
+            </div>
+
+            <div className={cx('delete')}>
+              <FontAwesomeIcon
+                icon={faTrash}
+                className={cx('delete-btn')}
+                onClick={() => dispatch(removeItem(data?.id))}
+              />
+            </div>
+          </div>
 
           <div className={cx('total')}>
             <span>Tổng tiền: </span>
-            <span>{formatPrice(totalPrice())}</span>
+            <span>{formatPrice(totalPrice)}</span>
           </div>
 
           <button className={cx('payment-btn')} onClick={handleClick}>

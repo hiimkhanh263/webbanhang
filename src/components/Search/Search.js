@@ -29,6 +29,7 @@ function Search() {
   const [searchResult, setSearchResult] = useState([]);
   const [showResult, setShowResult] = useState(false);
   const [loadinged, setLoadinged] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(-1);
 
   const debouncedValue = useDebounce(searchValue, 500);
 
@@ -70,8 +71,6 @@ function Search() {
       setSearchValue(searchValue);
     }
   };
-
-  const [selectedItem, setSelectedItem] = useState(-1);
 
   const handleKeyDown = (e) => {
     if (e.key === 'ArrowUp' && selectedItem > 0) {

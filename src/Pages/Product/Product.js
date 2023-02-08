@@ -69,7 +69,7 @@ function Product() {
     if (!isNaN(data?.attributes?.like)) {
       setLiked(data?.attributes?.like);
     }
-    axios.put('http://localhost:1337/api/products/7', { data: { sold: 10 } });
+    // axios.put('http://localhost:1337/api/products/7', { data: { sold: 10 } });
   }, [data?.attributes?.like]);
 
   return (

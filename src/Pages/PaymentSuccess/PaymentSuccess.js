@@ -19,13 +19,9 @@ function PaymentSuccess() {
 
   const dispatch = useDispatch();
 
-  const products = useSelector((state) => state.cart.products);
-
-  const totalPrice = () => {
-    let total = 0;
-    products.forEach((item) => (total += item.quantity * item.currentPrice));
-    return total;
-  };
+  const totalPriceDiscount = JSON.parse(
+    localStorage.getItem('totalPriceDiscount'),
+  );
 
   useEffect(() => {
     setTimeout(() => {
@@ -56,17 +52,31 @@ function PaymentSuccess() {
         <h1 className={cx('title')}>Thanh toán thành công</h1>
 
         <div className={cx('info')}>
-          <div className={cx('info-user')}>
-            <p>Họ và tên </p>
-            <span>: {userPayment.name}</span>
-          </div>
+          {user ? (
+            <div className={cx('info-user')}>
+              <p>Họ và tên </p>
+              <span>: {user.name}</span>
+            </div>
+          ) : (
+            <div className={cx('info-user')}>
+              <p>Họ và tên </p>
+              <span>: {userPayment.name}</span>
+            </div>
+          )}
+
           <div className={cx('info-user')}>
             <p>Số điện thoại</p>
             <span>: {userPayment.phone}</span>
           </div>
+
           <div className={cx('info-user')}>
             <p>Địa chỉ nhận hàng</p>
             <span>: {userPayment.address}</span>
+          </div>
+
+          <div className={cx('info-user')}>
+            <p>Tổng thanh toán</p>
+            <span>: {formatPrice(totalPriceDiscount)}</span>
           </div>
         </div>
 

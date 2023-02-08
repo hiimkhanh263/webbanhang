@@ -13,8 +13,8 @@ export const get = async (path, options = {}) => {
   return response.data;
 };
 
-export const update = async (path, options = {}) => {
-  const response = await httpRequest.update(path, options);
+export const put = async (path, options = {}) => {
+  const response = await httpRequest.put(path, options);
 
   return response.data;
 };

@@ -17,28 +17,24 @@ function Payment() {
 
   const user = JSON.parse(localStorage.getItem('user'));
 
+  const totalPrice = JSON.parse(localStorage.getItem('totalPrice'));
+
   const [discountId, setDiscountId] = useState('');
 
   const [discountCode, setDiscountCode] = useState(false);
 
-  const [discountPrice, setDiscountPrice] = useState(null);
+  const [discountPercent, setDiscountPercent] = useState(null);
 
   const [infoPayment, setInfoPayment] = useState({
     ...user,
     name: '',
     email: '',
+    address: '',
     phone: '',
     note: '',
-    total: '',
   });
 
-  const products = useSelector((state) => state.cart.products);
-
-  const totalPrice = () => {
-    let total = 0;
-    products.forEach((item) => (total += item.quantity * item.currentPrice));
-    return total;
-  };
+  const totalPriceDiscount = totalPrice - (discountPercent / 100) * totalPrice;
 
   const handleDiscountChange = (e) => {
     const getDiscountId = e.target.value;
@@ -46,21 +42,25 @@ function Payment() {
     setDiscountId(getDiscountId);
   };
 
-  useEffect(() => {
-    data?.forEach((discountid) => {
-      if (discountId == discountid.id) {
-        setDiscountPrice(discountid?.attributes?.percent);
-        setDiscountCode(true);
-      }
-    });
-  }, [discountId]);
-
   const handlePayment = (e) => {
     e.preventDefault();
     localStorage.setItem('userPayment', JSON.stringify(infoPayment));
 
     navigate('/paymentsuccess');
+    localStorage.setItem(
+      'totalPriceDiscount',
+      JSON.stringify(totalPriceDiscount),
+    );
   };
+
+  useEffect(() => {
+    data?.forEach((discountid) => {
+      if (discountId == discountid.id) {
+        setDiscountPercent(discountid?.attributes?.percent);
+        setDiscountCode(true);
+      }
+    });
+  }, [discountId]);
 
   return (
     <div className={cx('wrapper')}>
@@ -97,6 +97,7 @@ function Payment() {
                         [e.target.name]: e.target.value,
                       })
                     }
+                    required
                   />
                 </div>
 
@@ -114,6 +115,7 @@ function Payment() {
                         [e.target.name]: e.target.value,
                       })
                     }
+                    required
                   />
                 </div>
               </div>
@@ -133,6 +135,7 @@ function Payment() {
                     [e.target.name]: e.target.value,
                   })
                 }
+                required
               />
             </div>
 
@@ -150,6 +153,7 @@ function Payment() {
                     [e.target.name]: e.target.value,
                   })
                 }
+                required
               />
             </div>
 
@@ -190,16 +194,12 @@ function Payment() {
             <div className={cx('total')}>
               <p>Tổng Tiền:</p>
               {!discountCode ? (
-                <span>{formatPrice(totalPrice())}</span>
+                <span>{formatPrice(totalPrice)}</span>
               ) : (
                 <span>
-                  <span>
-                    {formatPrice(
-                      totalPrice() - (discountPrice / 100) * totalPrice(),
-                    )}
-                  </span>
+                  <span>{formatPrice(totalPriceDiscount)}</span>
                   <span className={cx('discount-percent')}>
-                    -{discountPrice}%
+                    -{discountPercent}%
                   </span>
                 </span>
               )}

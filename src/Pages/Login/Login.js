@@ -80,6 +80,8 @@ function Login() {
                 onChange={(e) =>
                   setInput({ ...input, [e.target.name]: e.target.value })
                 }
+                autoFocus
+                required
               />
             </div>
 
@@ -94,6 +96,7 @@ function Login() {
                 onChange={(e) =>
                   setInput({ ...input, [e.target.name]: e.target.value })
                 }
+                required
               />
             </div>
 

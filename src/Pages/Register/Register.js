@@ -47,7 +47,7 @@ function Register() {
                 }
                 onBlur={handleFocus}
                 required
-                pattern="^[a-zA-Z0-9]{4,20}$"
+                pattern="^[a-zA-Z0-9]{4,15}$"
                 focus={focus.toString()}
               />
               <span>
@@ -68,6 +68,7 @@ function Register() {
                 }
                 onBlur={handleFocus}
                 required
+                pattern="^[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}"
                 focus={focus.toString()}
               />
               <span>Email không hợp lệ. Ví dụ: example@gmail.com</span>
@@ -86,7 +87,7 @@ function Register() {
                 }
                 onBlur={handleFocus}
                 required
-                pattern="^.*(?=.{6,})(?=.*\d)(?=.*[a-zA-Z]).*$"
+                pattern="^.*(?=.{6,20})(?=.*\d)(?=.*[a-zA-Z]).*$"
                 focus={focus.toString()}
               />
               <span>Mật khẩu từ 6-20 ký tự, bao gồm ít nhất 1 chữ và 1 số</span>

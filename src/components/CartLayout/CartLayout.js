@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import classNames from 'classnames/bind';
 import styles from './CartLayout.module.scss';
@@ -9,11 +9,15 @@ import { removeItem, resetCart } from '~/redux/cartReducer';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { formatPrice } from '~/utils/formatPrice/formatPrice';
+import images from '~/assets/logoFooter';
 
 const cx = classNames.bind(styles);
 
 function CartLayout() {
   const user = JSON.parse(localStorage.getItem('user'));
+
+  const [data, setData] = useState();
+  const [quantity, setQuantity] = useState();
 
   const navigate = useNavigate();
 
@@ -21,16 +25,14 @@ function CartLayout() {
 
   const dispatch = useDispatch();
 
-  const totalPrice = () => {
-    let total = 0;
-    products.forEach((item) => (total += item.quantity * item.currentPrice));
-    return total;
-  };
+  const totalPrice = data?.currentPrice * quantity;
 
   const handleClick = (e) => {
     e.preventDefault();
 
     navigate('/payment');
+
+    localStorage.setItem('totalPrice', JSON.stringify(totalPrice));
 
     // if (user) {
     //   navigate('/payment');
@@ -40,27 +42,34 @@ function CartLayout() {
     // }
   };
 
+  useEffect(() => {
+    products.forEach((item) => {
+      setQuantity(item.quantity);
+      setData(item);
+    });
+  }, []);
+
   return (
     <div className={cx('wrapper')}>
-      <div className={cx('cart')}>
-        <h1>Sản Phẩm Bạn Đã Chọn</h1>
+      {quantity ? (
+        <div className={cx('cart')}>
+          <h1>Sản Phẩm Bạn Đã Chọn</h1>
 
-        {/* khi thêm sản phẩm khác phiên bản: chỉ hiển thị 1 phiên bản,
-        giá tiền không khớp, bị ăn 1 giá */}
-
-        <div className={cx('list-item')}>
-          {products?.map((item) => (
-            <div className={cx('item')} key={item.id}>
+          <div className={cx('list-item')}>
+            <div className={cx('item')} key={data?.id}>
               <div className={cx('item-content')}>
-                <img src={process.env.REACT_APP_UPLOAD_URL + item.img} alt="" />
+                <img
+                  src={process.env.REACT_APP_UPLOAD_URL + data?.img}
+                  alt=""
+                />
 
                 <div className={cx('details')}>
-                  <h1>{item.title}</h1>
+                  <h1>{data?.title}</h1>
                   <div className={cx('price')}>
-                    {formatPrice(item.currentPrice)} x {item.quantity}
+                    {formatPrice(data?.currentPrice)} x {data?.quantity}
                   </div>
                   <div className={cx('price')}>
-                    ({item.selectColor}, {item.selectMemory}GB)
+                    ({data?.selectColor}, {data?.selectMemory}GB)
                   </div>
                 </div>
               </div>
@@ -68,29 +77,31 @@ function CartLayout() {
               <FontAwesomeIcon
                 icon={faTrash}
                 className={cx('delete')}
-                onClick={() => dispatch(removeItem(item.id))}
+                onClick={() => dispatch(removeItem(data?.id))}
               />
             </div>
-          ))}
+          </div>
+
+          <span className={cx('reset')} onClick={() => dispatch(resetCart())}>
+            Xóa tất cả
+          </span>
+
+          <div className={cx('total')}>
+            <span>Tổng Tiền:</span>
+            <span>{formatPrice(totalPrice)}</span>
+          </div>
+
+          <div className={cx('cart-btn')}>
+            <Link to="/cart">
+              <button>Xem Giỏ Hàng</button>
+            </Link>
+
+            <button onClick={handleClick}>Thanh Toán</button>
+          </div>
         </div>
-
-        <span className={cx('reset')} onClick={() => dispatch(resetCart())}>
-          Xóa tất cả
-        </span>
-
-        <div className={cx('total')}>
-          <span>Tổng Tiền:</span>
-          <span>{formatPrice(totalPrice())}</span>
-        </div>
-
-        <div className={cx('cart-btn')}>
-          <Link to="/cart">
-            <button>Xem Giỏ Hàng</button>
-          </Link>
-
-          <button onClick={handleClick}>Thanh Toán</button>
-        </div>
-      </div>
+      ) : (
+        <img className={cx('empty-cart')} src={images.emptyCart} alt="" />
+      )}
     </div>
   );
 }

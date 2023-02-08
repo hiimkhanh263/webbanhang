@@ -1,5 +1,6 @@
 const images = {
   logoTkl: require('~/assets/logoFooter/logo-tkl.webp'),
+  emptyCart: require('~/assets/logoFooter/empty-cart.webp'),
   atm: require('~/assets/logoFooter/logo-atm.png'),
   bct: require('~/assets/logoFooter/logo-bct.png'),
   jcb: require('~/assets/logoFooter/logo-jcb.png'),

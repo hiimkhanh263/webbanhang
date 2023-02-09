@@ -4,12 +4,15 @@ import classNames from 'classnames/bind';
 import styles from './Footer.module.scss';
 
 import images from '~/assets/logoFooter';
+import { useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
 function Footer() {
+  const { mode } = useSelector((state) => state.darkMode);
+
   return (
-    <div className={cx('wrapper')}>
+    <div className={cx(mode ? 'wrapper-dark' : 'wrapper')}>
       <div className={cx('top')}>
         <div className={cx('item')}>
           <h1>Danh Mục</h1>

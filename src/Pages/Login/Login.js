@@ -4,10 +4,13 @@ import classNames from 'classnames/bind';
 import styles from './Login.module.scss';
 // import jwt_decode from "jwt-decode";
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
 function Login() {
+  const { mode } = useSelector((state) => state.darkMode);
+
   const navigate = useNavigate();
 
   const [input, setInput] = useState({
@@ -63,7 +66,7 @@ function Login() {
   };
 
   return (
-    <div className={cx('wrapper')}>
+    <div className={cx(mode ? 'wrapper-dark' : 'wrapper')}>
       <div className={cx('login')}>
         <h1 className={cx('header')}>Đăng Nhập</h1>
 

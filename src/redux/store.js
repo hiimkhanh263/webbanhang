@@ -1,5 +1,7 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import cartReducer from "./cartReducer";
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import cartReducer from './slices/cartReducer';
+import darkModeReducer from './slices/darkModeReducer';
+
 import {
   persistStore,
   persistReducer,
@@ -9,11 +11,11 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 const persistConfig = {
-  key: "root",
+  key: 'root',
   version: 1,
   storage,
 };
@@ -23,6 +25,7 @@ const persistedReducer = persistReducer(persistConfig, cartReducer);
 export const store = configureStore({
   reducer: {
     cart: persistedReducer,
+    darkMode: darkModeReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -5,7 +5,7 @@ import styles from './CartLayout.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeItem, resetCart } from '~/redux/cartReducer';
+import { removeItem, resetCart } from '~/redux/slices/cartReducer';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { formatPrice } from '~/utils/formatPrice/formatPrice';
@@ -16,8 +16,7 @@ const cx = classNames.bind(styles);
 function CartLayout() {
   const user = JSON.parse(localStorage.getItem('user'));
 
-  const [data, setData] = useState();
-  const [quantity, setQuantity] = useState();
+  const { mode } = useSelector((state) => state.darkMode);
 
   const navigate = useNavigate();
 
@@ -25,14 +24,18 @@ function CartLayout() {
 
   const dispatch = useDispatch();
 
-  const totalPrice = data?.currentPrice * quantity;
+  const totalPrice = () => {
+    let total = 0;
+    products.forEach((item) => (total += item.quantity * item.currentPrice));
+    return total;
+  };
 
   const handleClick = (e) => {
     e.preventDefault();
 
     navigate('/payment');
 
-    localStorage.setItem('totalPrice', JSON.stringify(totalPrice));
+    localStorage.setItem('totalPrice', JSON.stringify(Number(totalPrice())));
 
     // if (user) {
     //   navigate('/payment');
@@ -42,44 +45,39 @@ function CartLayout() {
     // }
   };
 
-  useEffect(() => {
-    products.forEach((item) => {
-      setQuantity(item.quantity);
-      setData(item);
-    });
-  }, []);
-
   return (
-    <div className={cx('wrapper')}>
-      {quantity ? (
+    <div className={cx(mode ? 'wrapper-dark' : 'dark')}>
+      {Number(totalPrice()) != 0 ? (
         <div className={cx('cart')}>
           <h1>Sản Phẩm Bạn Đã Chọn</h1>
 
           <div className={cx('list-item')}>
-            <div className={cx('item')} key={data?.id}>
-              <div className={cx('item-content')}>
-                <img
-                  src={process.env.REACT_APP_UPLOAD_URL + data?.img}
-                  alt=""
-                />
+            {products.map((item) => (
+              <div className={cx('item')} key={item.id}>
+                <div className={cx('item-content')}>
+                  <img
+                    src={process.env.REACT_APP_UPLOAD_URL + item.img}
+                    alt=""
+                  />
 
-                <div className={cx('details')}>
-                  <h1>{data?.title}</h1>
-                  <div className={cx('price')}>
-                    {formatPrice(data?.currentPrice)} x {data?.quantity}
-                  </div>
-                  <div className={cx('price')}>
-                    ({data?.selectColor}, {data?.selectMemory}GB)
+                  <div className={cx('details')}>
+                    <h1>{item.title}</h1>
+                    <div className={cx('price')}>
+                      {formatPrice(item.currentPrice)} x {item.quantity}
+                    </div>
+                    <div className={cx('price')}>
+                      ({item.selectColor}, {item.selectMemory}GB)
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <FontAwesomeIcon
-                icon={faTrash}
-                className={cx('delete')}
-                onClick={() => dispatch(removeItem(data?.id))}
-              />
-            </div>
+                <FontAwesomeIcon
+                  icon={faTrash}
+                  className={cx('delete')}
+                  onClick={() => dispatch(removeItem(item.id))}
+                />
+              </div>
+            ))}
           </div>
 
           <span className={cx('reset')} onClick={() => dispatch(resetCart())}>
@@ -88,7 +86,7 @@ function CartLayout() {
 
           <div className={cx('total')}>
             <span>Tổng Tiền:</span>
-            <span>{formatPrice(totalPrice)}</span>
+            <span>{formatPrice(totalPrice())}</span>
           </div>
 
           <div className={cx('cart-btn')}>

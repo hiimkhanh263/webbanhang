@@ -5,13 +5,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { formatPrice } from '~/utils/formatPrice/formatPrice';
 import styles from './PaymentSuccess.module.scss';
-import { resetCart } from '~/redux/cartReducer';
+import { resetCart } from '~/redux/slices/cartReducer';
 
 const cx = classNames.bind(styles);
 
 function PaymentSuccess() {
   const user = JSON.parse(localStorage.getItem('user'));
   const userPayment = JSON.parse(localStorage.getItem('userPayment'));
+
+  const { mode } = useSelector((state) => state.darkMode);
 
   const navivate = useNavigate();
 
@@ -47,8 +49,8 @@ function PaymentSuccess() {
   }, [time]);
 
   return (
-    <div className={cx('wrapper')}>
-      <div>
+    <div className={cx(mode ? 'wrapper-dark' : 'wrapper')}>
+      <div className={cx('payment-success')}>
         <h1 className={cx('title')}>Thanh toán thành công</h1>
 
         <div className={cx('info')}>

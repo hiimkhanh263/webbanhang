@@ -10,9 +10,11 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import Search from '../Search/Search';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CartLayout from '~/components/CartLayout/CartLayout';
 import images from '~/assets/logoFooter';
+import { toggleDarkMode } from '~/redux/slices/darkModeReducer';
+import { Form } from 'react-bootstrap';
 
 const cx = classNames.bind(styles);
 
@@ -23,6 +25,10 @@ function Header() {
 
   const products = useSelector((state) => state.cart.products);
 
+  const { mode } = useSelector((state) => state.darkMode);
+
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -32,7 +38,10 @@ function Header() {
     // window.location.href = window.location.href;
   };
 
+  const handleLanguageChange = () => {};
+
   let cartRef = useRef();
+
   useEffect(() => {
     let handler = (e) => {
       if (!cartRef.current.contains(e.target)) {
@@ -46,7 +55,10 @@ function Header() {
   });
 
   return (
-    <header className={cx('wrapper')}>
+    <header
+      className={cx(mode ? 'wrapper-dark' : 'wrapper')}
+      // style={{ background: mode ? 'black' : 'white' }}
+    >
       {/* <div>Chọn ngôn ngữ: VIêt - Anh</div> */}
 
       <div className={cx('inner')}>
@@ -69,6 +81,8 @@ function Header() {
                 render={(attrs) => (
                   <PopperWrapper>
                     <div className={cx('user-action')} tabIndex="-1" {...attrs}>
+                      <h5>Quản lý tài khoản</h5>
+
                       <Link to="/account" className={cx('my-account')}>
                         <button>
                           <span>Tài khoản của tôi</span>
@@ -78,6 +92,33 @@ function Header() {
                       <button className={cx('logout')} onClick={handleLogout}>
                         <span>Đăng xuất</span>
                       </button>
+
+                      <div className={cx('action-option')}>
+                        <button
+                          className={cx('dark-mode-btn')}
+                          onClick={() => dispatch(toggleDarkMode())}
+                        >
+                          {mode ? (
+                            <span>Chế độ sáng</span>
+                          ) : (
+                            <span>Chế độ tối</span>
+                          )}
+                        </button>
+
+                        <Form.Select
+                          className={cx('action-option-btn')}
+                          aria-label="Default select example"
+                          onChange={(e) => handleLanguageChange(e)}
+                        >
+                          <option>Tiếng Việt</option>
+                          <option>Tiếng Anh</option>
+                          {/* {data?.map((item) => (
+                          <option key={item.id} value={item.id}>
+                            {item?.attributes?.title}
+                          </option>
+                        ))} */}
+                        </Form.Select>
+                      </div>
                     </div>
                   </PopperWrapper>
                 )}
@@ -120,6 +161,33 @@ function Header() {
                       <Link to="/register" className={cx('register')}>
                         <button>Đăng ký tài khoản mới</button>
                       </Link>
+
+                      <div className={cx('action-option')}>
+                        <button
+                          className={cx('dark-mode-btn')}
+                          onClick={() => dispatch(toggleDarkMode())}
+                        >
+                          {mode ? (
+                            <span>Chế độ sáng</span>
+                          ) : (
+                            <span>Chế độ tối</span>
+                          )}
+                        </button>
+
+                        <Form.Select
+                          className={cx('action-option-btn')}
+                          aria-label="Default select example"
+                          onChange={(e) => handleLanguageChange(e)}
+                        >
+                          <option>Tiếng Việt</option>
+                          <option>Tiếng Anh</option>
+                          {/* {data?.map((item) => (
+                          <option key={item.id} value={item.id}>
+                            {item?.attributes?.title}
+                          </option>
+                        ))} */}
+                        </Form.Select>
+                      </div>
                     </div>
                   </PopperWrapper>
                 )}

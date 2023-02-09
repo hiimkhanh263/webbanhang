@@ -19,6 +19,7 @@ import useFetch from '~/hooks/useFetch';
 import ProductItem from './ProductItem/ProductItem';
 import * as searchService from '~/services/searchService';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
@@ -31,7 +32,9 @@ function Search() {
   const [loadinged, setLoadinged] = useState(false);
   const [selectedItem, setSelectedItem] = useState(-1);
 
-  const debouncedValue = useDebounce(searchValue, 500);
+  const debouncedValue = useDebounce(searchValue, 400);
+
+  const { mode } = useSelector((state) => state.darkMode);
 
   const inputRef = useRef();
 
@@ -92,7 +95,11 @@ function Search() {
         visible={showResult && searchResult.length > 0}
         onClickOutside={handleHideResult}
         render={(attrs) => (
-          <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+          <div
+            className={cx(mode ? 'search-result-dark' : 'search-result')}
+            tabIndex="-1"
+            {...attrs}
+          >
             <PopperWrapper>
               {data
                 ?.filter((result) =>
@@ -113,7 +120,7 @@ function Search() {
           </div>
         )}
       >
-        <div className={cx('search')}>
+        <div className={cx(mode ? 'search-dark' : 'search')}>
           <input
             ref={inputRef}
             value={searchValue}

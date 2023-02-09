@@ -1,77 +1,99 @@
-.wrapper {
-  margin-top: 90px;
-}
+.wrapper,
+.wrapper-dark {
+  padding-top: 90px;
 
-.register {
-  display: flex;
-  flex-direction: column;
-  width: 430px;
-  height: auto;
-  margin: 0 auto;
-  background-color: #fff;
-  justify-content: center;
-  padding: 12px 20px;
-  border-radius: 6px;
-
-  .header {
-    text-align: center;
-    font-size: 30px;
-    font-weight: 600;
-    margin: 8px 0;
-  }
-
-  .form-group {
+  .register {
     display: flex;
     flex-direction: column;
+    width: 430px;
+    height: auto;
+    margin: 0 auto;
+    background-color: #fff;
     justify-content: center;
-    align-items: flex-start;
-    margin-top: 16px;
+    padding: 12px 20px;
+    border-radius: 6px;
 
-    label {
-      width: auto;
+    .header {
+      text-align: center;
+      font-size: 30px;
+      font-weight: 600;
+      margin: 8px 0;
     }
 
-    input {
-      flex: 1;
-      margin: 4px 0;
-      background-color: #f7f7f7;
-      padding: 10px 20px;
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      margin-top: 16px;
+
+      label {
+        width: auto;
+      }
+
+      input {
+        flex: 1;
+        margin: 4px 0;
+        background-color: #f7f7f7;
+        padding: 10px 20px;
+        border-radius: 6px;
+        font-size: 16px;
+      }
+
+      span {
+        font-size: 12px;
+        padding: 3px;
+        color: red;
+        display: none;
+      }
+
+      input:invalid[focus='true'] ~ span {
+        display: block;
+      }
+    }
+
+    .submit-btn {
+      background-color: #c92027;
+      color: #fff;
+      width: 100%;
+      padding: 8px 0;
       border-radius: 6px;
       font-size: 16px;
+      margin: 20px 0 12px;
     }
 
-    span {
-      font-size: 12px;
-      padding: 3px;
-      color: red;
-      display: none;
-    }
+    .have-acc {
+      font-size: 14px;
+      color: rgb(121, 121, 121);
 
-    input:invalid[focus='true'] ~ span {
-      display: block;
+      .trans-login {
+        color: blue;
+
+        &:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
     }
   }
+}
 
-  .submit-btn {
-    background-color: #c92027;
+.wrapper-dark {
+  background-color: #18191a;
+
+  .register {
+    background-color: #242526;
     color: #fff;
-    width: 100%;
-    padding: 8px 0;
-    border-radius: 6px;
-    font-size: 16px;
-    margin: 20px 0 12px;
-  }
 
-  .have-acc {
-    font-size: 14px;
-    color: rgb(121, 121, 121);
+    .form-group {
+      input {
+        background-color: #3a3b3c;
+        border: 1px solid transparent;
+        color: #fff;
+      }
 
-    .trans-login {
-      color: blue;
-
-      &:hover {
-        text-decoration: underline;
-        cursor: pointer;
+      input:invalid[focus='true'] ~ span {
+        display: block;
       }
     }
   }

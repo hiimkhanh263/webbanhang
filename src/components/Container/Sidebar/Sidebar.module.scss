@@ -1,6 +1,11 @@
-.wrapper {
+.wrapper,
+.wrapper-dark {
   width: 240px;
   padding: 4px 0;
   background-color: #fff;
   margin-right: 10px;
+}
+
+.wrapper-dark {
+  background-color: #242526;
 }

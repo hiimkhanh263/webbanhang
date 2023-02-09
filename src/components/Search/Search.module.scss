@@ -1,15 +1,26 @@
 .search,
-.search-result {
+.search-dark,
+.search-result,
+.search-result-dark {
   width: 460px;
 }
 
-.search-result h5 {
+.search-result h5,
+.search-result-dark h5 {
   text-align: center;
   padding: 8px 0;
   cursor: pointer;
 }
 
-.search {
+.search-result-dark h5 {
+  background-color: #242526;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  color: #fff;
+}
+
+.search,
+.search-dark {
   position: relative;
   height: var(--search-height);
   background-color: rgba(22, 24, 35, 0.06);
@@ -45,19 +56,83 @@
   &:focus-within {
     border: 1px solid rgba(22, 24, 35, 0.12);
   }
+
+  .search-btn {
+    width: 52px;
+    height: 100%;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    font-size: 2rem;
+    color: rgba(22, 24, 35, 0.34);
+    margin: 0 !important;
+
+    &:hover {
+      background-color: rgba(22, 24, 35, 0.03);
+      cursor: pointer;
+    }
+  }
+
+  .search-btn-dis {
+    width: 52px;
+    height: 100%;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    font-size: 2rem;
+  }
+
+  .clear,
+  .loading {
+    position: absolute;
+    right: 68px;
+    top: 50%;
+    transform: translateY((-50%));
+    color: rgba(22, 24, 35, 0.34);
+  }
+
+  .loading {
+    animation: spinner 0.8s linear infinite;
+  }
 }
 
-.clear,
-.loading {
-  position: absolute;
-  right: 68px;
-  top: 50%;
-  transform: translateY((-50%));
-  color: rgba(22, 24, 35, 0.34);
-}
+.search-dark {
+  background-color: #3a3b3c;
 
-.loading {
-  animation: spinner 0.8s linear infinite;
+  input {
+    color: #fff;
+    caret-color: #fff;
+  }
+
+  input:not(:placeholder-shown) ~ .search-btn {
+    color: #fff;
+  }
+
+  &::after {
+    background-color: #7b7b7b;
+  }
+
+  &:focus-within {
+    border: 1px solid #fff;
+  }
+
+  .search-btn {
+    color: #fff;
+    background-color: #3a3b3c;
+
+    &:hover {
+      background-color: #242526;
+    }
+  }
+
+  .search-btn-dis {
+    color: #fff;
+    background-color: #3a3b3c;
+  }
+
+  .clear,
+  .loading {
+    color: #fff;
+    background-color: #3a3b3c;
+  }
 }
 
 @keyframes spinner {
@@ -67,27 +142,4 @@
   to {
     transform: translateY((-50%)) rotate(360deg);
   }
-}
-
-.search-btn {
-  width: 52px;
-  height: 100%;
-  border-top-right-radius: 12px;
-  border-bottom-right-radius: 12px;
-  font-size: 2rem;
-  color: rgba(22, 24, 35, 0.34);
-  margin: 0 !important;
-
-  &:hover {
-    background-color: rgba(22, 24, 35, 0.03);
-    cursor: pointer;
-  }
-}
-
-.search-btn-dis {
-  width: 52px;
-  height: 100%;
-  border-top-right-radius: 12px;
-  border-bottom-right-radius: 12px;
-  font-size: 2rem;
 }

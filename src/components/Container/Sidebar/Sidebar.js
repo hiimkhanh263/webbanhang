@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import classNames from "classnames/bind";
-import styles from "./Sidebar.module.scss";
-import Menu from "./Menu/Menu";
-import MenuItem from "./Menu/MenuItem";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import classNames from 'classnames/bind';
+import styles from './Sidebar.module.scss';
+import Menu from './Menu/Menu';
+import MenuItem from './Menu/MenuItem';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faLaptop,
   faMobileScreen,
@@ -13,13 +13,16 @@ import {
   faSwatchbook,
   faDesktop,
   faGamepad,
-} from "@fortawesome/free-solid-svg-icons";
+} from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
 function Sidebar() {
+  const { mode } = useSelector((state) => state.darkMode);
+
   return (
-    <aside className={cx("wrapper")}>
+    <aside className={cx(mode ? 'wrapper-dark' : 'wrapper')}>
       <Menu>
         <MenuItem
           title="ĐIỆN THOẠI"

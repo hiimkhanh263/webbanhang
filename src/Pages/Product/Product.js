@@ -4,14 +4,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import useFetch from '~/hooks/useFetch';
-import { addToCart } from '~/redux/cartReducer';
+import { addToCart } from '~/redux/slices/cartReducer';
 import { formatPrice } from '~/utils/formatPrice/formatPrice';
 import styles from './Product.module.scss';
 import SuggestProducts from './SuggestProducts/SuggestProducts';
 import axios from 'axios';
+import * as UpdateProductService from '~/services/updateProduct';
 
 const cx = classNames.bind(styles);
 
@@ -21,6 +22,8 @@ function Product() {
   const { data, loading } = useFetch(`/products/${id}?populate=*`);
 
   // console.log(data);
+
+  const { mode } = useSelector((state) => state.darkMode);
 
   const dispatch = useDispatch();
 
@@ -69,11 +72,26 @@ function Product() {
     if (!isNaN(data?.attributes?.like)) {
       setLiked(data?.attributes?.like);
     }
-    // axios.put('http://localhost:1337/api/products/7', { data: { sold: 10 } });
   }, [data?.attributes?.like]);
 
+  //--------------- update data like, sold
+  // const quantityChange = JSON.parse(localStorage.getItem('quantityChange'));
+  // const quantitySold = data?.attributes?.sold + quantityChange;
+
+  // useEffect(() => {
+  //   axios.put(`http://localhost:1337/api/products/${data?.id}`, {
+  //     data: {
+  //       like: liked,
+  //       sold: data?.attributes?.sold + quantityChange,
+  //     },
+  //   });
+  // }, [liked, quantityChange]);
+
+  // axios.put('http://localhost:1337/api/products/7', { data: { sold: 10 } });
+  // ----------------------------------------
+
   return (
-    <div className={cx('wrapper')}>
+    <div className={cx(mode ? 'wrapper-dark' : 'wrapper')}>
       <div className={cx('product')}>
         {loading ? (
           ''
@@ -309,7 +327,9 @@ function Product() {
                   {data?.attributes?.sold} đã bán
                 </span>
 
-                <span className={cx('rating')}>10 lượt đánh giá</span>
+                <span className={cx('rating')}>
+                  {data?.attributes?.rating} lượt đánh giá
+                </span>
               </div>
               <div className={cx('info')}>
                 <span>Hãng: Apple</span>

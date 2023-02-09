@@ -1,0 +1,64 @@
+.wrapper,
+.wrapper-dark {
+  width: 100%;
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    font-size: 14px;
+
+    .item-info {
+      display: flex;
+      align-items: center;
+      flex: 10;
+
+      .info-title {
+        font-size: 16px;
+      }
+    }
+
+    .details {
+      width: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex: 3;
+
+      .quantity {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: -36px;
+
+        span {
+          padding: 0 8px;
+        }
+
+        button {
+          padding: 3px 10px;
+          background-color: transparent;
+        }
+      }
+    }
+
+    .delete {
+      flex: 2;
+      color: red;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .delete-btn {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.wrapper-dark {
+  button {
+    color: #fff;
+  }
+}

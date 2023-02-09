@@ -4,12 +4,15 @@ import classNames from 'classnames/bind';
 import styles from './Card.module.scss';
 import { Link } from 'react-router-dom';
 import { formatPrice } from '~/utils/formatPrice/formatPrice';
+import { useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
 function Card({ item }) {
+  const { mode } = useSelector((state) => state.darkMode);
+
   return (
-    <div className={cx('card')}>
+    <div className={cx(mode ? 'card-dark' : 'card')}>
       <Link className={cx('link')} to={`/product/${item.id}`}>
         <div className={cx('image')}>
           {item?.attributes.isNew && <span>Hot</span>}

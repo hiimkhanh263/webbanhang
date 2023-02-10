@@ -55,10 +55,6 @@ function Cart() {
   };
 
   const handleClickInc = () => setQuantityChange((prev) => prev + 1);
-  // () =>
-  //   setQuantityChange((prev) =>
-  //     prev === 0 ? () => dispatch(removeItem(item.id)) : prev - 1,
-  //   );
 
   const handleClickDec = () =>
     setQuantityChange((prev) => (prev === 1 ? 1 : prev - 1));
@@ -132,9 +128,15 @@ function Cart() {
             <span>{formatPrice(totalPriceChange)}</span>
           </div>
 
-          <button className={cx('payment-btn')} onClick={handleClick}>
-            {t('payment')}
-          </button>
+          {totalPrice() ? (
+            <button className={cx('payment-btn')} onClick={handleClick}>
+              {t('payment')}
+            </button>
+          ) : (
+            <button className={cx('payment-btn')} disabled>
+              {t('payment')}
+            </button>
+          )}
         </div>
       </div>
     </div>

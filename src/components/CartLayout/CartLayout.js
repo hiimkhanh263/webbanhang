@@ -55,8 +55,8 @@ function CartLayout() {
           <h1>{t('productchose')}</h1>
 
           <div className={cx('list-item')}>
-            {products.map((item) => (
-              <div className={cx('item')} key={item.id}>
+            {products.map((item, index) => (
+              <div className={cx('item')} key={index}>
                 <div className={cx('item-content')}>
                   <img
                     src={process.env.REACT_APP_UPLOAD_URL + item.img}

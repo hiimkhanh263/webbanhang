@@ -22,8 +22,6 @@ function Product() {
 
   const { data, loading } = useFetch(`/products/${id}?populate=*`);
 
-  // console.log(data);
-
   const { mode } = useSelector((state) => state.darkMode);
 
   const { t } = useTranslation('home');
@@ -233,7 +231,7 @@ function Product() {
                       )
                     }
                   >
-                    {inventory} {t('buynow')}
+                    {t('buynow')}
                   </button>
                 </Link>
               ) : (
@@ -348,16 +346,7 @@ function Product() {
                 <span>Tag: apple, dienthoai, iphone</span>
               </div>
               <hr />
-              {/* <div className={cx("info")}>
-                <span>mô tả</span>
-                <hr />
-                <span>thông tin</span>
-                <hr />
-                <span>báo</span>
-              </div> */}
             </div>
-
-            {/* suggest products */}
           </>
         )}
       </div>

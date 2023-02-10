@@ -1,6 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCartShopping,
+  faMoon,
+  faSun,
+  faUser,
+} from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';
 
 import classNames from 'classnames/bind';
@@ -116,10 +121,10 @@ function Header() {
 
                           <div className={cx('language-change')}>
                             <button onClick={() => handleLanguageChange('vi')}>
-                              Tiếng Việt
+                              Vi
                             </button>
                             <button onClick={() => handleLanguageChange('en')}>
-                              English
+                              En
                             </button>
                           </div>
                         </div>
@@ -173,10 +178,10 @@ function Header() {
 
                           <div className={cx('language-change')}>
                             <button onClick={() => handleLanguageChange('vi')}>
-                              Tiếng Việt
+                              Vi
                             </button>
                             <button onClick={() => handleLanguageChange('en')}>
-                              English
+                              En
                             </button>
                           </div>
                         </div>

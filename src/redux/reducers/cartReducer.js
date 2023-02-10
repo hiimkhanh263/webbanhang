@@ -9,26 +9,27 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
+      // const item = state.products.find((item) => item.id === action.payload.id);
+
+      // const color = state.products.attributes?.colors.data.forEach(
+      //   (color) => (color.id = action.payload.id),
+      // );
+
       const item = state.products.find((item) => item.id === action.payload.id);
 
-      const color = state.products.attributes?.colors.data.forEach(
-        (color) => (color.id = action.payload.id),
+      const color = state.products.filter(
+        (color) =>
+          color.attributes?.colors.data.id ===
+          action.payload.attributes?.colors.data.id,
       );
 
-      const memory = state.products?.attributes?.memories?.data?.forEach(
+      const memory = state.products.filter(
         (memory) =>
-          (memory.id = action.payload?.attributes?.memories?.data?.id),
+          memory.attributes?.memories.data.id ===
+          action.payload.attributes?.memories.data.id,
       );
 
-      // console.log(memory);
-
-      // if (item && color && memory) {
-      //   item.quantity += action.payload.quantity;
-      // } else {
-      //   state.products.push(action.payload);
-      // }
-
-      if (item) {
+      if (item && color && memory) {
         item.quantity += action.payload.quantity;
       } else {
         state.products.push(action.payload);

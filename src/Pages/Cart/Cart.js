@@ -5,7 +5,7 @@ import styles from './Cart.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeItem } from '~/redux/slices/cartReducer';
+import { removeItem } from '~/redux/reducers/cartReducer';
 
 import { useNavigate } from 'react-router-dom';
 import { formatPrice } from '~/utils/formatPrice/formatPrice';

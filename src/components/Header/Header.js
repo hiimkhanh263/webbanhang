@@ -13,7 +13,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CartLayout from '~/components/CartLayout/CartLayout';
 import images from '~/assets/logoFooter';
-import { toggleDarkMode } from '~/redux/slices/darkModeReducer';
+import { toggleDarkMode } from '~/redux/reducers/darkModeReducer';
 import { Form } from 'react-bootstrap';
 
 const cx = classNames.bind(styles);

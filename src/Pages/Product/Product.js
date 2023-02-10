@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import useFetch from '~/hooks/useFetch';
-import { addToCart } from '~/redux/slices/cartReducer';
+import { addToCart } from '~/redux/reducers/cartReducer';
 import { formatPrice } from '~/utils/formatPrice/formatPrice';
 import styles from './Product.module.scss';
 import SuggestProducts from './SuggestProducts/SuggestProducts';

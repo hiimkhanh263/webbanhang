@@ -1,6 +1,6 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import cartReducer from './slices/cartReducer';
-import darkModeReducer from './slices/darkModeReducer';
+import cartReducer from './reducers/cartReducer';
+import darkModeReducer from './reducers/darkModeReducer';
 
 import {
   persistStore,

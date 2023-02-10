@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { formatPrice } from '~/utils/formatPrice/formatPrice';
 import styles from './PaymentSuccess.module.scss';
-import { resetCart } from '~/redux/slices/cartReducer';
+import { resetCart } from '~/redux/reducers/cartReducer';
 
 const cx = classNames.bind(styles);
 

@@ -5,7 +5,7 @@ import classNames from 'classnames/bind';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { removeItem } from '~/redux/slices/cartReducer';
+import { removeItem } from '~/redux/reducers/cartReducer';
 import { formatPrice } from '~/utils/formatPrice/formatPrice';
 import { useNavigate } from 'react-router-dom';
 import CartInDeBut from './CartInDeBut';

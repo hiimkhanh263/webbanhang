@@ -15,22 +15,25 @@ import {
   faGamepad,
 } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 const cx = classNames.bind(styles);
 
 function Sidebar() {
+  const { t } = useTranslation('home');
   const { mode } = useSelector((state) => state.darkMode);
 
   return (
     <aside className={cx(mode ? 'wrapper-dark' : 'wrapper')}>
       <Menu>
         <MenuItem
-          title="ĐIỆN THOẠI"
+          // title="ĐIỆN THOẠI"
+          title={t('mobile')}
           symbol={<FontAwesomeIcon icon={faMobileScreen} />}
           to="/products/3"
         />
         <MenuItem
-          title="TABLET"
+          title={t('tablet')}
           symbol={<FontAwesomeIcon icon={faTabletScreenButton} />}
           to="/products/4"
         />
@@ -40,22 +43,22 @@ function Sidebar() {
           to="/products/5"
         />
         <MenuItem
-          title="ĐỒNG HỒ"
+          title={t('watch')}
           symbol={<FontAwesomeIcon icon={faClock} />}
           to="/products/6"
         />
         <MenuItem
-          title="PHỤ KIỆN"
+          title={t('accessory')}
           symbol={<FontAwesomeIcon icon={faSwatchbook} />}
           to="/products/7"
         />
         <MenuItem
-          title="MÀN HÌNH"
+          title={t('display')}
           symbol={<FontAwesomeIcon icon={faDesktop} />}
           to="/products/8"
         />
         <MenuItem
-          title="ĐỒ CHƠI CÔNG NGHỆ"
+          title={t('techtoy')}
           symbol={<FontAwesomeIcon icon={faGamepad} />}
           to="/products/9"
         />

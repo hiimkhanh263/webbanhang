@@ -10,12 +10,15 @@ import {
   faLinkedin,
   faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
+import { useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
 function Contact() {
+  const { mode } = useSelector((state) => state.darkMode);
+
   return (
-    <div className={cx('wrapper')}>
+    <div className={cx(mode ? 'wrapper-dark' : 'wrapper')}>
       <div className={cx('contact')}>
         <span>Liên Hệ Với Chúng Tôi</span>
 

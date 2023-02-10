@@ -10,6 +10,7 @@ import { removeItem, resetCart } from '~/redux/reducers/cartReducer';
 import { Link, useNavigate } from 'react-router-dom';
 import { formatPrice } from '~/utils/formatPrice/formatPrice';
 import images from '~/assets/logoFooter';
+import { useTranslation } from 'react-i18next';
 
 const cx = classNames.bind(styles);
 
@@ -17,6 +18,8 @@ function CartLayout() {
   const user = JSON.parse(localStorage.getItem('user'));
 
   const { mode } = useSelector((state) => state.darkMode);
+
+  const { t } = useTranslation('home');
 
   const navigate = useNavigate();
 
@@ -46,10 +49,10 @@ function CartLayout() {
   };
 
   return (
-    <div className={cx(mode ? 'wrapper-dark' : 'dark')}>
+    <div className={cx(mode ? 'wrapper-dark' : 'wrapper')}>
       {Number(totalPrice()) != 0 ? (
         <div className={cx('cart')}>
-          <h1>Sản Phẩm Bạn Đã Chọn</h1>
+          <h1>{t('productchose')}</h1>
 
           <div className={cx('list-item')}>
             {products.map((item) => (
@@ -81,20 +84,20 @@ function CartLayout() {
           </div>
 
           <span className={cx('reset')} onClick={() => dispatch(resetCart())}>
-            Xóa tất cả
+            {t('resetcart')}
           </span>
 
           <div className={cx('total')}>
-            <span>Tổng Tiền:</span>
+            <span>{t('totalprice')}:</span>
             <span>{formatPrice(totalPrice())}</span>
           </div>
 
           <div className={cx('cart-btn')}>
             <Link to="/cart">
-              <button>Xem Giỏ Hàng</button>
+              <button>{t('showcart')}</button>
             </Link>
 
-            <button onClick={handleClick}>Thanh Toán</button>
+            <button onClick={handleClick}>{t('payment')}</button>
           </div>
         </div>
       ) : (

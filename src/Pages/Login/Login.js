@@ -5,11 +5,14 @@ import styles from './Login.module.scss';
 // import jwt_decode from "jwt-decode";
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 const cx = classNames.bind(styles);
 
 function Login() {
   const { mode } = useSelector((state) => state.darkMode);
+
+  const { t } = useTranslation('home');
 
   const navigate = useNavigate();
 
@@ -68,7 +71,7 @@ function Login() {
   return (
     <div className={cx(mode ? 'wrapper-dark' : 'wrapper')}>
       <div className={cx('login')}>
-        <h1 className={cx('header')}>Đăng Nhập</h1>
+        <h1 className={cx('header')}>{t('login')}</h1>
 
         <form onSubmit={handleLogin}>
           <div className={cx('form')}>
@@ -77,7 +80,7 @@ function Login() {
               <input
                 className={cx('form-control')}
                 type="text"
-                placeholder="Nhập Email"
+                placeholder="Email"
                 name="email"
                 value={input.email}
                 onChange={(e) =>
@@ -89,11 +92,11 @@ function Login() {
             </div>
 
             <div className={cx('form-group')}>
-              <label>Mật khẩu</label>
+              <label>{t('password')}</label>
               <input
                 className={cx('form-control')}
                 type="password"
-                placeholder="Nhập mật khẩu"
+                placeholder={t('password')}
                 name="password"
                 value={input.password}
                 onChange={(e) =>
@@ -108,13 +111,13 @@ function Login() {
             {/* <button onClick={(e) => handleSignOut(e)}>log out</button> */}
 
             <button type="submit" className={cx('submit-btn')}>
-              Đăng nhập
+              {t('login')}
             </button>
 
             <p className={cx('have-acc')}>
-              Bạn chưa có tài khoản?
+              {t('haventacc')}
               <Link to="/register">
-                <span className={cx('trans-register')}>Đăng ký</span>
+                <span className={cx('trans-register')}>{t('register')}</span>
               </Link>
             </p>
           </div>

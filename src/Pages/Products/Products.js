@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import images from '~/assets/logoFooter';
@@ -17,6 +18,8 @@ function Products() {
   const [selectedSubCats, setSelectedSubCats] = useState([]);
 
   const { mode } = useSelector((state) => state.darkMode);
+
+  const { t } = useTranslation('home');
 
   const { data } = useFetch(`/sub-categories`);
 
@@ -36,7 +39,7 @@ function Products() {
       <div className={cx('products')}>
         <div className={cx('left')}>
           <div className={cx('filter-item')}>
-            <h2>Danh Sách Sản Phẩm</h2>
+            <h2>{t('productlist')}</h2>
 
             {data?.map((item) => (
               <div className={cx('input-item')} key={item.id}>
@@ -52,7 +55,7 @@ function Products() {
           </div>
 
           <div className={cx('filter-item')}>
-            <h2>Lọc theo giá</h2>
+            <h2>{t('filterbyprice')}</h2>
 
             <div className={cx('input-item')}>
               <span>0</span>
@@ -68,7 +71,7 @@ function Products() {
           </div>
 
           <div className={cx('filter-item')}>
-            <h2>Sắp xếp theo giá</h2>
+            <h2>{t('sortbyprice')}</h2>
 
             <div className={cx('input-item')}>
               <input
@@ -78,7 +81,7 @@ function Products() {
                 name="price"
                 onChange={(e) => setSort('asc')}
               />
-              <label htmlFor="asc">Thấp đến cao</label>
+              <label htmlFor="asc">{t('ascending')}</label>
             </div>
 
             <div className={cx('input-item')}>
@@ -89,7 +92,7 @@ function Products() {
                 name="price"
                 onChange={(e) => setSort('desc')}
               />
-              <label htmlFor="desc">Cao đến thấp</label>
+              <label htmlFor="desc">{t('decrease')}</label>
             </div>
           </div>
         </div>

@@ -1,24 +1,27 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { Provider } from "react-redux";
+import React, { Suspense } from 'react';
+import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 
-import App from "./App";
-import GlobalStyles from "./components/GlobalStyles/GlobalStyles";
-import reportWebVitals from "./reportWebVitals";
-import { persistor, store } from "./redux/store";
-import { PersistGate } from "redux-persist/integration/react";
+import { PersistGate } from 'redux-persist/integration/react';
+import App from './App';
+import GlobalStyles from './components/GlobalStyles/GlobalStyles';
+import './assets/i18n/i18n.js';
+import { persistor, store } from './redux/store';
+import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <PersistGate loading={"loading"} persistor={persistor}>
-        <GlobalStyles>
-          <App />
-        </GlobalStyles>
-      </PersistGate>
-    </Provider>
-  </React.StrictMode>
+  <Suspense fallback={null}>
+    <React.StrictMode>
+      <Provider store={store}>
+        <PersistGate loading={'loading'} persistor={persistor}>
+          <GlobalStyles>
+            <App />
+          </GlobalStyles>
+        </PersistGate>
+      </Provider>
+    </React.StrictMode>
+  </Suspense>,
 );
 
 // If you want to start measuring performance in your app, pass a function

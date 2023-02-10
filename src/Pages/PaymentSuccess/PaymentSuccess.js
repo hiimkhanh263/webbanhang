@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { formatPrice } from '~/utils/formatPrice/formatPrice';
 import styles from './PaymentSuccess.module.scss';
 import { resetCart } from '~/redux/reducers/cartReducer';
+import { useTranslation } from 'react-i18next';
 
 const cx = classNames.bind(styles);
 
@@ -14,6 +15,8 @@ function PaymentSuccess() {
   const userPayment = JSON.parse(localStorage.getItem('userPayment'));
 
   const { mode } = useSelector((state) => state.darkMode);
+
+  const { t } = useTranslation('home');
 
   const navivate = useNavigate();
 
@@ -51,39 +54,41 @@ function PaymentSuccess() {
   return (
     <div className={cx(mode ? 'wrapper-dark' : 'wrapper')}>
       <div className={cx('payment-success')}>
-        <h1 className={cx('title')}>Thanh toán thành công</h1>
+        <h1 className={cx('title')}>{t('paymentsuccess')}</h1>
 
         <div className={cx('info')}>
           {user ? (
             <div className={cx('info-user')}>
-              <p>Họ và tên </p>
+              <p>{t('yourname')} </p>
               <span>: {user.name}</span>
             </div>
           ) : (
             <div className={cx('info-user')}>
-              <p>Họ và tên </p>
+              <p>{t('yourname')} </p>
               <span>: {userPayment.name}</span>
             </div>
           )}
 
           <div className={cx('info-user')}>
-            <p>Số điện thoại</p>
+            <p>{t('yournumber')}</p>
             <span>: {userPayment.phone}</span>
           </div>
 
           <div className={cx('info-user')}>
-            <p>Địa chỉ nhận hàng</p>
+            <p>{t('youraddress')}</p>
             <span>: {userPayment.address}</span>
           </div>
 
           <div className={cx('info-user')}>
-            <p>Tổng thanh toán</p>
+            <p>{t('totalprice')}</p>
             <span>: {formatPrice(totalPriceDiscount)}</span>
           </div>
         </div>
 
         <div className={cx('navigation')}>
-          <span>Bạn sẽ quay lại Trang chủ trong {time}s</span>
+          <span>
+            {t('backtohome')} {time}s
+          </span>
         </div>
       </div>
     </div>

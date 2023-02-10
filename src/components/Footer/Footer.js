@@ -5,47 +5,50 @@ import styles from './Footer.module.scss';
 
 import images from '~/assets/logoFooter';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 const cx = classNames.bind(styles);
 
 function Footer() {
+  const { t } = useTranslation('home');
+
   const { mode } = useSelector((state) => state.darkMode);
 
   return (
     <div className={cx(mode ? 'wrapper-dark' : 'wrapper')}>
       <div className={cx('top')}>
         <div className={cx('item')}>
-          <h1>Danh Mục</h1>
-          <span>Điện Thoại</span>
-          <span>Tablet</span>
+          <h1>{t('category')}</h1>
+          <span>{t('mobile')}</span>
+          <span>{t('tablet')}</span>
           <span>Laptop</span>
-          <span>Đồng hồ</span>
-          <span>Phụ kiện</span>
-          <span>Màn hình</span>
-          <span>Đồ chơi công nghệ</span>
+          <span>{t('watch')}</span>
+          <span>{t('accessory')}</span>
+          <span>{t('display')}</span>
+          <span>{t('techtoy')}</span>
         </div>
         <div className={cx('item')}>
-          <h1>Hỗ Trợ - Dịch Vụ</h1>
-          <span>Mua hàng tra góp</span>
-          <span>Hướng dẫn đặt hàng và thanh toán</span>
-          <span>Tra cứu đơn hàng</span>
-          <span>Chính sách bảo hành</span>
-          <span>Phạm vi, điều kiện gói bảo hành mở rộng</span>
-          <span>Chính sách bảo mật</span>
-          <span>Chính sách giải quyết khiếu nại</span>
-          <span>Điều khoản mua bán hàng hóa</span>
-          <span>Câu hỏi thường gặp</span>
+          <h1>{t('helpservive')}</h1>
+          <span>{t('installment')}</span>
+          <span>{t('guide')}</span>
+          <span>{t('orderlookup')}</span>
+          <span>{t('warrentypolicy')}</span>
+          <span>{t('guarantee')}</span>
+          <span>{t('policy')}</span>
+          <span>{t('complain')}</span>
+          <span>{t('term')}</span>
+          <span>{t('question')}</span>
         </div>
         <div className={cx('item')}>
-          <h1>Thông Tin Liên Hệ</h1>
-          <span>Bán hàng Online</span>
-          <span>Chăm sóc khách hàng</span>
-          <span>Hỗ trợ kỹ thuật</span>
-          <span>Hỗ trợ bảo hành & sửa chữa</span>
-          <span>Liên hệ khối văn phòng</span>
+          <h1>{t('contact')}</h1>
+          <span>{t('onlinesale')}</span>
+          <span>{t('customercare')}</span>
+          <span>{t('repair')}</span>
+          <span>{t('repair')}</span>
+          <span>{t('contact')}</span>
         </div>
         <div className={cx('item')}>
-          <h1>Thanh Toán</h1>
+          <h1>{t('payment')}</h1>
           <div>
             <img src={images.atm} alt="atm" />
             <img src={images.vnpay} alt="vnpay" />

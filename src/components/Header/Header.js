@@ -15,6 +15,8 @@ import CartLayout from '~/components/CartLayout/CartLayout';
 import images from '~/assets/logoFooter';
 import { toggleDarkMode } from '~/redux/reducers/darkModeReducer';
 import { Form } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import { locales } from '~/assets/i18n/i18n';
 
 const cx = classNames.bind(styles);
 
@@ -38,9 +40,16 @@ function Header() {
     // window.location.href = window.location.href;
   };
 
-  const handleLanguageChange = () => {};
-
   let cartRef = useRef();
+
+  // ------language
+  const { i18n } = useTranslation();
+  // const currentLanguage = locales[i18n.language as keyof typeof locales];
+  const handleLanguageChange = (lng: 'en' | 'vi') => {
+    i18n.changeLanguage(lng);
+  };
+  const { t } = useTranslation('home');
+  // -----------------
 
   useEffect(() => {
     let handler = (e) => {
@@ -55,12 +64,7 @@ function Header() {
   });
 
   return (
-    <header
-      className={cx(mode ? 'wrapper-dark' : 'wrapper')}
-      // style={{ background: mode ? 'black' : 'white' }}
-    >
-      {/* <div>Chọn ngôn ngữ: VIêt - Anh</div> */}
-
+    <header className={cx(mode ? 'wrapper-dark' : 'wrapper')}>
       <div className={cx('inner')}>
         <Link to="/" className={cx('logo')}>
           <img src={images.logoTkl} alt="logo" />
@@ -68,147 +72,137 @@ function Header() {
 
         <Search />
 
-        {userName ? (
-          <div className={cx('action')}>
-            <div>
-              {/* wrap tippy by div to fix warning */}
-              <Tippy
-                interactive
-                delay={[100, 100]}
-                placement="bottom"
-                hideOnClick={false}
-                offset={[0, -7]}
-                render={(attrs) => (
-                  <PopperWrapper>
-                    <div className={cx('user-action')} tabIndex="-1" {...attrs}>
-                      <h5>Quản lý tài khoản</h5>
+        <div className={cx('right')}>
+          {userName ? (
+            <div className={cx('action')}>
+              <div>
+                {/* wrap tippy by div to fix warning */}
+                <Tippy
+                  interactive
+                  delay={[100, 100]}
+                  placement="bottom"
+                  hideOnClick={false}
+                  offset={[0, -7]}
+                  render={(attrs) => (
+                    <PopperWrapper>
+                      <div
+                        className={cx('user-action')}
+                        tabIndex="-1"
+                        {...attrs}
+                      >
+                        <h5>{t('manageaccount')}</h5>
 
-                      <Link to="/account" className={cx('my-account')}>
-                        <button>
-                          <span>Tài khoản của tôi</span>
-                        </button>
-                      </Link>
+                        <Link to="/account" className={cx('my-account')}>
+                          <button>
+                            <span>{t('myaccount')}</span>
+                          </button>
+                        </Link>
 
-                      <button className={cx('logout')} onClick={handleLogout}>
-                        <span>Đăng xuất</span>
-                      </button>
-
-                      <div className={cx('action-option')}>
-                        <button
-                          className={cx('dark-mode-btn')}
-                          onClick={() => dispatch(toggleDarkMode())}
-                        >
-                          {mode ? (
-                            <span>Chế độ sáng</span>
-                          ) : (
-                            <span>Chế độ tối</span>
-                          )}
+                        <button className={cx('logout')} onClick={handleLogout}>
+                          <span>{t('logout')}</span>
                         </button>
 
-                        <Form.Select
-                          className={cx('action-option-btn')}
-                          aria-label="Default select example"
-                          onChange={(e) => handleLanguageChange(e)}
-                        >
-                          <option>Tiếng Việt</option>
-                          <option>Tiếng Anh</option>
-                          {/* {data?.map((item) => (
-                          <option key={item.id} value={item.id}>
-                            {item?.attributes?.title}
-                          </option>
-                        ))} */}
-                        </Form.Select>
+                        <div className={cx('action-option')}>
+                          <button
+                            className={cx('dark-mode-btn')}
+                            onClick={() => dispatch(toggleDarkMode())}
+                          >
+                            {mode ? (
+                              <span>{t('lightmode')}</span>
+                            ) : (
+                              <span>{t('darkmode')}</span>
+                            )}
+                          </button>
+
+                          <div className={cx('language-change')}>
+                            <button onClick={() => handleLanguageChange('vi')}>
+                              Tiếng Việt
+                            </button>
+                            <button onClick={() => handleLanguageChange('en')}>
+                              English
+                            </button>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </PopperWrapper>
-                )}
-              >
-                <div className={cx('user')}>
-                  <FontAwesomeIcon icon={faUser} />
-                  <p>{userName.name}</p>
-                </div>
-              </Tippy>
-            </div>
-
-            <div ref={cartRef}>
-              <div className={cx('cart')} onClick={() => setOpen(!open)}>
-                <FontAwesomeIcon icon={faCartShopping} />
-                <span>{products.length}</span>
-                <p>Giỏ hàng</p>
+                    </PopperWrapper>
+                  )}
+                >
+                  <div className={cx('user')}>
+                    <FontAwesomeIcon icon={faUser} />
+                    <p>{userName.name}</p>
+                  </div>
+                </Tippy>
               </div>
-              {open && <CartLayout />}
             </div>
-          </div>
-        ) : (
-          <div className={cx('action')}>
-            <div>
-              <Tippy
-                // visible
-                interactive
-                delay={[100, 100]}
-                placement="bottom"
-                hideOnClick={false}
-                offset={[0, -7]}
-                render={(attrs) => (
-                  <PopperWrapper>
-                    <div className={cx('user-action')} tabIndex="-1" {...attrs}>
-                      <h5>Bạn chưa đăng nhập hãy</h5>
-                      <Link to="/login" className={cx('login')}>
-                        <button>
-                          <span>Đăng nhập</span>
-                        </button>
-                      </Link>
-                      <Link to="/register" className={cx('register')}>
-                        <button>Đăng ký tài khoản mới</button>
-                      </Link>
+          ) : (
+            <div className={cx('action')}>
+              <div>
+                <Tippy
+                  // visible
+                  interactive
+                  delay={[100, 100]}
+                  placement="bottom"
+                  hideOnClick={false}
+                  offset={[0, -7]}
+                  render={(attrs) => (
+                    <PopperWrapper>
+                      <div
+                        className={cx('user-action')}
+                        tabIndex="-1"
+                        {...attrs}
+                      >
+                        <h5>{t('manageaccount')}</h5>
+                        <Link to="/login" className={cx('login')}>
+                          <button>{t('login')}</button>
+                        </Link>
+                        <Link to="/register" className={cx('register')}>
+                          <button>{t('register')}</button>
+                        </Link>
 
-                      <div className={cx('action-option')}>
-                        <button
-                          className={cx('dark-mode-btn')}
-                          onClick={() => dispatch(toggleDarkMode())}
-                        >
-                          {mode ? (
-                            <span>Chế độ sáng</span>
-                          ) : (
-                            <span>Chế độ tối</span>
-                          )}
-                        </button>
+                        <div className={cx('action-option')}>
+                          <button
+                            className={cx('dark-mode-btn')}
+                            onClick={() => dispatch(toggleDarkMode())}
+                          >
+                            {mode ? (
+                              <span>{t('lightmode')}</span>
+                            ) : (
+                              <span>{t('darkmode')}</span>
+                            )}
+                          </button>
 
-                        <Form.Select
-                          className={cx('action-option-btn')}
-                          aria-label="Default select example"
-                          onChange={(e) => handleLanguageChange(e)}
-                        >
-                          <option>Tiếng Việt</option>
-                          <option>Tiếng Anh</option>
-                          {/* {data?.map((item) => (
-                          <option key={item.id} value={item.id}>
-                            {item?.attributes?.title}
-                          </option>
-                        ))} */}
-                        </Form.Select>
+                          <div className={cx('language-change')}>
+                            <button onClick={() => handleLanguageChange('vi')}>
+                              Tiếng Việt
+                            </button>
+                            <button onClick={() => handleLanguageChange('en')}>
+                              English
+                            </button>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </PopperWrapper>
-                )}
-              >
-                <div className={cx('user')}>
-                  <FontAwesomeIcon icon={faUser} />
-                  <p>Tài khoản</p>
-                </div>
-              </Tippy>
-            </div>
-
-            <div ref={cartRef}>
-              <div className={cx('cart')} onClick={() => setOpen(!open)}>
-                <FontAwesomeIcon icon={faCartShopping} />
-                <span>{products.length}</span>
-                <p>Giỏ hàng</p>
+                    </PopperWrapper>
+                  )}
+                >
+                  <div className={cx('user')}>
+                    <FontAwesomeIcon icon={faUser} />
+                    <p>Tài khoản</p>
+                  </div>
+                </Tippy>
               </div>
-              {open && <CartLayout />}
             </div>
+          )}
+
+          <div ref={cartRef}>
+            <div className={cx('cart')} onClick={() => setOpen(!open)}>
+              <FontAwesomeIcon icon={faCartShopping} />
+              <span>{products.length}</span>
+              {/* <p>Giỏ hàng</p> */}
+              <p>{t('cart')}</p>
+            </div>
+            {open && <CartLayout />}
           </div>
-        )}
+        </div>
       </div>
     </header>
   );

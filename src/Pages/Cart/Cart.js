@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { formatPrice } from '~/utils/formatPrice/formatPrice';
 import CartItem from './CartItem/CartItem';
 import CartInDeBut from './CartItem/CartInDeBut';
+import { useTranslation } from 'react-i18next';
 
 const cx = classNames.bind(styles);
 
@@ -20,6 +21,8 @@ function Cart() {
   // console.log(products);
 
   const { mode } = useSelector((state) => state.darkMode);
+
+  const { t } = useTranslation('home');
 
   const dispatch = useDispatch();
 
@@ -69,13 +72,13 @@ function Cart() {
   return (
     <div className={cx(mode ? 'wrapper-dark' : 'wrapper')}>
       <div className={cx('cart')}>
-        <h1 className={cx('cart-title')}>Giỏ Hàng Của Bạn</h1>
+        <h1 className={cx('cart-title')}>{t('yourcart')}</h1>
 
         <div className={cx('heading')}>
-          <span className={cx('heading-name')}>Sản phẩm</span>
-          <span className={cx('heading-quantity')}>Số lượng</span>
-          <span className={cx('heading-price')}>Đơn giá</span>
-          <span className={cx('heading-btn')}>Thao tác</span>
+          <span className={cx('heading-name')}>{t('product')}</span>
+          <span className={cx('heading-quantity')}>{t('quantity')}</span>
+          <span className={cx('heading-price')}>{t('price')}</span>
+          <span className={cx('heading-btn')}>{t('action')}</span>
         </div>
 
         <div className={cx('cart-content')}>
@@ -125,12 +128,12 @@ function Cart() {
           ))}
 
           <div className={cx('total')}>
-            <span>Tổng tiền: </span>
+            <span>{t('totalprice')}: </span>
             <span>{formatPrice(totalPriceChange)}</span>
           </div>
 
           <button className={cx('payment-btn')} onClick={handleClick}>
-            Thanh Toán
+            {t('payment')}
           </button>
         </div>
       </div>

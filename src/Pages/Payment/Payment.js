@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { formatPrice } from '~/utils/formatPrice/formatPrice';
 import useFetch from '~/hooks/useFetch';
 import Form from 'react-bootstrap/Form';
+import { useTranslation } from 'react-i18next';
 
 const cx = classNames.bind(styles);
 
@@ -16,6 +17,8 @@ function Payment() {
   const { data } = useFetch(`/discount-codes?populate=*`);
 
   const { mode } = useSelector((state) => state.darkMode);
+
+  const { t } = useTranslation('home');
 
   const user = JSON.parse(localStorage.getItem('user'));
 
@@ -68,7 +71,7 @@ function Payment() {
   return (
     <div className={cx(mode ? 'wrapper-dark' : 'wrapper')}>
       <div className={cx('payment')}>
-        <h1 className={cx('title')}>Thanh Toán</h1>
+        <h1 className={cx('title')}>{t('payment')}</h1>
 
         <div className={cx('payment-form')}>
           <form onSubmit={handlePayment}>
@@ -76,7 +79,7 @@ function Payment() {
               {user ? (
                 <div>
                   <div className={cx('form-group')}>
-                    <label>Họ và tên:</label>
+                    <label>{t('yourname')}:</label>
                     <span className="user-name">{user.name}</span>
                   </div>
 
@@ -88,11 +91,11 @@ function Payment() {
               ) : (
                 <div>
                   <div className={cx('form-group')}>
-                    <label>Họ và tên:</label>
+                    <label>{t('yourname')}:</label>
                     <input
                       className={cx('user-name')}
                       type="text"
-                      placeholder="Nhập họ và tên"
+                      placeholder={t('yourname')}
                       name="name"
                       value={infoPayment.name}
                       onChange={(e) =>
@@ -126,11 +129,11 @@ function Payment() {
               )}
 
               <div className={cx('form-group')}>
-                <label>Số điện thoại:</label>
+                <label>{t('yournumber')}:</label>
                 <input
                   className={cx('user-phone')}
                   type="tel"
-                  placeholder="Nhập số điện thoại"
+                  placeholder={t('yournumber')}
                   name="phone"
                   value={infoPayment.phone}
                   onChange={(e) =>
@@ -144,11 +147,11 @@ function Payment() {
               </div>
 
               <div className={cx('form-group')}>
-                <label>Địa chỉ:</label>
+                <label>{t('youraddress')}:</label>
                 <input
                   className={cx('user-address')}
                   type="text"
-                  placeholder="Nhập địa chỉ"
+                  placeholder={t('youraddress')}
                   name="address"
                   value={infoPayment.address}
                   onChange={(e) =>
@@ -162,11 +165,11 @@ function Payment() {
               </div>
 
               <div className={cx('form-group')}>
-                <label>Lời nhắn:</label>
+                <label>{t('yournote')}:</label>
                 <input
                   className={cx('user-note')}
                   type="text"
-                  placeholder="Nhập lưu ý cho đơn hàng"
+                  placeholder={t('yournote')}
                   name="note"
                   value={infoPayment.note}
                   onChange={(e) =>
@@ -179,14 +182,14 @@ function Payment() {
               </div>
 
               <div className={cx('form-group')}>
-                <label>Mã giảm giá:</label>
+                <label>{t('discountcode')}:</label>
 
                 <Form.Select
                   className={cx('form-discount')}
                   aria-label="Default select example"
                   onChange={(e) => handleDiscountChange(e)}
                 >
-                  <option>Lựa chọn mã giảm giá</option>
+                  <option>{t('choosediscountcode')}</option>
                   {data?.map((item) => (
                     <option key={item.id} value={item.id}>
                       {item?.attributes?.title}
@@ -196,7 +199,7 @@ function Payment() {
               </div>
 
               <div className={cx('total')}>
-                <p>Tổng Tiền:</p>
+                <p>{t('totalprice')}:</p>
                 {!discountCode ? (
                   <span>{formatPrice(totalPriceChange)}</span>
                 ) : (
@@ -210,7 +213,7 @@ function Payment() {
               </div>
 
               <button type="submit" className={cx('submit-btn')}>
-                Thoanh toán
+                {t('payment')}
               </button>
             </div>
           </form>

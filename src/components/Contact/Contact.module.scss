@@ -1,4 +1,5 @@
-.wrapper {
+.wrapper,
+.wrapper-dark {
   width: 100%;
   background-color: #c92027;
   color: #fff;
@@ -37,7 +38,7 @@
       position: relative;
 
       &::after {
-        content: "";
+        content: '';
         position: absolute;
         top: 8px;
         right: 52px;
@@ -45,6 +46,44 @@
         width: 1px;
         background-color: rgba(22, 24, 35, 0.12);
         margin-right: 8px;
+      }
+    }
+  }
+
+  .icons {
+    display: flex;
+    font-size: 16px;
+
+    .icon {
+      margin: 4px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.wrapper-dark {
+  background-color: #600d10;
+
+  .contact {
+    input {
+      background-color: #3a3b3c;
+      color: #fff;
+    }
+
+    button {
+      color: #e0e0e0;
+
+      background-color: #3a3b3c;
+    }
+
+    .mail {
+      position: relative;
+
+      &::after {
+        background-color: #e0e0e0;
       }
     }
   }

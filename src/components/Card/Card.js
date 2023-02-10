@@ -5,11 +5,14 @@ import styles from './Card.module.scss';
 import { Link } from 'react-router-dom';
 import { formatPrice } from '~/utils/formatPrice/formatPrice';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 const cx = classNames.bind(styles);
 
 function Card({ item }) {
   const { mode } = useSelector((state) => state.darkMode);
+
+  const { t } = useTranslation('home');
 
   return (
     <div className={cx(mode ? 'card-dark' : 'card')}>
@@ -55,9 +58,13 @@ function Card({ item }) {
         </div>
 
         <div className={cx('bottom')}>
-          <p>{item?.attributes.sold} đã bán</p>
+          <p>
+            {item?.attributes.sold} {t('sold')}
+          </p>
           <span>
-            <p>{item?.attributes.like} lượt thích</p>
+            <p>
+              {item?.attributes.like} {t('liked')}
+            </p>
             {/* <FontAwesomeIcon className={cx('bottom-icon')} icon={faHeart} /> */}
           </span>
         </div>

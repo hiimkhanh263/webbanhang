@@ -13,6 +13,7 @@ import styles from './Product.module.scss';
 import SuggestProducts from './SuggestProducts/SuggestProducts';
 import axios from 'axios';
 import * as UpdateProductService from '~/services/updateProduct';
+import { useTranslation } from 'react-i18next';
 
 const cx = classNames.bind(styles);
 
@@ -24,6 +25,8 @@ function Product() {
   // console.log(data);
 
   const { mode } = useSelector((state) => state.darkMode);
+
+  const { t } = useTranslation('home');
 
   const dispatch = useDispatch();
 
@@ -147,7 +150,7 @@ function Product() {
               </div>
               <p className={cx('desc')}>{data?.attributes?.desc}</p>
               <div className={cx('color')}>
-                <p>Màu sắc:</p>
+                <p>{t('color')}:</p>
                 {data?.attributes?.colors?.data?.map((color) => (
                   <button
                     key={color.id}
@@ -166,7 +169,7 @@ function Product() {
                 ))}
               </div>
               <div className={cx('memory')}>
-                <p>Bộ nhớ:</p>
+                <p>{t('memory')}:</p>
                 {data?.attributes?.memories?.data?.map((memory) => (
                   <button
                     key={memory.id}
@@ -203,7 +206,11 @@ function Product() {
                   +
                 </button>
 
-                {isSelect && <p>Còn {inventory} sản phẩm</p>}
+                {isSelect && (
+                  <p>
+                    {inventory} {t('available')}
+                  </p>
+                )}
               </div>
 
               {isSelect ? (
@@ -226,7 +233,7 @@ function Product() {
                       )
                     }
                   >
-                    Mua Ngay
+                    {inventory} {t('buynow')}
                   </button>
                 </Link>
               ) : (
@@ -237,11 +244,11 @@ function Product() {
                     placement="right"
                     hideOnClick={true}
                     offset={[0, 10]}
-                    render={(attrs) => <p>Vui lòng chọn loại sản phẩm</p>}
+                    render={(attrs) => <p>{t('buttondis')}</p>}
                   >
                     <Link to="/cart" className={cx('buy-now-link')}>
                       <button disabled className={cx('buy-now-dis')}>
-                        Mua Ngay
+                        {t('buynow')}
                       </button>
                     </Link>
                   </Tippy>
@@ -272,7 +279,7 @@ function Product() {
                       className={cx('add-icon')}
                       icon={faCartPlus}
                     />
-                    Thêm Vào Giỏ Hàng
+                    {t('addtocart')}
                   </button>
                 </Link>
               ) : (
@@ -283,7 +290,7 @@ function Product() {
                     placement="right"
                     hideOnClick={true}
                     offset={[0, 10]}
-                    render={(attrs) => <p>Vui lòng chọn loại sản phẩm</p>}
+                    render={(attrs) => <p>{t('buttondis')}</p>}
                   >
                     <Link to="" className={cx('buy-now-link')}>
                       <button disabled className={cx('buy-now-dis')}>
@@ -291,7 +298,7 @@ function Product() {
                           className={cx('add-icon')}
                           icon={faCartPlus}
                         />
-                        Thêm Vào Giỏ Hàng
+                        {t('addtocart')}
                       </button>
                     </Link>
                   </Tippy>
@@ -299,8 +306,8 @@ function Product() {
               )}
 
               <div className={cx('installment')}>
-                <button>Trả Góp 0%</button>
-                <button>Trả Góp Qua Thẻ</button>
+                <button>{t('installment')} 0%</button>
+                <button>{t('installmentbycard')}</button>
               </div>
               <div className={cx('sumary')}>
                 {!isLiked ? (
@@ -310,7 +317,9 @@ function Product() {
                       className={cx('heart')}
                       onClick={handleLike}
                     />
-                    <span>{liked} lượt thích</span>
+                    <span>
+                      {liked} {t('liked')}
+                    </span>
                   </span>
                 ) : (
                   <span className={cx('like')}>
@@ -319,21 +328,23 @@ function Product() {
                       className={cx('heart-active')}
                       onClick={handleLike}
                     />
-                    <span>{liked} lượt thích</span>
+                    <span>
+                      {liked} {t('liked')}
+                    </span>
                   </span>
                 )}
 
                 <span className={cx('sold')}>
-                  {data?.attributes?.sold} đã bán
+                  {data?.attributes?.sold} {t('sold')}
                 </span>
 
                 <span className={cx('rating')}>
-                  {data?.attributes?.rating} lượt đánh giá
+                  {data?.attributes?.rating} {t('rating')}
                 </span>
               </div>
               <div className={cx('info')}>
-                <span>Hãng: Apple</span>
-                <span>Loại sản phẩm: Điện thoại</span>
+                <span>{t('company')}: Apple</span>
+                <span>{t('type')}: Điện thoại</span>
                 <span>Tag: apple, dienthoai, iphone</span>
               </div>
               <hr />

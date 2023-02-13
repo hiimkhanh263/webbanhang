@@ -204,6 +204,10 @@ function Payment() {
                   <span>{formatPrice(totalPriceChange)}</span>
                 ) : (
                   <span>
+                    <span className={cx('price-before-discount')}>
+                      {formatPrice(totalPriceChange)}
+                    </span>
+
                     <span>{formatPrice(totalPriceDiscount)}</span>
                     <span className={cx('discount-percent')}>
                       -{discountPercent}%

@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
+  faBars,
   faCartShopping,
   faMoon,
   faSun,
@@ -19,9 +20,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import CartLayout from '~/components/CartLayout/CartLayout';
 import images from '~/assets/logoFooter';
 import { toggleDarkMode } from '~/redux/reducers/darkModeReducer';
-import { Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { locales } from '~/assets/i18n/i18n';
 
 const cx = classNames.bind(styles);
 
@@ -77,7 +76,7 @@ function Header() {
 
         <Search />
 
-        <div className={cx('right')}>
+        <div className={cx('nav-bar-pc')}>
           {userName ? (
             <div className={cx('action')}>
               <div>
@@ -201,12 +200,16 @@ function Header() {
           <div ref={cartRef}>
             <div className={cx('cart')} onClick={() => setOpen(!open)}>
               <FontAwesomeIcon icon={faCartShopping} />
-              <span>{products.length}</span>
-              {/* <p>Giỏ hàng</p> */}
+              {products.length != 0 && <span>{products.length}</span>}
+
               <p>{t('cart')}</p>
             </div>
             {open && <CartLayout />}
           </div>
+        </div>
+
+        <div className={cx('nav-bar-mobile')}>
+          <FontAwesomeIcon icon={faBars} />
         </div>
       </div>
     </header>

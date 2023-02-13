@@ -22,7 +22,7 @@
     justify-content: space-between;
   }
 
-  .right {
+  .nav-bar-pc {
     display: flex;
   }
 
@@ -217,5 +217,34 @@
 
   .cart {
     color: #fff;
+  }
+}
+
+.nav-bar-mobile {
+  width: 28px;
+  height: 28px;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .nav-bar-mobile {
+    display: block;
+  }
+
+  .nav-bar-pc {
+    display: none;
+  }
+
+  .inner {
+    width: 100%;
+  }
+
+  .logo img {
+    width: 140px;
+    padding: 8px;
+    border-radius: 12px;
+    background-color: #fff;
   }
 }

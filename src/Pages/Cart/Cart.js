@@ -7,18 +7,18 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeItem } from '~/redux/reducers/cartReducer';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { formatPrice } from '~/utils/formatPrice/formatPrice';
 import CartItem from './CartItem/CartItem';
-import CartInDeBut from './CartItem/CartInDeBut';
 import { useTranslation } from 'react-i18next';
+import useUpdate from '~/hooks/useUpdate';
+import useFetch from '~/hooks/useFetch';
+import axios from 'axios';
 
 const cx = classNames.bind(styles);
 
 function Cart() {
   const products = useSelector((state) => state.cart.products);
-
-  // console.log(products);
 
   const { mode } = useSelector((state) => state.darkMode);
 
@@ -59,6 +59,34 @@ function Cart() {
   const handleClickDec = () =>
     setQuantityChange((prev) => (prev === 1 ? 1 : prev - 1));
 
+  // update --------------
+  // const id = useParams().id;
+  // const { data } = useFetch(`/products?populate=*`);
+
+  // const quantityChange = JSON.parse(localStorage.getItem('quantityChange'));
+  const quantitySold = products?.attributes?.sold + quantityChange;
+
+  const updateProduct = () => {
+    try {
+      axios.put(`http://localhost:1337/api/${products.id}`, {
+        data: {
+          sold: products?.attributes?.sold + quantitySold,
+        },
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // useEffect(() => {
+  //   axios.put(`http://localhost:1337/api/${products.id}`, {
+  //     data: {
+  //       sold: products?.attributes?.sold + quantitySold,
+  //     },
+  //   });
+  // }, []);
+  // ---------------------------------
+
   useEffect(() => {
     products.forEach((item) => {
       setQuantityChange(item.quantity);
@@ -78,8 +106,8 @@ function Cart() {
         </div>
 
         <div className={cx('cart-content')}>
-          {products.map((item) => (
-            <div className={cx('item')} key={item.id}>
+          {products.map((item, index) => (
+            <div className={cx('item')} key={index}>
               {/* <CartItem key={item.id} item={item} /> */}
 
               <>
@@ -97,7 +125,6 @@ function Cart() {
                 </div>
 
                 <div className={cx('details')}>
-                  {/* <CartInDeBut quantityChange={quantityChange} /> */}
                   <div className={cx('quantity')}>
                     <button onClick={handleClickDec}>-</button>
 

@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 
 const initialState = {
   products: [],
@@ -9,28 +9,17 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      // const item = state.products.find((item) => item.id === action.payload.id);
+      let index = null;
 
-      // const color = state.products.attributes?.colors.data.forEach(
-      //   (color) => (color.id = action.payload.id),
-      // );
-
-      const item = state.products.find((item) => item.id === action.payload.id);
-
-      const color = state.products.filter(
-        (color) =>
-          color.attributes?.colors.data.id ===
-          action.payload.attributes?.colors.data.id,
+      index = current(state.products).findIndex(
+        (item) =>
+          item.id === action.payload.id &&
+          item.selectColor === action.payload.selectColor &&
+          item.selectMemory === action.payload.selectMemory,
       );
-
-      const memory = state.products.filter(
-        (memory) =>
-          memory.attributes?.memories.data.id ===
-          action.payload.attributes?.memories.data.id,
-      );
-
-      if (item && color && memory) {
-        item.quantity += action.payload.quantity;
+      // console.log(index);
+      if (index >= 0) {
+        state.products[index].quantity += action.payload.quantity;
       } else {
         state.products.push(action.payload);
       }

@@ -81,7 +81,7 @@ function Products() {
                 name="price"
                 onChange={(e) => setSort('asc')}
               />
-              <label htmlFor="asc">{t('ascending')}</label>
+              <label htmlFor="desc">{t('decrease')}</label>
             </div>
 
             <div className={cx('input-item')}>
@@ -92,7 +92,7 @@ function Products() {
                 name="price"
                 onChange={(e) => setSort('desc')}
               />
-              <label htmlFor="desc">{t('decrease')}</label>
+              <label htmlFor="asc">{t('ascending')}</label>
             </div>
           </div>
         </div>

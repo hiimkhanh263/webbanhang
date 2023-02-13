@@ -12,8 +12,8 @@ import { formatPrice } from '~/utils/formatPrice/formatPrice';
 import styles from './Product.module.scss';
 import SuggestProducts from './SuggestProducts/SuggestProducts';
 import axios from 'axios';
-import * as UpdateProductService from '~/services/updateProduct';
 import { useTranslation } from 'react-i18next';
+import useUpdate from '~/hooks/useUpdate';
 
 const cx = classNames.bind(styles);
 
@@ -78,6 +78,15 @@ function Product() {
   //--------------- update data like, sold
   // const quantityChange = JSON.parse(localStorage.getItem('quantityChange'));
   // const quantitySold = data?.attributes?.sold + quantityChange;
+
+  // useEffect(() => {
+  //   axios.put(`http://localhost:1337/api/products/${data?.id}`, {
+  //     data: {
+  //       like: liked,
+  //       sold: data?.attributes?.sold + 1,
+  //     },
+  //   });
+  // }, [liked]);
 
   // useEffect(() => {
   //   axios.put(`http://localhost:1337/api/products/${data?.id}`, {

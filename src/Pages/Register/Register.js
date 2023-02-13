@@ -5,6 +5,8 @@ import styles from './Register.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
@@ -23,6 +25,19 @@ function Register() {
   });
 
   const [focus, setFocus] = useState(false);
+
+  const [eye, setEye] = useState(true);
+  const [password, setPassword] = useState('password');
+
+  const handleClickEye = () => {
+    if (password == 'password') {
+      setPassword('text');
+      setEye(false);
+    } else {
+      setPassword('password');
+      setEye(true);
+    }
+  };
 
   const handleFocus = (e) => {
     setFocus(true);
@@ -84,7 +99,7 @@ function Register() {
               <label>{t('password')}:</label>
               <input
                 className={cx('form-control')}
-                type="password"
+                type={password}
                 placeholder={t('password')}
                 name="password"
                 value={input.password}
@@ -96,6 +111,13 @@ function Register() {
                 pattern="^.*(?=.{6,20})(?=.*\d)(?=.*[a-zA-Z]).*$"
                 focus={focus.toString()}
               />
+              <div className={cx('eye-btn')}>
+                {!eye ? (
+                  <FontAwesomeIcon icon={faEyeSlash} onClick={handleClickEye} />
+                ) : (
+                  <FontAwesomeIcon icon={faEye} onClick={handleClickEye} />
+                )}
+              </div>
               <span>Mật khẩu từ 6-20 ký tự, bao gồm ít nhất 1 chữ và 1 số</span>
             </div>
 
@@ -103,7 +125,7 @@ function Register() {
               <label>{t('confirmpassword')}:</label>
               <input
                 className={cx('form-control')}
-                type="password"
+                type={password}
                 placeholder={t('confirmpassword')}
                 name="confirmPassword"
                 value={input.confirmPassword}
@@ -115,6 +137,13 @@ function Register() {
                 pattern={input.password}
                 focus={focus.toString()}
               />
+              <div className={cx('eye-btn')}>
+                {!eye ? (
+                  <FontAwesomeIcon icon={faEyeSlash} onClick={handleClickEye} />
+                ) : (
+                  <FontAwesomeIcon icon={faEye} onClick={handleClickEye} />
+                )}
+              </div>
               <span>Mật khẩu không đúng</span>
             </div>
 

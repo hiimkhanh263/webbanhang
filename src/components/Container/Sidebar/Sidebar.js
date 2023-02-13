@@ -38,7 +38,7 @@ function Sidebar() {
           to="/products/4"
         />
         <MenuItem
-          title="LAPTOP"
+          title="Laptop"
           symbol={<FontAwesomeIcon icon={faLaptop} />}
           to="/products/5"
         />

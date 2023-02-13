@@ -6,6 +6,8 @@ import styles from './Login.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
@@ -20,6 +22,19 @@ function Login() {
     email: '',
     password: '',
   });
+
+  const [eye, setEye] = useState(true);
+  const [password, setPassword] = useState('password');
+
+  const handleClickEye = () => {
+    if (password == 'password') {
+      setPassword('text');
+      setEye(false);
+    } else {
+      setPassword('password');
+      setEye(true);
+    }
+  };
 
   // const [googleUser, setGoogleUser] = useState({});
 
@@ -95,7 +110,7 @@ function Login() {
               <label>{t('password')}</label>
               <input
                 className={cx('form-control')}
-                type="password"
+                type={password}
                 placeholder={t('password')}
                 name="password"
                 value={input.password}
@@ -104,6 +119,13 @@ function Login() {
                 }
                 required
               />
+              <div className={cx('eye-btn')}>
+                {!eye ? (
+                  <FontAwesomeIcon icon={faEyeSlash} onClick={handleClickEye} />
+                ) : (
+                  <FontAwesomeIcon icon={faEye} onClick={handleClickEye} />
+                )}
+              </div>
             </div>
 
             {/* <div id="signInDiv"></div> */}

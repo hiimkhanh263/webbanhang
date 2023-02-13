@@ -66,6 +66,13 @@
         span {
           flex: 1;
         }
+
+        .price-before-discount {
+          text-decoration: line-through;
+          font-size: 13px;
+          font-weight: 400;
+          margin-right: 8px;
+        }
       }
 
       .submit-btn {

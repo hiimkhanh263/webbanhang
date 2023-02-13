@@ -8,42 +8,33 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { removeItem } from '~/redux/reducers/cartReducer';
 import { formatPrice } from '~/utils/formatPrice/formatPrice';
 import { useNavigate } from 'react-router-dom';
-import CartInDeBut from './CartInDeBut';
 
 const cx = classNames.bind(styles);
 
-function CartItem({ item, totalPrice }) {
-  const products = useSelector((state) => state.cart.products);
-
-  // console.log(products);
-
+function CartItem({ item }) {
   const { mode } = useSelector((state) => state.darkMode);
 
   const dispatch = useDispatch();
 
-  const [quantityChange, setQuantityChange] = useState();
+  const [quantityChange, setQuantityChange] = useState(item.quantity);
 
-  // const totalPrice = () => {
-  //   let total = 0;
-  //   products.forEach((item) => (total += item.quantity * item.currentPrice));
-  //   return total;
-  // };
+  const priceChange = item.currentPrice * quantityChange;
+  // console.log(priceChange);
 
-  // const totalPriceChange = () => {
-  //   let total = 0;
-  //   item.forEach((result) => (total += quantityChange * result.currentPrice));
-  //   return total;
-  // };
+  const handleClickInc = () => {
+    setQuantityChange((prev) => prev + 1);
+  };
 
-  const totalPriceChange = item.currentPrice * quantityChange;
+  const handleClickDec = () => {
+    setQuantityChange((prev) => (prev === 1 ? 1 : prev - 1));
+  };
+  // localStorage.setItem('quantityChange', JSON.stringify(quantityChange));
 
-  useEffect(() => {
-    products.forEach((item) => {
-      setQuantityChange(item.quantity);
-    });
-  }, []);
+  // useEffect(() => {
+  //   localStorage.setItem('quantityChange', JSON.stringify(quantityChange));
+  // }, []);
 
-  localStorage.setItem('totalPrice', JSON.stringify(Number(totalPriceChange)));
+  // console.log(quantityChange);
 
   return (
     <div className={cx(mode ? 'wrapper-dark' : 'wrapper')}>
@@ -60,31 +51,14 @@ function CartItem({ item, totalPrice }) {
 
         <div className={cx('details')}>
           <div className={cx('quantity')}>
-            <button
-              onClick={() =>
-                setQuantityChange((prev) => (prev === 1 ? 1 : prev - 1))
-              }
-
-              // onClick={() =>
-              //   setQuantityChange((prev) =>
-              //     prev === 0
-              //       ? () => dispatch(removeItem(item.id))
-              //       : prev - 1,
-              //   )
-              // }
-            >
-              -
-            </button>
+            <button onClick={handleClickDec}>-</button>
 
             <span>{quantityChange}</span>
 
-            <button onClick={() => setQuantityChange((prev) => prev + 1)}>
-              +
-            </button>
+            <button onClick={handleClickInc}>+</button>
           </div>
-
           <div className={cx('price')}>
-            <span>{formatPrice(totalPriceChange)}</span>
+            <span>{formatPrice(priceChange)}</span>
           </div>
         </div>
 

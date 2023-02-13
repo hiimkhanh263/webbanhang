@@ -27,7 +27,6 @@ function Sidebar() {
     <aside className={cx(mode ? 'wrapper-dark' : 'wrapper')}>
       <Menu>
         <MenuItem
-          // title="ĐIỆN THOẠI"
           title={t('mobile')}
           symbol={<FontAwesomeIcon icon={faMobileScreen} />}
           to="/products/3"

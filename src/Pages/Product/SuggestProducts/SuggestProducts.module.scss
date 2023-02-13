@@ -1,5 +1,23 @@
-.wrapper {
+.wrapper,
+.wrapper-dark {
   display: flex;
-  gap: 20px;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+
+  h2 {
+    margin: 20px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .bottom {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+}
+
+.wrapper-dark {
+  color: #fff;
 }

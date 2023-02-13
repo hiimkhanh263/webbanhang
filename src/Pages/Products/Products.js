@@ -1,5 +1,6 @@
+import axios from 'axios';
 import classNames from 'classnames/bind';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -33,6 +34,21 @@ function Products() {
         : selectedSubCats.filter((item) => item !== value),
     );
   };
+
+  // ----pagination
+  // const [product, setProduct] = useState([]);
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [productsPerPage, setProductsPerPage] = useState(10);
+
+  // useEffect(() => {
+  //   const fetchProduct = async () => {
+  //     const res = await axios.get('http://localhost:1337/api/products');
+  //     setProduct(res.data);
+  //   };
+  //   fetchProduct();
+  // }, []);
+  // console.log(product);
+  // --------------------------
 
   return (
     <div className={cx(mode ? 'wrapper-dark' : 'wrapper')}>
@@ -103,12 +119,15 @@ function Products() {
             alt="sieu-khuyen-mai"
             className={cx('banner')}
           />
+
           <ListProducts
             cateId={cateId}
             maxPrice={maxPrice}
             sort={sort}
             subCats={selectedSubCats}
           />
+
+          {/* ---pagination */}
         </div>
       </div>
     </div>

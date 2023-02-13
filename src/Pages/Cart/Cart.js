@@ -32,7 +32,9 @@ function Cart() {
 
   const totalPrice = () => {
     let total = 0;
-    products.forEach((item) => (total += item.quantity * item.currentPrice));
+    products.forEach((item) => {
+      total += item.quantity * item.currentPrice;
+    });
     return total;
   };
 
@@ -60,23 +62,30 @@ function Cart() {
     setQuantityChange((prev) => (prev === 1 ? 1 : prev - 1));
 
   // update --------------
-  // const id = useParams().id;
-  // const { data } = useFetch(`/products?populate=*`);
-
   // const quantityChange = JSON.parse(localStorage.getItem('quantityChange'));
-  const quantitySold = products?.attributes?.sold + quantityChange;
 
-  const updateProduct = () => {
-    try {
-      axios.put(`http://localhost:1337/api/${products.id}`, {
-        data: {
-          sold: products?.attributes?.sold + quantitySold,
-        },
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const quantitySold = products?.attributes?.sold + quantityChange;
+
+  // const updateProduct = () => {
+  //   try {
+  //     axios.put(`http://localhost:1337/api/${products.id}`, {
+  //       data: {
+  //         sold: products?.attributes?.sold + quantitySold,
+  //       },
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+
+  // const [productUpdated, setProductUpdated] = useState([])
+  // const updateProduct = () => {
+  //   fetch('http://localhost:1337/api/productUpdated')
+  //     .then(response => response.json())
+  //     .then(productUpdate => {
+  //       setProductUpdated(productUpdate.data)
+  //     })
+  // }
 
   // useEffect(() => {
   //   axios.put(`http://localhost:1337/api/${products.id}`, {

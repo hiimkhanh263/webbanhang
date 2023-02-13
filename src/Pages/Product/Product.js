@@ -14,6 +14,7 @@ import SuggestProducts from './SuggestProducts/SuggestProducts';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import useUpdate from '~/hooks/useUpdate';
+import SuggestedProduct from './SuggestProducts/SuggestProducts';
 
 const cx = classNames.bind(styles);
 
@@ -360,6 +361,7 @@ function Product() {
         )}
       </div>
       {/* <SuggestProducts /> */}
+      <SuggestedProduct type="iphone" />
     </div>
   );
 }

@@ -76,5 +76,7 @@
   "password": "Password",
   "confirmpassword": "Confirm Password",
   "haveacc": "You have an account?",
-  "haventacc": "You haven't an account?"
+  "haventacc": "You haven't an account?",
+
+  "suggestproduct": "Suggest Product"
 }

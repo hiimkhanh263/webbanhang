@@ -76,5 +76,7 @@
   "password": "Mật Khẩu",
   "confirmpassword": "Nhập Lại Mật Khẩu",
   "haveacc": "Bạn đã có tài khoản?",
-  "haventacc": "bạn chưa có tài khoản?"
+  "haventacc": "bạn chưa có tài khoản?",
+
+  "suggestproduct": "Sản Phẩm Liên Quan"
 }

@@ -46,14 +46,11 @@ function Header() {
 
   let cartRef = useRef();
 
-  // ------language
   const { i18n } = useTranslation();
-  // const currentLanguage = locales[i18n.language as keyof typeof locales];
   const handleLanguageChange = (lng) => {
     i18n.changeLanguage(lng);
   };
   const { t } = useTranslation('home');
-  // -----------------
 
   useEffect(() => {
     let handler = (e) => {

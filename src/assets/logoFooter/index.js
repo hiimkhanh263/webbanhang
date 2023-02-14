@@ -15,6 +15,9 @@ const images = {
   bannerHomeFirst: require('~/assets/logoFooter/banner-home1.png'),
   bannerHomeSecond: require('~/assets/logoFooter/banner-home2.png'),
   bannerHomeThird: require('~/assets/logoFooter/banner-home3.png'),
+  slideFirst: require('~/assets/logoFooter/slide1.png'),
+  slideSecond: require('~/assets/logoFooter/slide2.png'),
+  slideThird: require('~/assets/logoFooter/slide3.png'),
 };
 
 export default images;

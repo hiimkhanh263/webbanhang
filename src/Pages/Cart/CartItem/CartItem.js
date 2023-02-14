@@ -1,39 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import styles from './CartItem.module.scss';
 import classNames from 'classnames/bind';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { removeItem } from '~/redux/reducers/cartReducer';
+import {
+  removeItem,
+  updateCartItemQuantity,
+} from '~/redux/reducers/cartReducer';
 import { formatPrice } from '~/utils/formatPrice/formatPrice';
-import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function CartItem({ item }) {
+function CartItem({ item, totalPriceChange, index }) {
   const { mode } = useSelector((state) => state.darkMode);
 
   const dispatch = useDispatch();
 
-  const [quantityChange, setQuantityChange] = useState(item.quantity);
-
-  const priceChange = item.currentPrice * quantityChange;
-
   const handleClickInc = () => {
-    setQuantityChange((prev) => prev + 1);
+    totalPriceChange(1, index);
+    dispatch(updateCartItemQuantity({ quantity: 1, index }));
   };
 
   const handleClickDec = () => {
-    setQuantityChange((prev) => (prev === 1 ? 1 : prev - 1));
+    if (item.quantity > 1) {
+      totalPriceChange(-1, index);
+      dispatch(updateCartItemQuantity({ quantity: -1, index }));
+    }
   };
-  // localStorage.setItem('quantityChange', JSON.stringify(quantityChange));
-
-  // useEffect(() => {
-  //   localStorage.setItem('quantityChange', JSON.stringify(quantityChange));
-  // }, []);
-
-  // console.log(quantityChange);
 
   return (
     <div className={cx(mode ? 'wrapper-dark' : 'wrapper')}>
@@ -52,12 +47,12 @@ function CartItem({ item }) {
           <div className={cx('quantity')}>
             <button onClick={handleClickDec}>-</button>
 
-            <span>{quantityChange}</span>
+            <span>{item.quantity}</span>
 
             <button onClick={handleClickInc}>+</button>
           </div>
           <div className={cx('price')}>
-            <span>{formatPrice(priceChange)}</span>
+            <span>{formatPrice(item.quantity * item.currentPrice)}</span>
           </div>
         </div>
 

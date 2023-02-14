@@ -88,7 +88,7 @@ function Search() {
   };
 
   return (
-    <div>
+    <div className={cx('wrapper')}>
       <HeadlessTippy
         appendTo={() => document.body}
         interactive

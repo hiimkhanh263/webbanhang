@@ -19,7 +19,6 @@ function CartItem({ item }) {
   const [quantityChange, setQuantityChange] = useState(item.quantity);
 
   const priceChange = item.currentPrice * quantityChange;
-  // console.log(priceChange);
 
   const handleClickInc = () => {
     setQuantityChange((prev) => prev + 1);

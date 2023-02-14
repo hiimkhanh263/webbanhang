@@ -69,3 +69,20 @@
     }
   }
 }
+
+// @media only screen and (min-width: 768px) and (max-width: 1024px) {
+//   .wrapper {
+//     width: 100%;
+//   }
+// }
+
+@media only screen and (max-width: 767px) {
+  .wrapper,
+  .wrapper-dark {
+    padding: 0;
+    margin-top: 40px;
+    .payment-success {
+      width: 100%;
+    }
+  }
+}

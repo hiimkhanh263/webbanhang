@@ -15,8 +15,8 @@ const cx = classNames.bind(styles);
 function ListProducts({ cateId, maxPrice, sort, subCats }) {
   const { data, loading } = useFetch(
     `/products?populate=*&[filters][categories][id]=${cateId}${subCats.map(
-      item => `&[filters][sub_categories][id][$eq]=${item}`
-    )}&[filters][price][$lte]=${maxPrice}&sort=price:${sort}`
+      (item) => `&[filters][sub_categories][id][$eq]=${item}`,
+    )}&[filters][price][$lte]=${maxPrice}&sort=price:${sort}`,
   );
 
   // const [productList, setProductList] = useState([])
@@ -60,7 +60,11 @@ function ListProducts({ cateId, maxPrice, sort, subCats }) {
   return (
     <>
       <div className={cx('wrapper')}>
-        {loading ? <LoadingSkeleton /> : data?.map(item => <Card item={item} key={item.id} />)}
+        {loading ? (
+          <LoadingSkeleton />
+        ) : (
+          data?.map((item) => <Card item={item} key={item.id} />)
+        )}
       </div>
 
       {/* phân trang */}

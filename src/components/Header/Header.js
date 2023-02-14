@@ -49,7 +49,7 @@ function Header() {
   // ------language
   const { i18n } = useTranslation();
   // const currentLanguage = locales[i18n.language as keyof typeof locales];
-  const handleLanguageChange = (lng: 'en' | 'vi') => {
+  const handleLanguageChange = (lng) => {
     i18n.changeLanguage(lng);
   };
   const { t } = useTranslation('home');

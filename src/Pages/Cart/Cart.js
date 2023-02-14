@@ -38,7 +38,8 @@ function Cart() {
     return total;
   };
 
-  const totalPriceChange = totalPrice() * quantityChange;
+  // const totalPriceChange = totalPrice() * quantityChange;
+  const totalPriceChange = totalPrice();
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -56,10 +57,16 @@ function Cart() {
     // }
   };
 
-  const handleClickInc = () => setQuantityChange((prev) => prev + 1);
+  // useEffect(() => {
+  //   products.forEach((item) => {
+  //     setQuantityChange(item.quantity);
+  //   });
+  // }, []);
 
-  const handleClickDec = () =>
-    setQuantityChange((prev) => (prev === 1 ? 1 : prev - 1));
+  // const handleClickInc = () => setQuantityChange((prev) => prev + 1);
+
+  // const handleClickDec = () =>
+  //   setQuantityChange((prev) => (prev === 1 ? 1 : prev - 1));
 
   // update --------------
   // const quantityChange = JSON.parse(localStorage.getItem('quantityChange'));
@@ -96,12 +103,6 @@ function Cart() {
   // }, []);
   // ---------------------------------
 
-  useEffect(() => {
-    products.forEach((item) => {
-      setQuantityChange(item.quantity);
-    });
-  }, []);
-
   return (
     <div className={cx(mode ? 'wrapper-dark' : 'wrapper')}>
       <div className={cx('cart')}>
@@ -117,9 +118,9 @@ function Cart() {
         <div className={cx('cart-content')}>
           {products.map((item, index) => (
             <div className={cx('item')} key={index}>
-              {/* <CartItem key={item.id} item={item} /> */}
+              <CartItem key={item.id} item={item} />
 
-              <>
+              {/* <>
                 <div className={cx('item-info')}>
                   <img
                     src={process.env.REACT_APP_UPLOAD_URL + item.img}
@@ -152,10 +153,13 @@ function Cart() {
                   <FontAwesomeIcon
                     icon={faTrash}
                     className={cx('delete-btn')}
-                    onClick={() => dispatch(removeItem(item.id))}
+                    onClick={() => {
+                      dispatch(removeItem(item.id));
+                      
+                    }}
                   />
                 </div>
-              </>
+              </> */}
             </div>
           ))}
 
@@ -164,7 +168,7 @@ function Cart() {
             <span>{formatPrice(totalPriceChange)}</span>
           </div>
 
-          {totalPrice() ? (
+          {totalPrice ? (
             <button className={cx('payment-btn')} onClick={handleClick}>
               {t('payment')}
             </button>

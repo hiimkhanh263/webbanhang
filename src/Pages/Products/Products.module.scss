@@ -56,3 +56,85 @@
   background-color: #18191a;
   color: #fff;
 }
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .wrapper,
+  .wrapper-dark {
+    width: 100%;
+
+    .products {
+      padding: 6px;
+
+      .left {
+        h2 {
+          font-size: 14px;
+        }
+
+        label,
+        span {
+          font-size: 12px;
+        }
+      }
+
+      .right {
+        .banner {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .wrapper,
+  .wrapper-dark {
+    width: 100%;
+    margin-top: 40px;
+
+    .products {
+      padding: 6px;
+      display: block;
+
+      .left {
+        display: flex;
+        justify-content: space-between;
+        margin-right: 0;
+
+        .filter-item {
+          flex: 1;
+          margin-bottom: 6px;
+
+          h2 {
+            font-size: 12px;
+            margin-bottom: 6px;
+          }
+        }
+
+        label,
+        span {
+          font-size: 10px;
+        }
+      }
+
+      .right {
+        .banner {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .wrapper {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .wrapper {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+}

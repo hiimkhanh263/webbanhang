@@ -225,7 +225,11 @@ function Product() {
                 <Link to="/cart" className={cx('buy-now-link')}>
                   <button
                     className={cx('buy-now')}
-                    onClick={() =>
+                    onClick={() => {
+                      localStorage.setItem(
+                        'totalPrice',
+                        JSON.stringify(quantity * currentPrice),
+                      );
                       dispatch(
                         addToCart({
                           id: data.id,
@@ -238,8 +242,8 @@ function Product() {
                           currentPrice,
                           quantity,
                         }),
-                      )
-                    }
+                      );
+                    }}
                   >
                     {t('buynow')}
                   </button>
@@ -361,7 +365,9 @@ function Product() {
         )}
       </div>
       {/* <SuggestProducts /> */}
-      <SuggestedProduct type="iphone" />
+      <div className={cx('suggest-product')}>
+        <SuggestedProduct type="iphone" />
+      </div>
     </div>
   );
 }

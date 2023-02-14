@@ -33,7 +33,7 @@ function CartLayout() {
     return total;
   };
 
-  const handleClick = (e) => {
+  const handleClickPayment = (e) => {
     e.preventDefault();
 
     navigate('/payment');
@@ -46,6 +46,14 @@ function CartLayout() {
     //   navigate('/login');
     //   alert('Bạn cần đăng nhập để thanh toán');
     // }
+  };
+
+  const handleClickShowCart = (e) => {
+    e.preventDefault();
+
+    navigate('/cart');
+
+    localStorage.setItem('totalPrice', JSON.stringify(Number(totalPrice())));
   };
 
   return (
@@ -93,11 +101,9 @@ function CartLayout() {
           </div>
 
           <div className={cx('cart-btn')}>
-            <Link to="/cart">
-              <button>{t('showcart')}</button>
-            </Link>
+            <button onClick={handleClickShowCart}>{t('showcart')}</button>
 
-            <button onClick={handleClick}>{t('payment')}</button>
+            <button onClick={handleClickPayment}>{t('payment')}</button>
           </div>
         </div>
       ) : (

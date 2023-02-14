@@ -101,3 +101,56 @@
     }
   }
 }
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .wrapper,
+  .wrapper-dark {
+    padding: 10px;
+
+    .contact {
+      width: 100%;
+      height: auto;
+
+      .mail {
+        display: flex;
+        input {
+          width: 80%;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .wrapper,
+  .wrapper-dark {
+    padding: 10px;
+    .contact {
+      width: 100%;
+      height: auto;
+
+      span {
+        display: none;
+      }
+
+      .mail {
+        display: flex;
+
+        &::after {
+          display: none;
+        }
+
+        input {
+          font-size: 12px;
+          padding: 0px 4px;
+          width: 100%;
+        }
+
+        button {
+          font-size: 12px;
+          padding: 8px;
+        }
+      }
+    }
+  }
+}

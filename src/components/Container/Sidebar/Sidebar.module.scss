@@ -9,3 +9,20 @@
 .wrapper-dark {
   background-color: #242526;
 }
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .wrapper {
+    width: 100%;
+    display: flex;
+    margin-top: -10px;
+    padding: 0 8px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .wrapper {
+    width: 100%;
+    display: flex;
+    margin-top: -50px;
+  }
+}

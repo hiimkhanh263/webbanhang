@@ -72,3 +72,10 @@
     }
   }
 }
+
+@media only screen and (max-width: 767px) {
+  .wrapper,
+  .wrapper-dark {
+    width: 300px;
+  }
+}

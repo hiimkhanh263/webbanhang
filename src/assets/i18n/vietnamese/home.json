@@ -17,7 +17,7 @@
   "term": "Điều khoản",
   "question": "Câu hỏi",
   "onlinesale": "Bán hàng Online",
-  "customercare": "CHăm sóc khách hàng",
+  "customercare": "Chăm sóc khách hàng",
   "repair": "Sửa chữa",
   "contact": "Liên hệ",
   "payment": "Thanh toán",
@@ -48,7 +48,7 @@
   "company": "Hãng",
   "type": "Loại",
   "available": "sản phẩm có sẵn",
-  "buttondis": "Vui lòng chọn lại sản phẩm",
+  "buttondis": "Vui lòng chọn loại sản phẩm",
 
   "productlist": "Danh Sách Sản Phẩm",
   "filterbyprice": "Lọc Theo Giá",
@@ -76,7 +76,7 @@
   "password": "Mật Khẩu",
   "confirmpassword": "Nhập Lại Mật Khẩu",
   "haveacc": "Bạn đã có tài khoản?",
-  "haventacc": "bạn chưa có tài khoản?",
+  "haventacc": "Bạn chưa có tài khoản?",
 
   "suggestproduct": "Sản Phẩm Liên Quan"
 }

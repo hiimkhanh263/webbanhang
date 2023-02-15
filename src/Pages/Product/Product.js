@@ -156,7 +156,9 @@ function Product() {
                   </span>
                 )}
               </div>
+
               <p className={cx('desc')}>{data?.attributes?.desc}</p>
+
               <div className={cx('color')}>
                 <p>{t('color')}:</p>
                 {data?.attributes?.colors?.data?.map((color) => (
@@ -176,6 +178,7 @@ function Product() {
                   ></button>
                 ))}
               </div>
+
               <div className={cx('memory')}>
                 <p>{t('memory')}:</p>
                 {data?.attributes?.memories?.data?.map((memory) => (
@@ -194,6 +197,7 @@ function Product() {
                   </button>
                 ))}
               </div>
+
               <div className={cx('quantity')}>
                 <button
                   onClick={() =>

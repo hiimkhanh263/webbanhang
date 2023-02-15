@@ -28,6 +28,7 @@ function Header() {
   const [open, setOpen] = useState(false);
 
   const userName = JSON.parse(localStorage.getItem('user'));
+  const loggedIn = JSON.parse(localStorage.getItem('loggedin'));
 
   const products = useSelector((state) => state.cart.products);
 
@@ -38,10 +39,9 @@ function Header() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // localStorage.removeItem("loggedin");
-    localStorage.clear();
+    localStorage.removeItem('loggedin');
+
     navigate('/login');
-    // window.location.href = window.location.href;
   };
 
   let cartRef = useRef();
@@ -74,7 +74,7 @@ function Header() {
         <Search />
 
         <div className={cx('nav-bar-pc')}>
-          {userName ? (
+          {loggedIn ? (
             <div className={cx('action')}>
               <div>
                 {/* wrap tippy by div to fix warning */}

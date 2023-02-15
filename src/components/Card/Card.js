@@ -54,7 +54,7 @@ function Card({ item }) {
 
       <div className={cx('card-info')}>
         <div className={cx('promotion')}>
-          <p>Tặng kèm dây củ cáp sạc chính hãng</p>
+          <p>{t('gift')}</p>
         </div>
 
         <div className={cx('bottom')}>

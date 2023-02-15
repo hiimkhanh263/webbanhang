@@ -21,6 +21,7 @@ function Payment() {
   const { t } = useTranslation('home');
 
   const user = JSON.parse(localStorage.getItem('user'));
+  const loggedIn = JSON.parse(localStorage.getItem('loggedin'));
 
   const totalPriceChange = JSON.parse(localStorage.getItem('totalPrice'));
 
@@ -76,7 +77,7 @@ function Payment() {
         <div className={cx('payment-form')}>
           <form onSubmit={handlePayment}>
             <div className={cx('form')}>
-              {user ? (
+              {loggedIn ? (
                 <div>
                   <div className={cx('form-group')}>
                     <label>{t('yourname')}:</label>

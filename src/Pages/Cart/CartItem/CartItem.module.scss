@@ -62,3 +62,29 @@
     color: #fff;
   }
 }
+
+@media only screen and (max-width: 767px) {
+  .wrapper,
+  .wrapper-dark {
+    .item {
+      padding: 0;
+      .item-info {
+        display: block;
+
+        img {
+          width: 50px;
+        }
+
+        div {
+          width: 100px;
+        }
+      }
+
+      .details {
+        .price {
+          margin: 0 8px;
+        }
+      }
+    }
+  }
+}

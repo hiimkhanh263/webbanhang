@@ -10,7 +10,6 @@ export const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       let index = null;
-
       index = current(state.products).findIndex(
         (item) =>
           item.id === action.payload.id &&

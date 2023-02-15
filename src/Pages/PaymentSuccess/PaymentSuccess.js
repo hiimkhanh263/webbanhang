@@ -32,16 +32,8 @@ function PaymentSuccess() {
     setTimeout(() => {
       navivate('/');
       dispatch(resetCart());
-      //   localStorage.removeItem('totalPriceDiscount');
     }, [5000]);
   }, []);
-
-  // ---reset cart after 1s---
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     dispatch(resetCart());
-  //   }, [1000]);
-  // }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {

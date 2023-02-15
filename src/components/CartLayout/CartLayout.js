@@ -58,7 +58,7 @@ function CartLayout() {
 
   return (
     <div className={cx(mode ? 'wrapper-dark' : 'wrapper')}>
-      {Number(totalPrice()) != 0 ? (
+      {Number(totalPrice()) !== 0 ? (
         <div className={cx('cart')}>
           <h1>{t('productchose')}</h1>
 

@@ -41,15 +41,15 @@
     width: 100%;
     display: flex;
     justify-content: space-evenly;
+  }
 
-    .menu-item,
-    .menu-item-dark {
-      font-size: 14px;
-      padding: 0 8px;
+  .menu-item,
+  .menu-item-dark {
+    font-size: 14px;
+    padding: 4px 8px;
 
-      .symbol {
-        display: none;
-      }
+    .symbol {
+      display: none;
     }
   }
 }

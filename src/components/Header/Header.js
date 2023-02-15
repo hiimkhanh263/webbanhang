@@ -3,8 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBars,
   faCartShopping,
-  faMoon,
-  faSun,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';
@@ -197,7 +195,7 @@ function Header() {
           <div ref={cartRef}>
             <div className={cx('cart')} onClick={() => setOpen(!open)}>
               <FontAwesomeIcon icon={faCartShopping} />
-              {products.length != 0 && <span>{products.length}</span>}
+              {products.length !== 0 && <span>{products.length}</span>}
 
               <p>{t('cart')}</p>
             </div>

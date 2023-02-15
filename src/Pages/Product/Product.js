@@ -1,19 +1,19 @@
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCartPlus,
+  faCircleCheck,
+  faHeart,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import useFetch from '~/hooks/useFetch';
 import { addToCart } from '~/redux/reducers/cartReducer';
 import { formatPrice } from '~/utils/formatPrice/formatPrice';
 import styles from './Product.module.scss';
-import SuggestProducts from './SuggestProducts/SuggestProducts';
-import axios from 'axios';
-import { useTranslation } from 'react-i18next';
-import useUpdate from '~/hooks/useUpdate';
 import SuggestedProduct from './SuggestProducts/SuggestProducts';
 
 const cx = classNames.bind(styles);
@@ -135,6 +135,22 @@ function Product() {
                   }
                   alt=""
                   onClick={(e) => setSelectedImg('img2')}
+                />
+                <img
+                  src={
+                    process.env.REACT_APP_UPLOAD_URL +
+                    data?.attributes?.img3?.data?.attributes?.url
+                  }
+                  alt=""
+                  onClick={(e) => setSelectedImg('img3')}
+                />
+                <img
+                  src={
+                    process.env.REACT_APP_UPLOAD_URL +
+                    data?.attributes?.img4?.data?.attributes?.url
+                  }
+                  alt=""
+                  onClick={(e) => setSelectedImg('img4')}
                 />
               </div>
             </div>
@@ -325,6 +341,7 @@ function Product() {
                 <button>{t('installment')} 0%</button>
                 <button>{t('installmentbycard')}</button>
               </div>
+
               <div className={cx('sumary')}>
                 {!isLiked ? (
                   <span className={cx('like')}>
@@ -358,12 +375,42 @@ function Product() {
                   {data?.attributes?.rating} {t('rating')}
                 </span>
               </div>
+
               <div className={cx('info')}>
-                <span>{t('company')}: Apple</span>
-                <span>{t('type')}: Điện thoại</span>
-                <span>Tag: apple, dienthoai, iphone</span>
+                <h2>{t('extraoffer')}</h2>
+                <p>
+                  <FontAwesomeIcon icon={faCircleCheck} />
+                  <span>{t('offer1')}</span>
+                </p>
+                <p>
+                  <FontAwesomeIcon icon={faCircleCheck} />
+                  <span>{t('offer2')}</span>
+                </p>
+                <p>
+                  <FontAwesomeIcon icon={faCircleCheck} />
+                  <span>{t('offer3')}</span>
+                </p>
+                <p>
+                  <FontAwesomeIcon icon={faCircleCheck} />
+                  <span>{t('offer4')}</span>
+                </p>
+                <p>
+                  <FontAwesomeIcon icon={faCircleCheck} />
+                  <span>{t('offer5')}</span>
+                </p>
+                <p>
+                  <FontAwesomeIcon icon={faCircleCheck} />
+                  <span>{t('offer6')}</span>
+                </p>
+                <p>
+                  <FontAwesomeIcon icon={faCircleCheck} />
+                  <span>{t('offer7')}</span>
+                </p>
+                <p>
+                  <FontAwesomeIcon icon={faCircleCheck} />
+                  <span>{t('offer8')}</span>
+                </p>
               </div>
-              <hr />
             </div>
           </>
         )}

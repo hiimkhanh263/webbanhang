@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 import styles from './Cart.module.scss';
 
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { formatPrice } from '~/utils/formatPrice/formatPrice';
 import CartItem from './CartItem/CartItem';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -32,7 +32,11 @@ function Cart() {
   const handleClick = (e) => {
     e.preventDefault();
 
-    localStorage.setItem('totalPrice', JSON.stringify(totalPriceAll));
+    if (totalPriceAll === 0) {
+      localStorage.setItem('totalPrice', JSON.stringify(Number(totalPrice())));
+    } else {
+      localStorage.setItem('totalPrice', JSON.stringify(totalPriceAll));
+    }
     // localStorage.setItem('quantityChange', JSON.stringify(quantityChange));
     navigate('/payment');
 
@@ -94,48 +98,59 @@ function Cart() {
 
   return (
     <div className={cx(mode ? 'wrapper-dark' : 'wrapper')}>
-      <div className={cx('cart')}>
-        <h1 className={cx('cart-title')}>{t('yourcart')}</h1>
-
-        <div className={cx('heading')}>
-          <span className={cx('heading-name')}>{t('product')}</span>
-          <span className={cx('heading-quantity')}>{t('quantity')}</span>
-          <span className={cx('heading-price')}>{t('price')}</span>
-          <span className={cx('heading-btn')}>{t('action')}</span>
+      {products == 0 ? (
+        <div className={cx('no-item')}>
+          <p>Không có sản phẩm nào trong Giỏ Hàng</p>
+          <Link to="/">
+            <button>Trở lại Trang Chủ</button>
+          </Link>
         </div>
+      ) : (
+        <div className={cx('cart')}>
+          <h1 className={cx('cart-title')}>{t('yourcart')}</h1>
 
-        <div className={cx('cart-content')}>
-          {products.map((item, index) => (
-            <div className={cx('item')} key={index}>
-              <CartItem
-                index={index}
-                key={item.id}
-                item={item}
-                totalPriceChange={totalPriceChange}
-              />
-            </div>
-          ))}
-
-          <div className={cx('total')}>
-            <span>{t('totalprice')}: </span>
-            {totalPriceAll ? (
-              <span>{formatPrice(totalPriceAll)}</span>
-            ) : (
-              <span>{formatPrice(totalPrice())}</span>
-            )}
+          <div className={cx('heading')}>
+            <span className={cx('heading-name')}>{t('product')}</span>
+            <span className={cx('heading-quantity')}>{t('quantity')}</span>
+            <span className={cx('heading-price')}>{t('price')}</span>
+            <span className={cx('heading-btn')}>{t('action')}</span>
           </div>
 
-          {totalPriceAll ? (
-            <button className={cx('payment-btn')} onClick={handleClick}>
-              {t('payment')}
-            </button>
-          ) : (
-            <button className={cx('payment-btn')} disabled>
-              {t('payment')}
-            </button>
-          )}
+          <div className={cx('cart-content')}>
+            {products.length
+              ? products.map((item, index) => (
+                  <div className={cx('item')} key={index}>
+                    <CartItem
+                      index={index}
+                      key={item.id}
+                      item={item}
+                      totalPriceChange={totalPriceChange}
+                    />
+                  </div>
+                ))
+              : null}
+
+            <div className={cx('total')}>
+              <span>{t('totalprice')}: </span>
+              {totalPriceAll ? (
+                <span>{formatPrice(totalPriceAll)}</span>
+              ) : (
+                <span>{formatPrice(totalPrice())}</span>
+              )}
+            </div>
+
+            {totalPrice ? (
+              <button className={cx('payment-btn')} onClick={handleClick}>
+                {t('payment')}
+              </button>
+            ) : (
+              <button className={cx('payment-btn')} disabled>
+                {t('payment')}
+              </button>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

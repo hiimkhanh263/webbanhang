@@ -114,11 +114,11 @@ function Products() {
         </div>
 
         <div className={cx('right')}>
-          <img
+          {/* <img
             src={images.bannerProducts}
             alt="sieu-khuyen-mai"
             className={cx('banner')}
-          />
+          /> */}
 
           <ListProducts
             cateId={cateId}

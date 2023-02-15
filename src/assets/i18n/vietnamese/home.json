@@ -51,7 +51,7 @@
   "buttondis": "Vui lòng chọn loại sản phẩm",
 
   "productlist": "Danh Sách Sản Phẩm",
-  "filterbyprice": "Lọc Theo Giá",
+  "filterbyprice": "Chọn Khoảng Giá",
   "sortbyprice": "Sắp Xếp Theo Giá",
   "decrease": "Thấp đến cao",
   "ascending": "Cao xuống thấp",
@@ -80,5 +80,15 @@
 
   "suggestproduct": "Sản Phẩm Liên Quan",
 
-  "gift": "Tặng kèm dây củ cáp sạc chính hãng"
+  "gift": "Tặng kèm dây củ cáp sạc chính hãng",
+
+  "extraoffer": "Ưu đãi thêm",
+  "offer1": "Giảm thêm tới 5% cho khách hàng đã đăng nhập",
+  "offer2": "Bảo vệ sản phẩm toàn diện với dịch vụ bảo hành mở rộng",
+  "offer3": "Giảm thêm 5% tối đa 500.000đ khi thanh toán qua Kredivo",
+  "offer4": "Giảm thêm 600.000đ qua thẻ tín dụng JCB cho đơn hàng từ 10.000.000đ",
+  "offer5": "Giảm thêm 4% (tối đa 250.000đ) qua ví Moca cho đơn hàng từ 500.000đ",
+  "offer6": "Giảm thêm 500.000đ khi thanh toán qua thẻ tín dụng Home Credit cho đơn hàng từ 8 triệu",
+  "offer7": "Giảm thêm tới 300k cho đơn hàng từ 5 triệu khi thanh toán qua VNPAY",
+  "offer8": "Thu cũ đổi mới: Giá thu cao - Thủ tục nhanh chóng - Trợ giá tốt nhất"
 }

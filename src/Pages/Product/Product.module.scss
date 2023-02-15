@@ -229,20 +229,26 @@
       }
 
       .info {
-        display: flex;
-        flex-direction: column;
-        color: gray;
+        padding: 12px;
+        border-radius: 6px;
         font-size: 14px;
         margin-top: 30px;
+        border: 1px solid gray;
 
-        hr {
-          width: 200px;
-          border-top: 1px solid rgb(160, 160, 160);
+        h2 {
+          display: inline-block;
+          border-bottom: 1px solid #ccc;
+          margin-bottom: 12px;
         }
-      }
 
-      hr {
-        border-top: 1px solid rgb(160, 160, 160);
+        p {
+          color: rgb(9, 200, 9);
+        }
+
+        span {
+          color: #000;
+          margin-left: 6px;
+        }
       }
     }
   }

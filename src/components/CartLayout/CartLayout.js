@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react';
-
-import classNames from 'classnames/bind';
-import styles from './CartLayout.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classNames from 'classnames/bind';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeItem, resetCart } from '~/redux/reducers/cartReducer';
+import styles from './CartLayout.module.scss';
 
-import { Link, useNavigate } from 'react-router-dom';
-import { formatPrice } from '~/utils/formatPrice/formatPrice';
-import images from '~/assets/logoFooter';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import images from '~/assets/logoFooter';
+import { formatPrice } from '~/utils/formatPrice/formatPrice';
 
 const cx = classNames.bind(styles);
 

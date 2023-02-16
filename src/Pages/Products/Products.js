@@ -71,6 +71,30 @@ function Products() {
           </div>
 
           <div className={cx('filter-item')}>
+            <h2>Màn Hình</h2>
+            <div className={cx('input-item')}>
+              <input type="checkbox" />
+              <label>Đục lỗ</label>
+            </div>
+            <div className={cx('input-item')}>
+              <input type="checkbox" />
+              <label>Tai Thỏ</label>
+            </div>
+          </div>
+
+          <div className={cx('filter-item')}>
+            <h2>Bộ nhớ</h2>
+            <div className={cx('input-item')}>
+              <input type="checkbox" />
+              <label>4GB - 6GB</label>
+            </div>
+            <div className={cx('input-item')}>
+              <input type="checkbox" />
+              <label>8GB - 12GB</label>
+            </div>
+          </div>
+
+          <div className={cx('filter-item')}>
             <h2>{t('filterbyprice')}</h2>
 
             <div className={cx('input-item')}>

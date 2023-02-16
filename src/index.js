@@ -14,11 +14,11 @@ root.render(
   <Suspense fallback={null}>
     <React.StrictMode>
       <Provider store={store}>
-        {/* <PersistGate loading={'loading'} persistor={persistor}> */}
-        <GlobalStyles>
-          <App />
-        </GlobalStyles>
-        {/* </PersistGate> */}
+        <PersistGate loading={'loading'} persistor={persistor}>
+          <GlobalStyles>
+            <App />
+          </GlobalStyles>
+        </PersistGate>
       </Provider>
     </React.StrictMode>
   </Suspense>,

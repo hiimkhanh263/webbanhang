@@ -197,7 +197,7 @@
           color: #fff;
           cursor: pointer;
           border: none;
-          background: linear-gradient(180deg, #3a78d0, #277cea);
+          background: #277cea;
           border-radius: 12px;
         }
       }
@@ -275,6 +275,14 @@
           color: #fff;
         }
       }
+
+      .info {
+        p {
+          span {
+            color: #fff;
+          }
+        }
+      }
     }
   }
 }
@@ -316,7 +324,7 @@
   .wrapper,
   .wrapper-dark {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 40px;
 
     .product {
       padding: 0;
